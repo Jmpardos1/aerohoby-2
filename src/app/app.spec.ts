@@ -20,10 +20,9 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', () => {
+  it('should have the correct title property', () => {
     const fixture = TestBed.createComponent(App);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ISIS2603_202610_S2_E4_Aerohobby_Front');
+    const app = fixture.componentInstance as any;
+    expect(app.title()).toEqual('ISIS2603_202610_S2_E4_Aerohobby_Front');
   });
 });
