@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { OrdenCompraListComponent } from './orden-compra-list.component';
-import { OrdenCompraService } from './orden-compra-service';
+import { OrdenCompraService } from '../orden-compra-service';
 import { of, throwError, Subject } from 'rxjs';
-import { OrdenCompra } from './orden-compra';
-import { Usuario } from './usuario';
-import { Producto } from './producto';
+import { OrdenCompra } from '../orden-compra';
+import { Usuario } from '../usuario';
+import { Producto } from '../producto';
 import { faker } from '@faker-js/faker';
 
 describe('OrdenCompraListComponent', () => {

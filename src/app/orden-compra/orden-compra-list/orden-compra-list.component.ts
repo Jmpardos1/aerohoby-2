@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OrdenCompra } from './orden-compra';
-import { OrdenCompraService } from './orden-compra-service';
+import { OrdenCompra } from '../orden-compra';
+import { OrdenCompraService } from '../orden-compra-service';
 
 @Component({
   selector: 'app-orden-compra-list',

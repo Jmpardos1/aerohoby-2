@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OrdenCompraListComponent } from './orden-compra/orden-compra-list.component';
+import { OrdenCompraListComponent } from './orden-compra/orden-compra-list/orden-compra-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/ordenes-compra', pathMatch: 'full' },
