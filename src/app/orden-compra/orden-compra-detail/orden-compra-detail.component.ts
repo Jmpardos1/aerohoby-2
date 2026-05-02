@@ -1,14 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { OrdenCompra } from '../orden-compra';
 
 @Component({
   selector: 'app-orden-compra-detail',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './orden-compra-detail.component.html',
-  styleUrl: './orden-compra-detail.component.css',
+  styleUrls: ['./orden-compra-detail.component.css'],
 })
 export class OrdenCompraDetailComponent implements OnInit{
+
+  @Input() ordenCompra!: OrdenCompra | null;
+
+  constructor() { }
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
 }

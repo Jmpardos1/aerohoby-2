@@ -26,7 +26,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let orden of ordenesCompra">
+        <tr
+          *ngFor="let orden of ordenesCompra"
+          class="orden-row"
+          [class.selected-row]="selectedOrdenCompra?.id === orden.id"
+          (click)="selectOrdenCompra(orden)">
           <td>{{ orden.id | slice:0:8 }}...</td>
           <td>{{ orden.fechaOrden | date:'short' }}</td>
           <td>{{ orden.estadoPedido }}</td>
@@ -38,6 +42,8 @@
       </tbody>
     </table>
   </div>
+
+  <app-orden-compra-detail [ordenCompra]="selectedOrdenCompra"></app-orden-compra-detail>
 
   <div *ngIf="!isLoading && ordenesCompra.length === 0 && !errorMessage" class="alert alert-info no-data">
     No hay órdenes de compra disponibles.

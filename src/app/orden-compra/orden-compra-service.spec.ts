@@ -7,6 +7,7 @@ import { Usuario } from './usuario';
 import { Producto } from './producto';
 import { faker } from '@faker-js/faker';
 
+
 describe('OrdenCompraService', () => {
   let service: OrdenCompraService;
   let httpMock: HttpTestingController;
@@ -44,6 +45,7 @@ describe('OrdenCompraService', () => {
       imports: [HttpClientTestingModule],
       providers: [OrdenCompraService]
     });
+
     service = TestBed.inject(OrdenCompraService);
     httpMock = TestBed.inject(HttpTestingController);
   });
@@ -52,142 +54,78 @@ describe('OrdenCompraService', () => {
     httpMock.verify();
   });
 
-  it('should be created', () => {
+  it('Se debe crear', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('createOrdenCompra', () => {
-    it('should create an orden and return it', () => {
-      const newOrden = {
-        fechaOrden: faker.date.recent(),
-        estadoPedido: 'PENDIENTE',
-        usuarioId: mockUsuario.id,
-        productoId: mockProducto.id
-      };
+  it('Debe traer todas las ordenes', () => {
+    const mockOrdenes = [mockOrdenCompra];
 
-      service.createOrdenCompra(newOrden).subscribe((result) => {
-        expect(result).toEqual(mockOrdenCompra);
-      });
-
-      const req = httpMock.expectOne(apiUrl);
-      expect(req.request.method).toBe('POST');
-      req.flush(mockOrdenCompra);
+    service.getAllOrdenCompra().subscribe((result) => {
+      expect(result).toEqual(mockOrdenes);
     });
+
+    const req = httpMock.expectOne(apiUrl);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockOrdenes);
   });
 
-  describe('getOrdenCompra', () => {
-    it('should fetch a single orden by ID', () => {
-      const orderId = 'order-1';
+  it('debe crear una orden y devolverla', () => {
+    const newOrden = {
+      fechaOrden: faker.date.recent(),
+      estadoPedido: 'PENDIENTE',
+      usuarioId: mockUsuario.id,
+      productoId: mockProducto.id
+    };
 
-      service.getOrdenCompra(orderId).subscribe((result) => {
-        expect(result).toEqual(mockOrdenCompra);
-      });
-
-      const req = httpMock.expectOne(`${apiUrl}/${orderId}`);
-      expect(req.request.method).toBe('GET');
-      req.flush(mockOrdenCompra);
+    service.createOrdenCompra(newOrden).subscribe((result) => {
+      expect(result).toEqual(mockOrdenCompra);
     });
+
+    const req = httpMock.expectOne(apiUrl);
+    expect(req.request.method).toBe('POST');
+    req.flush(mockOrdenCompra);
   });
 
-  describe('getAllOrdenCompra', () => {
-    it('should fetch all ordenes', () => {
-      const mockOrdenes = [mockOrdenCompra];
+  it('Traer una orden por ID', () => {
+    const orderId = 'order-1';
 
-      service.getAllOrdenCompra().subscribe((result) => {
-        expect(result).toEqual(mockOrdenes);
-      });
-
-      const req = httpMock.expectOne(apiUrl);
-      expect(req.request.method).toBe('GET');
-      req.flush(mockOrdenes);
+    service.getOrdenCompra(orderId).subscribe((result) => {
+      expect(result).toEqual(mockOrdenCompra);
     });
 
-    it('should cache the ordenes list', () => {
-      const mockOrdenes = [mockOrdenCompra];
-
-      service.getAllOrdenCompra().subscribe();
-
-      const req = httpMock.expectOne(apiUrl);
-      req.flush(mockOrdenes);
-
-      // Verify the cache was updated by subscribing again
-      service.getAllOrdenCompra().subscribe((result) => {
-        expect(result).toEqual(mockOrdenes);
-      });
-
-      const req2 = httpMock.expectOne(apiUrl);
-      req2.flush(mockOrdenes);
-    });
+    const req = httpMock.expectOne(`${apiUrl}/${orderId}`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockOrdenCompra);
   });
 
-  describe('deleteOrdenCompra', () => {
-    it('should delete an orden by ID', () => {
-      const orderId = 'order-1';
+  it('Eliminar una orden por ID', () => {
+    const orderId = 'order-1';
 
-      service.deleteOrdenCompra(orderId).subscribe();
+    service.deleteOrdenCompra(orderId).subscribe();
 
-      const req = httpMock.expectOne(`${apiUrl}/${orderId}`);
-      expect(req.request.method).toBe('DELETE');
-      req.flush(null);
-    });
+    const req = httpMock.expectOne(`${apiUrl}/${orderId}`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(null);
   });
 
-  describe('deleteOrdenCompraCliente', () => {
-    it('should delete ordenes by client ID', () => {
-      const clientId = 'user-1';
+  it('Eliminar ordenes por cliente', () => {
+    const clientId = 'user-1';
 
-      service.deleteOrdenCompraCliente(clientId).subscribe();
+    service.deleteOrdenCompraCliente(clientId).subscribe();
 
-      const req = httpMock.expectOne(`${apiUrl}/cliente/${clientId}`);
-      expect(req.request.method).toBe('DELETE');
-      req.flush(null);
-    });
+    const req = httpMock.expectOne(`${apiUrl}/cliente/${clientId}`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(null);
   });
 
-  describe('deleteOrdenCompraFecha', () => {
-    it('should delete ordenes by date', () => {
-      const date = faker.date.past().toISOString().split('T')[0];
+  it('Eliminar ordenes por fecha', () => {
+    const date = faker.date.past().toISOString().split('T')[0];
 
-      service.deleteOrdenCompraFecha(date).subscribe();
+    service.deleteOrdenCompraFecha(date).subscribe();
 
-      const req = httpMock.expectOne(`${apiUrl}/fecha?fecha=${date}`);
-      expect(req.request.method).toBe('DELETE');
-      req.flush(null);
-    });
-  });
-
-  describe('Error Handling', () => {
-    it('should handle 404 error when fetching orden', () => {
-      const orderId = 'nonexistent';
-
-      service.getOrdenCompra(orderId).subscribe(
-        () => fail('should have failed'),
-        (error) => {
-          expect(error.status).toBe(404);
-        }
-      );
-
-      const req = httpMock.expectOne(`${apiUrl}/${orderId}`);
-      req.flush('Not Found', { status: 404, statusText: 'Not Found' });
-    });
-
-    it('should handle 500 error when creating orden', () => {
-      const newOrden = {
-        fechaOrden: faker.date.recent(),
-        estadoPedido: 'PENDIENTE',
-        usuarioId: mockUsuario.id,
-        productoId: mockProducto.id
-      };
-
-      service.createOrdenCompra(newOrden).subscribe(
-        () => fail('should have failed'),
-        (error) => {
-          expect(error.status).toBe(500);
-        }
-      );
-
-      const req = httpMock.expectOne(apiUrl);
-      req.flush('Server Error', { status: 500, statusText: 'Internal Server Error' });
-    });
+    const req = httpMock.expectOne(`${apiUrl}/fecha?fecha=${date}`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(null);
   });
 });

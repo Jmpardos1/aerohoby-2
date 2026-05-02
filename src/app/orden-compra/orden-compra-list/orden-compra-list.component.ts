@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrdenCompra } from '../orden-compra';
 import { OrdenCompraService } from '../orden-compra-service';
+import { OrdenCompraDetailComponent } from '../orden-compra-detail/orden-compra-detail.component';
 
 @Component({
   selector: 'app-orden-compra-list',
   templateUrl: './orden-compra-list.component.html',
   styleUrls: ['./orden-compra-list.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, OrdenCompraDetailComponent]
 })
 export class OrdenCompraListComponent implements OnInit {
   ordenesCompra: OrdenCompra[] = [];
+  selectedOrdenCompra: OrdenCompra | null = null;
   isLoading: boolean = false;
   errorMessage: string = '';
 
@@ -35,5 +37,9 @@ export class OrdenCompraListComponent implements OnInit {
         this.isLoading = false;
       }
     });
+  }
+
+  selectOrdenCompra(orden: OrdenCompra): void {
+    this.selectedOrdenCompra = orden;
   }
 }

@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OrdenCompraDetailComponent } from './orden-compra-detail/orden-compra-detail.component';
 
 @NgModule({
-  declarations: [
-    OrdenCompraDetailComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule
   ]

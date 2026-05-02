@@ -1,1 +1,33 @@
-<p>orden-compra-detail works!</p>
+<div class="detail-card" *ngIf="ordenCompra as orden; else noSelection">
+  <h3>Detalle de la orden de compra</h3>
+  <div class="detail-row">
+    <div class="detail-column">
+      <p><strong>ID:</strong> {{ orden.id }}</p>
+      <p><strong>Fecha:</strong> {{ orden.fechaOrden | date:'fullDate' }} {{ orden.fechaOrden | date:'shortTime' }}</p>
+      <p><strong>Estado:</strong> {{ orden.estadoPedido }}</p>
+    </div>
+    <div class="detail-column">
+      <p><strong>Cliente:</strong> {{ orden.usuario.nombre }}</p>
+      <p><strong>Correo:</strong> {{ orden.usuario.correo }}</p>
+      <p *ngIf="orden.usuario.telefono"><strong>Teléfono:</strong> {{ orden.usuario.telefono }}</p>
+      <p><strong>Rol:</strong> {{ orden.usuario.rol }}</p>
+    </div>
+  </div>
+
+  <div class="detail-row mt-3">
+    <div class="detail-column full-width">
+      <p><strong>Producto:</strong> {{ orden.producto.nombre }}</p>
+      <p><strong>Descripción:</strong> {{ orden.producto.descripcion }}</p>
+      <p><strong>Precio:</strong> ${{ orden.producto.precio }}</p>
+      <p><strong>Stock:</strong> {{ orden.producto.stock }}</p>
+      <p><strong>Marca:</strong> {{ orden.producto.marca }}</p>
+      <p><strong>Proveedor:</strong> {{ orden.producto.proveedor }}</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #noSelection>
+  <div class="alert alert-secondary mt-4">
+    Selecciona una orden de compra para ver su detalle.
+  </div>
+</ng-template>

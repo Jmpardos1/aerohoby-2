@@ -8,7 +8,7 @@ describe('OrdenCompraDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OrdenCompraDetailComponent]
+      imports: [OrdenCompraDetailComponent]
     })
     .compileComponents();
 
@@ -17,7 +17,7 @@ describe('OrdenCompraDetailComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Debe crearse', () => {
     expect(component).toBeTruthy();
   });
 });
