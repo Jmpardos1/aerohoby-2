@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Listado de ordenes de Compra</h2>
+
+  <div *ngIf="isLoading" class="d-flex justify-content-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <p class="ms-2">Cargando ordenes de compra...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger error" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!isLoading && ordenesCompra.length > 0" class="table-responsive">
+    <table class="table table-striped table-hover ordenes-table">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+          <th>Usuario</th>
+          <th>Correo</th>
+          <th>Producto</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let orden of ordenesCompra"
+          class="orden-row"
+          [class.selected-row]="selectedOrdenCompra?.id === orden.id"
+          (click)="selectOrdenCompra(orden)">
+          <td>{{ orden.id | slice:0:8 }}...</td>
+          <td>{{ orden.fechaOrden | date:'short' }}</td>
+          <td>{{ orden.estadoPedido }}</td>
+          <td>{{ orden.usuario.nombre }}</td>
+          <td>{{ orden.usuario.correo }}</td>
+          <td>{{ orden.producto.nombre }}</td>
+          <td>${{ orden.producto.precio }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <app-orden-compra-detail [ordenCompra]="selectedOrdenCompra"></app-orden-compra-detail>
+
+  <div *ngIf="!isLoading && ordenesCompra.length === 0 && !errorMessage" class="alert alert-info no-data">
+    No hay órdenes de compra disponibles.
+  </div>
+</div>
