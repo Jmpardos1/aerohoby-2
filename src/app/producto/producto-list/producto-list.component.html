@@ -1,0 +1,34 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Productos</h2>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    @for (producto of productos; track producto.id) {
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ producto.nombre }}</h5>
+            <p class="card-text text-muted">{{ producto.descripcion }}</p>
+            <hr />
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="fw-bold text-success fs-5">${{ producto.precio }}</span>
+              <span class="badge" [class.bg-success]="producto.stock > producto.stockMinimo" [class.bg-danger]="producto.stock <= producto.stockMinimo">
+                Stock: {{ producto.stock }}
+              </span>
+            </div>
+            <ul class="list-unstyled small text-muted mb-0">
+              <li><strong>Marca:</strong> {{ producto.marca.nombre }}</li>
+              <li><strong>Proveedor:</strong> {{ producto.proveedor.nombre }}</li>
+              @if (producto.categoria.length) {
+                <li><strong>Categoría:</strong> {{ producto.categoria[0].nombre }}</li>
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <div class="col-12">
+        <p class="text-muted">No hay productos disponibles.</p>
+      </div>
+    }
+  </div>
+</div>
