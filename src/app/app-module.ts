@@ -4,6 +4,7 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { OrdenCompraModule } from './orden-compra/orden-compra.module';
+import { ProductoModule } from './producto/producto.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -14,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     OrdenCompraModule,
+    ProductoModule,
     HttpClientModule
   ],
   providers: [
