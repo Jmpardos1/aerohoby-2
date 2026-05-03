@@ -37,33 +37,40 @@ pipeline {
              script {
                 docker.image('nodetools-isis2603:latest').inside('-u root') {
                    sh '''
-                      CYPRESS_INSTALL_BINARY=0 npm install
-                      npm i -s
+
+                      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+                      export NVM_DIR="$HOME/.nvm"
+                      [ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh"
+                     
+                      nvm install 22
+                      nvm use 22
+
+                      npm i
                       ng build
                    '''
                 }
              }
           }
        }
-      // stage('Test') {
-      //     steps {
-      //        script {
-      //           docker.image('chrometools-isis2603:latest').inside('-u root') {
-      //              sh '''
-      //                 ng test --code-coverage
-      //              '''
-      //           }
-      //        }
-      //     }
-      //  }
-      //  stage('Static Analysis') {
-      //     // Run static analysis
-      //     steps {
-      //        sh '''
-      //           docker run --rm -u root -e SONAR_HOST_URL=${SONARQUBE_URL} -e SONAR_TOKEN=${SONAR_TOKEN} -v ${WORKSPACE}:/usr/src sonarsource/sonar-scanner-cli
-      //        '''
-      //     }
-      //  }
+       stage('Sonar Scanner') {
+          steps {
+             script {
+                docker.image('nodetools-isis2603:latest').inside('-u root') {
+                   sh '''
+                      npm run sonar
+                   '''
+                }
+             }
+          }
+       }
+       stage('Static Analysis') {
+          // Run static analysis
+          steps {
+             sh '''
+                docker run --rm -u root -e SONAR_HOST_URL=${SONARQUBE_URL} -e SONAR_TOKEN=${SONAR_TOKEN} -v ${WORKSPACE}:/usr/src sonarsource/sonar-scanner-cli
+             '''
+          }
+       }
     }
     post {
        always {
