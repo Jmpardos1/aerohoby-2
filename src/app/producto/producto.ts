@@ -9,13 +9,13 @@ export class Producto {
     precio: number;
     stock: number;
     stockMinimo: number;
-    categoria: Array<Categoria>;
+    categoria: Array<Categoria> | null;
     marca: Marca;
     imagen: string;
     proveedor: Proveedor;
 
     constructor(id: number, nombre: string, descripcion: string, precio: number, stock: number, stockMinimo: number, 
-        categoria: Array<Categoria>, marca: Marca, imagen: string, proveedor: Proveedor) {
+        categoria: Array<Categoria> | null, marca: Marca, imagen: string, proveedor: Proveedor) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;

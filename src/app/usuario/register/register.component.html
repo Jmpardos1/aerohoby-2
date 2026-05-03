@@ -4,10 +4,23 @@
 
       <div class="text-center mb-4">
         <h2 class="fw-bold">AeroHobby</h2>
-        <p class="text-muted">Inicia sesión para continuar</p>
+        <p class="text-muted">Crea tu cuenta</p>
       </div>
 
-      <form (ngSubmit)="onLogin()">
+      <form (ngSubmit)="onRegister()">
+        <div class="mb-3">
+          <label for="nombre" class="form-label fw-semibold">Nombre completo</label>
+          <input
+            id="nombre"
+            type="text"
+            class="form-control"
+            [(ngModel)]="nombre"
+            name="nombre"
+            placeholder="Juan Pérez"
+            required
+          />
+        </div>
+
         <div class="mb-3">
           <label for="correo" class="form-label fw-semibold">Correo electrónico</label>
           <input
@@ -21,7 +34,20 @@
           />
         </div>
 
-        <div class="mb-4">
+        <div class="mb-3">
+          <label for="telefono" class="form-label fw-semibold">Teléfono</label>
+          <input
+            id="telefono"
+            type="tel"
+            class="form-control"
+            [(ngModel)]="telefono"
+            name="telefono"
+            placeholder="3001234567"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
           <label for="password" class="form-label fw-semibold">Contraseña</label>
           <div class="input-group">
             <input
@@ -44,11 +70,11 @@
         }
 
         <div class="d-grid mb-3">
-          <button type="submit" class="btn btn-dark btn-lg">Entrar</button>
+          <button type="submit" class="btn btn-dark btn-lg">Registrarse</button>
         </div>
 
         <p class="text-center text-muted mb-0">
-          ¿No tienes cuenta? <a routerLink="/register">Regístrate</a>
+          ¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a>
         </p>
       </form>
 

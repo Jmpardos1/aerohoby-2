@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { OrdenCompraModule } from './orden-compra/orden-compra.module';
 import { ProductoModule } from './producto/producto.module';
+import { UsuarioModule } from './usuario/usuario.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     OrdenCompraModule,
     ProductoModule,
+    UsuarioModule,
     HttpClientModule
   ],
   providers: [
