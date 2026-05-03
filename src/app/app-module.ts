@@ -7,6 +7,7 @@ import { OrdenCompraModule } from './orden-compra/orden-compra.module';
 import { ProductoModule } from './producto/producto.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ReviewModule } from './review/review-module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     OrdenCompraModule,
     ProductoModule,
+    ReviewModule,
     UsuarioModule,
     HttpClientModule
   ],
