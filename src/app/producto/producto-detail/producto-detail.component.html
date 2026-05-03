@@ -1,0 +1,44 @@
+<div class="border rounded p-3 h-100">
+  <div class="row g-3">
+    <div class="col-12 col-md-4">
+      @if (productoDetail.imagen) {
+        <img class="img-fluid rounded" src="{{ productoDetail.imagen }}" alt="{{ productoDetail.nombre }}" />
+      }
+    </div>
+
+    <div class="col-12 col-md-8">
+      <h3 class="h4 mb-2">{{ productoDetail.nombre }}</h3>
+      <p class="text-muted">{{ productoDetail.descripcion }}</p>
+
+      <dl class="row mb-0">
+        <dt class="col-sm-4">Precio</dt>
+        <dd class="col-sm-8">${{ productoDetail.precio }}</dd>
+
+        <dt class="col-sm-4">Stock</dt>
+        <dd class="col-sm-8">{{ productoDetail.stock }}</dd>
+
+        <dt class="col-sm-4">Stock minimo</dt>
+        <dd class="col-sm-8">{{ productoDetail.stockMinimo }}</dd>
+
+        <dt class="col-sm-4">Marca</dt>
+        <dd class="col-sm-8">{{ productoDetail.marca ? productoDetail.marca.nombre : 'Sin marca' }}</dd>
+
+        <dt class="col-sm-4">Proveedor</dt>
+        <dd class="col-sm-8">
+          {{ productoDetail.proveedor ? productoDetail.proveedor.nombre : 'Sin proveedor' }}
+        </dd>
+
+        <dt class="col-sm-4">Categorias</dt>
+        <dd class="col-sm-8">
+          @if (productoDetail.categoria && productoDetail.categoria.length > 0) {
+            @for (categoria of productoDetail.categoria; track categoria.id) {
+              <span class="badge text-bg-secondary me-1">{{ categoria.nombre }}</span>
+            }
+          } @else {
+            Sin categorias
+          }
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>
