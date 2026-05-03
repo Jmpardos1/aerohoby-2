@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+.login-wrapper {
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  border: none;
+}

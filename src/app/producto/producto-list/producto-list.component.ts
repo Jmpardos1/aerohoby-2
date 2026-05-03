@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Producto } from '../producto';
 import { ProductoService } from '../producto.service';
 
@@ -8,19 +9,18 @@ import { ProductoService } from '../producto.service';
   templateUrl: './producto-list.component.html',
   styleUrl: './producto-list.component.css',
 })
-export class ProductoListComponent implements OnInit{
-
+export class ProductoListComponent implements OnInit {
   productos: Array<Producto> = [];
-  constructor (private productoService: ProductoService) {}
+
+  private destroyRef = inject(DestroyRef);
+
+  constructor(private productoService: ProductoService) {}
 
   ngOnInit(): void {
-    this.getProductos();
+    this.productoService.getProductos()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((data) => {
+        this.productos = data;
+      });
   }
-
-  getProductos(): void {
-    this.productoService.getProductos().subscribe((data) => {
-      this.productos = data;
-    });
-  }
-
 }
