@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Producto } from '../producto';
 import { ProductoService } from '../producto.service';
 import { Categoria } from '../../categoria/categoria';
@@ -9,16 +10,18 @@ import { Categoria } from '../../categoria/categoria';
   templateUrl: './producto-list.component.html',
   styleUrl: './producto-list.component.css',
 })
-export class ProductoListComponent implements OnInit{
-
+export class ProductoListComponent implements OnInit {
   productos: Array<Producto> = [];
+
+  private destroyRef = inject(DestroyRef);
+
   precioMaximo: number | null = null;
   categoriaSeleccionadaId: number | null = null;
   mostrarCategorias = false;
 
   selectedProducto: Producto | null = null;
 
-  constructor (private productoService: ProductoService) {}
+  constructor(private productoService: ProductoService) {}
 
   ngOnInit(): void {
     this.getProductos();

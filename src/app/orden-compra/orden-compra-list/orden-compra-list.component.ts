@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { OrdenCompra } from '../orden-compra';
 import { OrdenCompraService } from '../orden-compra-service';
@@ -17,6 +18,8 @@ export class OrdenCompraListComponent implements OnInit {
   isLoading: boolean = false;
   errorMessage: string = '';
 
+  private destroyRef = inject(DestroyRef);
+
   constructor(private ordenCompraService: OrdenCompraService) { }
 
   ngOnInit(): void {
@@ -26,17 +29,19 @@ export class OrdenCompraListComponent implements OnInit {
   loadOrdenesCompra(): void {
     this.isLoading = true;
     this.errorMessage = '';
-    this.ordenCompraService.getAllOrdenCompra().subscribe({
-      next: (data: OrdenCompra[]) => {
-        this.ordenesCompra = data;
-        this.isLoading = false;
-      },
-      error: (err: any) => {
-        this.errorMessage = 'Error al cargar ordenes de compra: ' + (err.message || 'Error desconocido');
-        console.error('Error al cargar órdenes de compra', err);
-        this.isLoading = false;
-      }
-    });
+    this.ordenCompraService.getAllOrdenCompra()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (data: OrdenCompra[]) => {
+          this.ordenesCompra = data;
+          this.isLoading = false;
+        },
+        error: (err: any) => {
+          this.errorMessage = 'Error al cargar ordenes de compra: ' + (err.message || 'Error desconocido');
+          console.error('Error al cargar órdenes de compra', err);
+          this.isLoading = false;
+        }
+      });
   }
 
   selectOrdenCompra(orden: OrdenCompra): void {
