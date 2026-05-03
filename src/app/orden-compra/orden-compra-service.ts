@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { OrdenCompra } from './orden-compra';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',

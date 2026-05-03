@@ -16,9 +16,10 @@
               </span>
             </div>
             <ul class="list-unstyled small text-muted mb-0">
-              <li><strong>Marca:</strong> {{ producto.marca.nombre }}</li>
-              <li><strong>Proveedor:</strong> {{ producto.proveedor.nombre }}</li>
-              @if (producto.categoria.length) {
+        
+              <li><strong>Marca:</strong> {{ producto.marca ? producto.marca.nombre : 'Sin marca' }}</li>
+              <li><strong>Proveedor:</strong> {{ producto.proveedor ? producto.proveedor.nombre : 'Sin proveedor' }}</li>
+              @if (producto.categoria && producto.categoria.length > 0) {
                 <li><strong>Categoría:</strong> {{ producto.categoria[0].nombre }}</li>
               }
             </ul>
