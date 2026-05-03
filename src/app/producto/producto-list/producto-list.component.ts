@@ -2,6 +2,7 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Producto } from '../producto';
 import { ProductoService } from '../producto.service';
+import { Categoria } from '../../categoria/categoria';
 
 @Component({
   selector: 'app-producto-list',
@@ -14,13 +15,65 @@ export class ProductoListComponent implements OnInit {
 
   private destroyRef = inject(DestroyRef);
 
+  precioMaximo: number | null = null;
+  categoriaSeleccionadaId: number | null = null;
+  mostrarCategorias = false;
+
+  selectedProducto: Producto | null = null;
+
   constructor(private productoService: ProductoService) {}
 
   ngOnInit(): void {
-    this.productoService.getProductos()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((data) => {
-        this.productos = data;
-      });
+    this.getProductos();
   }
+
+  getProductos(): void {
+    this.productoService.getProductos().subscribe((data) => {
+      this.productos = data;
+    });
+  }
+
+  get productosFiltrados(): Array<Producto> {
+    return this.productos.filter((producto) => {
+      const cumplePrecio = this.precioMaximo === null || producto.precio <= this.precioMaximo;
+      const cumpleCategoria = this.categoriaSeleccionadaId === null ||
+        producto.categoria?.some((categoria) => categoria.id === this.categoriaSeleccionadaId);
+
+      return cumplePrecio && cumpleCategoria;
+    });
+  }
+
+  get categoriasDisponibles(): Array<Categoria> {
+    const categorias = new Map<number, Categoria>();
+
+    this.productos.forEach((producto) => {
+      producto.categoria?.forEach((categoria) => {
+        categorias.set(categoria.id, categoria);
+      });
+    });
+
+    return Array.from(categorias.values());
+  }
+
+  get categoriaSeleccionada(): Categoria | undefined {
+    return this.categoriasDisponibles.find((categoria) => categoria.id === this.categoriaSeleccionadaId);
+  }
+
+  alternarCategorias(): void {
+    this.mostrarCategorias = !this.mostrarCategorias;
+  }
+
+  seleccionarCategoria(categoriaId: number | null): void {
+    this.categoriaSeleccionadaId = categoriaId;
+    this.mostrarCategorias = false;
+  }
+
+  limpiarFiltroPrecio(): void {
+    this.precioMaximo = null;
+  }
+
+  onSelected(producto: Producto): void {
+    this.selectedProducto = producto;
+  }
+
 }
