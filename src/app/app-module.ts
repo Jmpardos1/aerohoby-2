@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReviewModule } from './review/review-module';
 import { CuponModule } from './cupon/cupon.module';
 import { CategoriaModule } from './categoria/categoria.module';
+import { CarritoModule } from './carrito/carrito.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CategoriaModule } from './categoria/categoria.module';
     CuponModule,
     ReviewModule,
     UsuarioModule,
+    CarritoModule,
     HttpClientModule
   ],
   providers: [
