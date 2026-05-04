@@ -7,6 +7,9 @@ import { ProductoListComponent } from './producto/producto-list/producto-list.co
 import { ReviewDetailComponent } from './review/review-detail/review-detail';
 import { ReviewListComponent } from './review/review-list/review-list';
 import { authGuard } from './usuario/auth.guard';
+import { adminGuard } from './usuario/admin.guard';
+import { CuponListComponent } from './cupon/cupon-list/cupon-list.component';
+import { CategoriaListComponent } from './categoria/categoria-list/categoria-list.component';
 import { CarritoComponent } from './carrito/carrito/carrito.component';
 
 const routes: Routes = [
@@ -14,6 +17,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'productos', component: ProductoListComponent, canActivate: [authGuard] },
+  { path: 'categorias', component: CategoriaListComponent, canActivate: [authGuard] },
+  { path: 'ordenes-compra', component: OrdenCompraListComponent, canActivate: [authGuard] },
+  { path: 'cupones', component: CuponListComponent, canActivate: [authGuard, adminGuard] },
   { path: 'carrito', component: CarritoComponent, canActivate: [authGuard] },
   { path: 'ordenes-compra', component: OrdenCompraListComponent, canActivate: [authGuard] },
   { path: 'reviews', component: ReviewListComponent, canActivate: [authGuard] },

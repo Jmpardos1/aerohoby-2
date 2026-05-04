@@ -8,6 +8,8 @@ import { ProductoModule } from './producto/producto.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReviewModule } from './review/review-module';
+import { CuponModule } from './cupon/cupon.module';
+import { CategoriaModule } from './categoria/categoria.module';
 import { CarritoModule } from './carrito/carrito.module';
 
 @NgModule({
@@ -19,6 +21,8 @@ import { CarritoModule } from './carrito/carrito.module';
     AppRoutingModule,
     OrdenCompraModule,
     ProductoModule,
+    CategoriaModule,
+    CuponModule,
     ReviewModule,
     UsuarioModule,
     CarritoModule,
