@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { PLATFORM_ID } from '@angular/core';
 
 import { ProductoDetailComponent } from './producto-detail.component';
 import { Producto } from '../producto';
@@ -9,9 +12,13 @@ describe('ProductoDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProductoDetailComponent]
-    })
-    .compileComponents();
+      declarations: [ProductoDetailComponent],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: PLATFORM_ID, useValue: 'browser' }
+      ]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProductoDetailComponent);
     component = fixture.componentInstance;
@@ -32,5 +39,14 @@ describe('ProductoDetailComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('agregarAlCarrito activa la confirmación visual brevemente', (done) => {
+    component.agregarAlCarrito();
+    expect(component.agregado).toBeTrue();
+    setTimeout(() => {
+      expect(component.agregado).toBeFalse();
+      done();
+    }, 2100);
   });
 });

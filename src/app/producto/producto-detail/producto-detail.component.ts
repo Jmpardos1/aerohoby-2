@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Producto } from '../producto';
+import { CarritoService } from '../../carrito/carrito.service';
+import { AuthService } from '../../usuario/auth.service';
 
 @Component({
   selector: 'app-producto-detail',
@@ -9,8 +11,18 @@ import { Producto } from '../producto';
 })
 export class ProductoDetailComponent implements OnInit {
   @Input() productoDetail!: Producto;
+  agregado = false;
 
-  constructor() { }
+  constructor(private readonly carritoService: CarritoService, private readonly authService: AuthService) {}
   ngOnInit(): void {}
 
+  get esAdmin(): boolean {
+    return this.authService.getRol() === 'ADMIN';
+  }
+
+  agregarAlCarrito(): void {
+    this.carritoService.agregar(this.productoDetail);
+    this.agregado = true;
+    setTimeout(() => (this.agregado = false), 2000);
+  }
 }

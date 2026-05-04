@@ -1,12 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { PLATFORM_ID } from '@angular/core';
 import { of } from 'rxjs';
 
 import { ProductoListComponent } from './producto-list.component';
-import { ProductoService } from '../producto.service';
 import { ProductoDetailComponent } from '../producto-detail/producto-detail.component';
+import { ProductoService } from '../producto.service';
 
 describe('ProductoListComponent', () => {
   let component: ProductoListComponent;
@@ -17,15 +19,16 @@ describe('ProductoListComponent', () => {
       declarations: [ProductoListComponent, ProductoDetailComponent],
       imports: [FormsModule],
       providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideRouter([]),
+        { provide: PLATFORM_ID, useValue: 'browser' },
         {
           provide: ProductoService,
-          useValue: {
-            getProductos: () => of([])
-          }
+          useValue: { getProductos: () => of([]) }
         }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProductoListComponent);
     component = fixture.componentInstance;
@@ -36,7 +39,7 @@ describe('ProductoListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should filter products by maximum price', () => {
+  it('filtra productos por precio máximo', () => {
     component.productos = [
       { id: 1, nombre: 'Producto barato', descripcion: '', precio: 1000, stock: 1, stockMinimo: 0, categoria: [], marca: null as any, imagen: '', proveedor: null as any },
       { id: 2, nombre: 'Producto costoso', descripcion: '', precio: 5000, stock: 1, stockMinimo: 0, categoria: [], marca: null as any, imagen: '', proveedor: null as any }
@@ -47,7 +50,7 @@ describe('ProductoListComponent', () => {
     expect(component.productosFiltrados[0].nombre).toBe('Producto barato');
   });
 
-  it('should filter products by category', () => {
+  it('filtra productos por categoría', () => {
     const categoriaBaterias = { id: 1, nombre: 'Baterias', descripcion: '' };
     const categoriaRepuestos = { id: 2, nombre: 'Repuestos', descripcion: '' };
 

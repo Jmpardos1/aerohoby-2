@@ -8,6 +8,7 @@ import { ProductoModule } from './producto/producto.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReviewModule } from './review/review-module';
+import { CarritoModule } from './carrito/carrito.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ReviewModule } from './review/review-module';
     ProductoModule,
     ReviewModule,
     UsuarioModule,
+    CarritoModule,
     HttpClientModule
   ],
   providers: [
