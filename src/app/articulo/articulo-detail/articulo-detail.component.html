@@ -1,0 +1,37 @@
+@if (articuloDetail) {
+  <div class="border rounded p-3 h-100">
+    <h3 class="h4 mb-2">{{ articuloDetail.titulo }}</h3>
+    <p class="text-muted">
+      {{ articuloDetail.descripcion }}
+    </p>
+
+    <dl class="row mb-4">
+      <dt class="col-sm-4">Autor</dt>
+      <dd class="col-sm-8">{{ articuloDetail.autor?.nombre }}</dd>
+
+      <dt class="col-sm-4">Fecha</dt>
+      <dd class="col-sm-8">{{ articuloDetail.fechaPublicacion | date:'mediumDate' }}</dd>
+    </dl>
+
+    <div class="mb-4">
+      <h4 class="h6">Contenido</h4>
+      <p class="mb-0 detalle-contenido">{{ articuloDetail.contenido }}</p>
+    </div>
+
+    <div>
+      <h4 class="h6">Productos sugeridos</h4>
+      @if (articuloDetail.productos.length > 0) {
+        <div class="list-group">
+          @for (producto of articuloDetail.productos; track producto.id) {
+            <div class="list-group-item">
+              <div class="fw-semibold">{{ producto.nombre }}</div>
+              <div class="small text-muted">{{ producto.descripcion }}</div>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="text-muted mb-0">Este articulo no tiene productos relacionados.</p>
+      }
+    </div>
+  </div>
+}
