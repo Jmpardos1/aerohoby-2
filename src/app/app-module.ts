@@ -8,6 +8,8 @@ import { ProductoModule } from './producto/producto.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReviewModule } from './review/review-module';
+import { CuponModule } from './cupon/cupon.module';
+import { CategoriaModule } from './categoria/categoria.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { ReviewModule } from './review/review-module';
     AppRoutingModule,
     OrdenCompraModule,
     ProductoModule,
+    CategoriaModule,
+    CuponModule,
     ReviewModule,
     UsuarioModule,
     HttpClientModule
