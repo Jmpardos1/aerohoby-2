@@ -14,11 +14,13 @@
         <dt class="col-sm-4">Precio</dt>
         <dd class="col-sm-8">${{ productoDetail.precio }}</dd>
 
-        <dt class="col-sm-4">Stock</dt>
-        <dd class="col-sm-8">{{ productoDetail.stock }}</dd>
+        @if (esAdmin) {
+          <dt class="col-sm-4">Stock</dt>
+          <dd class="col-sm-8">{{ productoDetail.stock }}</dd>
 
-        <dt class="col-sm-4">Stock minimo</dt>
-        <dd class="col-sm-8">{{ productoDetail.stockMinimo }}</dd>
+          <dt class="col-sm-4">Stock minimo</dt>
+          <dd class="col-sm-8">{{ productoDetail.stockMinimo }}</dd>
+        }
 
         <dt class="col-sm-4">Marca</dt>
         <dd class="col-sm-8">{{ productoDetail.marca ? productoDetail.marca.nombre : 'Sin marca' }}</dd>
@@ -39,6 +41,14 @@
           }
         </dd>
       </dl>
+
+      <button class="btn btn-dark mt-3 w-100" (click)="agregarAlCarrito()">
+        @if (agregado) {
+          <i class="bi bi-check-lg me-1"></i> Agregado
+        } @else {
+          <i class="bi bi-cart-plus me-1"></i> Agregar al carrito
+        }
+      </button>
     </div>
   </div>
 </div>
