@@ -1,14 +1,14 @@
 import { Usuario } from "../usuario/usuario";
 
 export class Articulo {
-    id: number;
+    id: any;
     titulo: string;
     descripcion: string;
     contenido: string;
-    fechaPublicacion: Date;
+    fechaPublicacion: string | Date;
     autor: Usuario;
 
-    constructor(id: number, titulo: string, descripcion: string, contenido: string, fechaPublicacion: Date, autor: Usuario) {
+    constructor(id: any, titulo: string, descripcion: string, contenido: string, fechaPublicacion: string | Date, autor: Usuario) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;

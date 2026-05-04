@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReviewModule } from './review/review-module';
 import { CuponModule } from './cupon/cupon.module';
 import { CategoriaModule } from './categoria/categoria.module';
+import { ProveedorModule } from './proveedor/proveedor.module';
+import { ArticuloModule } from './articulo/articulo.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { CategoriaModule } from './categoria/categoria.module';
     ProductoModule,
     CategoriaModule,
     CuponModule,
+    ProveedorModule,
+    ArticuloModule,
     ReviewModule,
     UsuarioModule,
     HttpClientModule
