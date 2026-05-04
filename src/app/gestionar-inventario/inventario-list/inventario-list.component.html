@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Listado de Movimientos de Inventario</h2>
+  
+    <div *ngIf="isLoading" class="d-flex justify-content-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      <p class="ms-2">Cargando inventarios...</p>
+    </div>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+  
+    <div *ngIf="!isLoading && inventarios.length > 0" class="table-responsive">
+      <table class="table table-striped table-hover inventario-table">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Cantidad</th>
+            <th>Producto</th>
+            <th>Stock actual</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let inv of inventarios"
+            class="inventario-row"
+            [class.selected-row]="selectedInventario?.id === inv.id"
+            (click)="selectInventario(inv)">
+            <td>{{ inv.id | slice:0:8 }}...</td>
+            <td>{{ inv.fecha | date:'short' }}</td>
+            <td>
+              <span [class]="'badge-' + inv.tipoMovimiento.toLowerCase()">
+                {{ inv.tipoMovimiento }}
+              </span>
+            </td>
+            <td>{{ inv.cantidad }}</td>
+            <td>{{ inv.producto.nombre }}</td>
+            <td>{{ inv.producto.stock }}</td>
+            <td>{{ inv.descripcion }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <app-inventario-detail [inventario]="selectedInventario"></app-inventario-detail>
+  
+    <div *ngIf="!isLoading && inventarios.length === 0 && !errorMessage" class="alert alert-info">
+      No hay movimientos de inventario disponibles.
+    </div>
+  </div>
