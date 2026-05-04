@@ -1,0 +1,29 @@
+<div class="detail-card" *ngIf="inventario as inv; else noSelection">
+    <h3>Detalle del movimiento de inventario</h3>
+    <div class="detail-row">
+      <div class="detail-column">
+        <p><strong>ID:</strong> {{ inv.id }}</p>
+        <p><strong>Fecha:</strong> {{ inv.fecha | date:'fullDate' }} {{ inv.fecha | date:'shortTime' }}</p>
+        <p><strong>Tipo de movimiento:</strong>
+          <span [class]="'badge-' + inv.tipoMovimiento.toLowerCase()">{{ inv.tipoMovimiento }}</span>
+        </p>
+        <p><strong>Cantidad:</strong> {{ inv.cantidad }}</p>
+        <p><strong>Descripción:</strong> {{ inv.descripcion }}</p>
+      </div>
+      <div class="detail-column">
+        <p><strong>Producto:</strong> {{ inv.producto.nombre }}</p>
+        <p><strong>Descripción producto:</strong> {{ inv.producto.descripcion }}</p>
+        <p><strong>Precio:</strong> ${{ inv.producto.precio }}</p>
+        <p><strong>Stock actual:</strong> {{ inv.producto.stock }}</p>
+        <p><strong>Stock mínimo:</strong> {{ inv.producto.stockMinimo }}</p>
+        <p><strong>Marca:</strong> {{ inv.producto.marca }}</p>
+        <p><strong>Proveedor:</strong> {{ inv.producto.proveedor }}</p>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noSelection>
+    <div class="alert alert-secondary mt-4">
+      Selecciona un movimiento de inventario para ver su detalle.
+    </div>
+  </ng-template>
