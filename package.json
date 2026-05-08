@@ -8,7 +8,10 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:ISIS2603_202610_S2_E4_Aerohobby_Front": "node dist/ISIS2603_202610_S2_E4_Aerohobby_Front/server/server.mjs",
-    "sonar": "sonar-scanner"
+    "sonar": "sonar-scanner",
+    "e2e": "ng e2e",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "prettier": {
     "printWidth": 100,
@@ -54,6 +57,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "sonarqube-scanner": "^4.3.6",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "cypress": "15.14.2"
   }
 }
