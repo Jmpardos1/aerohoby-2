@@ -9,7 +9,11 @@ import { ProductoAdminComponent } from './producto/producto-admin/producto-admin
 import { ReviewDetailComponent } from './review/review-detail/review-detail';
 import { ReviewListComponent } from './review/review-list/review-list';
 import { authGuard } from './usuario/auth.guard';
-import { guestGuard } from './usuario/guest.guard';
+import { adminGuard } from './usuario/admin.guard';
+import { CuponListComponent } from './cupon/cupon-list/cupon-list.component';
+import { CategoriaListComponent } from './categoria/categoria-list/categoria-list.component';
+import { ProveedorListComponent } from './proveedor/proveedor-list/proveedor-list.component';
+import { ArticuloListComponent } from './articulo/articulo-list/articulo-list.component';
 import { CarritoComponent } from './carrito/carrito/carrito.component';
 import { PerfilComponent } from './usuario/perfil/perfil.component';
 import { RecuperarContrasenaComponent } from './usuario/recuperar-contrasena/recuperar-contrasena.component';
@@ -25,8 +29,12 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [guestGuard] },
   { path: 'recuperar-contrasena', component: RecuperarContrasenaComponent, canActivate: [guestGuard] },
   { path: 'productos', component: ProductoListComponent, canActivate: [authGuard] },
-  { path: 'carrito', component: CarritoComponent, canActivate: [authGuard] },
+  { path: 'categorias', component: CategoriaListComponent, canActivate: [authGuard] },
+  { path: 'proveedores', component: ProveedorListComponent, canActivate: [authGuard, adminGuard] },
+  { path: 'articulos', component: ArticuloListComponent, canActivate: [authGuard] },
   { path: 'ordenes-compra', component: OrdenCompraListComponent, canActivate: [authGuard] },
+  { path: 'cupones', component: CuponListComponent, canActivate: [authGuard, adminGuard] },
+  { path: 'carrito', component: CarritoComponent, canActivate: [authGuard] },
   { path: 'reviews', component: ReviewListComponent, canActivate: [authGuard] },
   { path: 'reviews/:id', component: ReviewDetailComponent, canActivate: [authGuard] },
   { path: 'perfil', component: PerfilComponent, canActivate: [authGuard] },

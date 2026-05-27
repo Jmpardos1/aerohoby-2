@@ -11,6 +11,10 @@ import { ProductoModule } from './producto/producto.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReviewModule } from './review/review-module';
+import { CuponModule } from './cupon/cupon.module';
+import { CategoriaModule } from './categoria/categoria.module';
+import { ProveedorModule } from './proveedor/proveedor.module';
+import { ArticuloModule } from './articulo/articulo.module';
 import { CarritoModule } from './carrito/carrito.module';
 import { CuponModule } from './cupon/cupon.module';
 import { ArticuloModule } from './articulo/articulo.module';
@@ -28,6 +32,10 @@ import { AuthInterceptor } from './usuario/auth.interceptor';
     AppRoutingModule,
     OrdenCompraModule,
     ProductoModule,
+    CategoriaModule,
+    CuponModule,
+    ProveedorModule,
+    ArticuloModule,
     ReviewModule,
     UsuarioModule,
     CarritoModule,

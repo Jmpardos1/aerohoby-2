@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CuponListComponent } from './cupon-list/cupon-list.component';
+import { CategoriaListComponent } from './categoria-list/categoria-list.component';
 
 @NgModule({
   declarations: [
-    CuponListComponent
+    CategoriaListComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    CuponListComponent
+    CategoriaListComponent
   ]
 })
-export class CuponModule { }
+export class CategoriaModule { }

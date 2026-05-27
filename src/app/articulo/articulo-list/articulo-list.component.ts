@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Articulo } from '../articulo';
+import { ArticuloDetail } from '../articulo-detail';
 import { ArticuloService } from '../articulo.service';
-import { AuthService } from '../../usuario/auth.service';
 
 @Component({
   selector: 'app-articulo-list',
@@ -14,73 +11,49 @@ import { AuthService } from '../../usuario/auth.service';
 })
 export class ArticuloListComponent implements OnInit {
   articulos: Articulo[] = [];
-  mostrarFormulario = false;
-  form!: FormGroup;
+  selectedArticulo: ArticuloDetail | null = null;
+  isLoading: boolean = false;
+  isDetailLoading: boolean = false;
+  errorMessage: string = '';
+  detailErrorMessage: string = '';
 
-  constructor(
-    private articuloService: ArticuloService,
-    private authService: AuthService,
-    private fb: FormBuilder,
-    private router: Router,
-    private toastr: ToastrService
-  ) {}
+  constructor(private articuloService: ArticuloService) {}
 
   ngOnInit(): void {
+    this.loadArticulos();
+  }
+
+  loadArticulos(): void {
+    this.isLoading = true;
+    this.errorMessage = '';
+
     this.articuloService.getArticulos().subscribe({
-      next: a => (this.articulos = a),
-      error: () => this.toastr.error('Error al cargar artículos.')
-    });
-
-    this.form = this.fb.group({
-      titulo: ['', Validators.required],
-      descripcion: ['', Validators.required],
-      contenido: ['', Validators.required],
-    });
-  }
-
-  get esExperto(): boolean {
-    const rol = this.authService.getRol();
-    return rol === 'EXPERT' || rol === 'ADMIN';
-  }
-
-  get esAdmin(): boolean {
-    return this.authService.getRol() === 'ADMIN';
-  }
-
-  eliminarArticulo(id: string, event: Event): void {
-    event.stopPropagation();
-    if (!confirm('¿Eliminar este artículo y todos sus comentarios?')) return;
-    this.articuloService.deleteArticulo(id).subscribe({
-      next: () => {
-        this.articulos = this.articulos.filter(a => a.id !== id);
-        this.toastr.success('Artículo eliminado.');
+      next: (data: Articulo[]) => {
+        this.articulos = data || [];
+        this.isLoading = false;
       },
-      error: () => this.toastr.error('Error al eliminar el artículo.'),
+      error: (err: any) => {
+        this.errorMessage = 'Error al cargar articulos: ' + (err.message || 'Error desconocido');
+        console.error('Error al cargar articulos', err);
+        this.isLoading = false;
+      }
     });
   }
 
-  abrirFormulario(): void {
-    this.form.reset();
-    this.mostrarFormulario = true;
-  }
+  verDetalle(articulo: Articulo): void {
+    this.isDetailLoading = true;
+    this.detailErrorMessage = '';
 
-  publicar(): void {
-    if (this.form.invalid) return;
-    const autorId = localStorage.getItem('uid');
-    if (!autorId) return;
-
-    const hoy = new Date().toISOString().split('T')[0];
-    this.articuloService.createArticulo({ ...this.form.value, fechaPublicacion: hoy, autorId }).subscribe({
-      next: a => {
-        this.articulos.unshift(a);
-        this.mostrarFormulario = false;
-        this.toastr.success('Artículo publicado.');
+    this.articuloService.getArticuloDetail(String(articulo.id)).subscribe({
+      next: (detail: ArticuloDetail) => {
+        this.selectedArticulo = detail;
+        this.isDetailLoading = false;
       },
-      error: () => this.toastr.error('Error al publicar el artículo.')
+      error: (err: any) => {
+        this.detailErrorMessage = 'Error al cargar detalle del articulo: ' + (err.message || 'Error desconocido');
+        console.error('Error al cargar detalle del articulo', err);
+        this.isDetailLoading = false;
+      }
     });
-  }
-
-  irDetalle(id: string): void {
-    this.router.navigate(['/articulos', id]);
   }
 }

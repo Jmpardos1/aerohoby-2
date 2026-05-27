@@ -4,9 +4,11 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { Cupon } from './cupon';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class CuponService {
-  private readonly apiUrl = environment.baseUrl + 'cupones';
+  private apiUrl = `${environment.baseUrl}cupones`;
 
   constructor(private http: HttpClient) {}
 
@@ -18,8 +20,23 @@ export class CuponService {
     return this.http.get<Cupon>(`${this.apiUrl}/${id}`);
   }
 
-  createCupon(data: { codigoCupon: string; porcentaje: number; fechaVencimiento: string; ordenId?: string }): Observable<Cupon> {
-    return this.http.post<Cupon>(this.apiUrl, data);
+  createCupon(cupon: {
+    codigoCupon: string;
+    porcentaje: number;
+    fechaVencimiento: string;
+  }): Observable<Cupon> {
+    return this.http.post<Cupon>(this.apiUrl, cupon);
+  }
+
+  updateCupon(
+    id: string,
+    cupon: Partial<{
+      codigoCupon: string;
+      porcentaje: number;
+      fechaVencimiento: string;
+    }>
+  ): Observable<Cupon> {
+    return this.http.put<Cupon>(`${this.apiUrl}/${id}`, cupon);
   }
 
   deleteCupon(id: string): Observable<void> {

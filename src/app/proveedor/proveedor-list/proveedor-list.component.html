@@ -1,11 +1,11 @@
 <div class="container mt-4">
-  <h2 class="mb-4">Articulos de blog</h2>
+  <h2 class="mb-4">Proveedores</h2>
 
   <div *ngIf="isLoading" class="d-flex justify-content-center">
     <div class="spinner-border text-primary" role="status">
       <span class="visually-hidden">Cargando...</span>
     </div>
-    <p class="ms-2">Cargando articulos...</p>
+    <p class="ms-2">Cargando proveedores...</p>
   </div>
 
   <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
@@ -15,40 +15,38 @@
   <div *ngIf="!isLoading" class="row g-4">
     <div class="col-12 col-lg-5">
       <div class="list-group">
-        @for (articulo of articulos; track articulo.id) {
+        @for (proveedor of proveedores; track proveedor.id ?? proveedor.nombre) {
           <div class="list-group-item">
             <div class="d-flex justify-content-between align-items-start gap-3">
               <div>
-                <h5 class="mb-1">{{ articulo.titulo }}</h5>
-                <p class="mb-2 text-muted">{{ articulo.descripcion }}</p>
-                <small>
-                  {{ articulo.autor?.nombre }} | {{ articulo.fechaPublicacion | date:'mediumDate' }}
-                </small>
+                <h5 class="mb-1">{{ proveedor.nombre }}</h5>
+                <p class="mb-1 text-muted">{{ proveedor.correo }}</p>
+                <small>{{ proveedor.direccion }}</small>
               </div>
-              <button type="button" class="btn btn-outline-primary btn-sm" (click)="verDetalle(articulo)">
+              <button type="button" class="btn btn-outline-primary btn-sm" (click)="verDetalle(proveedor)">
                 Ver detalle
               </button>
             </div>
           </div>
         } @empty {
-          <div class="list-group-item text-muted">No hay articulos disponibles.</div>
+          <div class="list-group-item text-muted">No hay proveedores disponibles.</div>
         }
       </div>
     </div>
 
     <div class="col-12 col-lg-7">
       <div *ngIf="isDetailLoading" class="border rounded p-4 text-muted">
-        Cargando detalle del articulo...
+        Cargando detalle del proveedor...
       </div>
 
       <div *ngIf="detailErrorMessage" class="alert alert-danger" role="alert">
         {{ detailErrorMessage }}
       </div>
 
-      @if (!isDetailLoading && selectedArticulo) {
-        <app-articulo-detail [articuloDetail]="selectedArticulo"></app-articulo-detail>
+      @if (!isDetailLoading && selectedProveedor) {
+        <app-proveedor-detail [proveedorDetail]="selectedProveedor"></app-proveedor-detail>
       } @else if (!isDetailLoading && !detailErrorMessage) {
-        <div class="border rounded p-4 text-muted">Selecciona un articulo para ver todo su detalle.</div>
+        <div class="border rounded p-4 text-muted">Selecciona un proveedor para ver todo su detalle.</div>
       }
     </div>
   </div>
