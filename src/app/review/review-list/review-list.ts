@@ -1,32 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { Review } from '../review';
-import { ReviewService } from '../review.service';
+import { ReviewService } from '../review.service'; // Asumiendo que nombraste al servicio review.service.ts
 
 @Component({
   selector: 'app-review-list',
   standalone: false,
   templateUrl: './review-list.html',
-  styleUrls: ['./review-list.css']
+  styleUrls: ['./review-list.css']   
 })
 export class ReviewListComponent implements OnInit {
   reviews: Review[] = [];
-  isLoading = false;
 
   constructor(private reviewService: ReviewService) {}
 
   ngOnInit(): void {
-    this.isLoading = true;
-    this.reviewService.getReviews().subscribe({
-      next: (data) => {
-        const uid = localStorage.getItem('uid');
-        this.reviews = (data || []).filter(r => r.usuarioId === uid);
-        this.isLoading = false;
-      },
-      error: () => { this.isLoading = false; }
-    });
+    this.cargarReviews();
   }
 
-  starRange(puntuacion: number): boolean[] {
-    return [1, 2, 3, 4, 5].map(n => n <= puntuacion);
+  cargarReviews(): void {
+    this.reviewService.getReviews().subscribe({
+      next: (data) => {
+        this.reviews = data || [];
+      },
+      error: (err) => {
+        console.error('Error al cargar las reseñas', err);
+      }
+    });
   }
 }

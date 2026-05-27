@@ -1,71 +1,57 @@
-<div class="auth-layout">
+<div class="login-wrapper d-flex align-items-center justify-content-center">
+  <div class="card shadow-lg login-card">
+    <div class="card-body p-5">
 
-  <div class="auth-brand">
-    <div class="brand-logo">
-      <span class="brand-aero">AERO</span>
-      <span class="brand-sep"></span>
-      <span class="brand-hobby">HOBBY</span>
-    </div>
-    <p class="brand-sub">Tu universo del hobbyismo aéreo</p>
-  </div>
+      <div class="text-center mb-4">
+        <h2 class="fw-bold">AeroHobby</h2>
+        <p class="text-muted">Inicia sesión para continuar</p>
+      </div>
 
-  <div class="auth-card">
-    <div class="auth-form-content">
-
-      <form [formGroup]="logform" (ngSubmit)="!logform.invalid && onLogin()">
-
-        <div class="input-group">
-          <label class="input-label" for="correo">Correo electrónico</label>
-          <div class="input-overflow-wrapper">
-            <input
-              type="email"
-              class="input-pill"
-              id="correo"
-              placeholder="tu@correo.com"
-              formControlName="correo"
-              autocomplete="email"
-            >
-          </div>
-          @if (logform.get('correo')!.hasError('required') && logform.get('correo')!.touched) {
-            <div class="ah-error">Por favor ingresa un correo.</div>
-          }
-          @if (logform.get('correo')!.hasError('email') && logform.get('correo')!.touched && !logform.get('correo')!.hasError('required')) {
-            <div class="ah-error">Ingresa un correo válido.</div>
-          }
+      <form (ngSubmit)="onLogin()">
+        <div class="mb-3">
+          <label for="correo" class="form-label fw-semibold">Correo electrónico</label>
+          <input
+            id="correo"
+            type="email"
+            class="form-control"
+            [(ngModel)]="correo"
+            name="correo"
+            placeholder="tu@correo.com"
+            required
+          />
         </div>
 
-        <div class="input-group" style="margin-bottom: 32px;">
-          <label class="input-label" for="password">Contraseña</label>
-          <div class="input-overflow-wrapper">
+        <div class="mb-4">
+          <label for="password" class="form-label fw-semibold">Contraseña</label>
+          <div class="input-group">
             <input
-              type="password"
-              class="input-pill"
               id="password"
-              placeholder="Mínimo 8 caracteres"
-              formControlName="password"
-              autocomplete="current-password"
-            >
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              [(ngModel)]="password"
+              name="password"
+              placeholder="••••••••"
+              required
+            />
+            <button type="button" class="btn btn-outline-secondary" (click)="showPassword = !showPassword">
+              <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+            </button>
           </div>
-          @if (logform.get('password')!.hasError('minlength') && logform.get('password')!.touched && !logform.get('password')!.hasError('required')) {
-            <div class="ah-error">La contraseña debe tener al menos 8 caracteres.</div>
-          }
         </div>
 
         @if (error) {
-          <div class="ah-error" style="margin-bottom: 8px;">{{ error }}</div>
+          <div class="alert alert-danger py-2" role="alert">{{ error }}</div>
         }
 
-        <button type="submit" class="btn-ah-primary" [disabled]="!logform.valid">
-          Entrar
-        </button>
-
-        <div class="auth-links">
-          <p>¿No tienes cuenta? <a routerLink="/register">Regístrate</a></p>
-          <a routerLink="/recuperar-contrasena">¿Olvidaste tu contraseña?</a>
+        <div class="d-grid mb-3">
+          <button type="submit" class="btn btn-dark btn-lg">Entrar</button>
         </div>
 
+        <p class="text-center text-muted mb-0">
+          ¿No tienes cuenta? <a routerLink="/register">Regístrate</a>
+        </p>
       </form>
+
     </div>
   </div>
-
 </div>

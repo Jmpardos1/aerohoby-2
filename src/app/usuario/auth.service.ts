@@ -39,10 +39,6 @@ export class AuthService {
     return this.http.post(environment.baseUrl + 'auth/register', { nombre, correo, telefono, password, rol });
   }
 
-  recuperarContrasena(correo: string, nuevaPassword: string): Observable<void> {
-    return this.http.post<void>(environment.baseUrl + 'auth/recuperar-contrasena', { correo, nuevaPassword });
-  }
-
   getToken(): string | null {
     if (!isPlatformBrowser(this.platformId)) return null;
     return localStorage.getItem(KEYS.token);
@@ -51,11 +47,6 @@ export class AuthService {
   getRol(): string | null {
     if (!isPlatformBrowser(this.platformId)) return null;
     return localStorage.getItem(KEYS.rol);
-  }
-
-  getNombre(): string | null {
-    if (!isPlatformBrowser(this.platformId)) return null;
-    return localStorage.getItem(KEYS.nombre);
   }
 
   isLoggedIn(): boolean {

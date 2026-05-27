@@ -56,46 +56,7 @@
 
     <div class="d-flex justify-content-end gap-2 mt-2">
       <button class="btn btn-outline-danger" (click)="carritoService.vaciar()">Vaciar carrito</button>
-      <button class="btn btn-dark btn-lg px-5" (click)="confirmarCompra()">Confirmar compra</button>
+      <button class="btn btn-dark btn-lg px-5">Confirmar compra</button>
     </div>
   }
 </div>
-
-@if (confirmando) {
-  <button class="modal-backdrop-custom" (click)="confirmando = false"></button>
-  <div class="modal-custom">
-    <div class="card shadow-lg p-4" style="width: 460px;">
-      <h5 class="fw-bold mb-3">Confirmar pedido</h5>
-
-      <ul class="list-group list-group-flush mb-3">
-        @for (item of items; track item.productoId) {
-          <li class="list-group-item d-flex justify-content-between px-0">
-            <span>{{ item.nombre }} <span class="text-muted">× {{ item.cantidad }}</span></span>
-            <span class="fw-semibold">${{ item.precio * item.cantidad }}</span>
-          </li>
-        }
-        <li class="list-group-item d-flex justify-content-between px-0 fw-bold fs-5">
-          <span>Total</span>
-          <span>${{ carritoService.getTotal() }}</span>
-        </li>
-      </ul>
-
-      <p class="text-muted small mb-4">
-        El pago ya fue procesado. Al confirmar se generarán las órdenes de compra.
-      </p>
-
-      <div class="d-flex gap-2 justify-content-end">
-        <button class="btn btn-outline-secondary" (click)="confirmando = false" [disabled]="procesando">
-          Cancelar
-        </button>
-        <button class="btn btn-dark" (click)="procesarCompra()" [disabled]="procesando">
-          @if (procesando) {
-            Procesando...
-          } @else {
-            Confirmar pedido
-          }
-        </button>
-      </div>
-    </div>
-  </div>
-}
