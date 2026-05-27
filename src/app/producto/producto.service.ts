@@ -26,11 +26,9 @@ interface CategoriaApiResponse {
   }>;
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ProductoService {
-  private apiUrl: string = environment.baseUrl + 'productos';
+  private readonly apiUrl = environment.baseUrl + 'productos';
 
   constructor(
     private http: HttpClient,
@@ -85,3 +83,4 @@ export class ProductoService {
     };
   }
 }
+

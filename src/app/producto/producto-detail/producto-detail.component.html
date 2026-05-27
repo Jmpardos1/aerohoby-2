@@ -1,54 +1,150 @@
-<div class="border rounded p-3 h-100">
-  <div class="row g-3">
-    <div class="col-12 col-md-4">
-      @if (productoDetail.imagen) {
-        <img class="img-fluid rounded" src="{{ productoDetail.imagen }}" alt="{{ productoDetail.nombre }}" />
+<div class="pd-panel">
+
+  <div class="pd-img-wrap">
+    @if (productoDetail.imagen) {
+      <img [src]="productoDetail.imagen" [alt]="productoDetail.nombre" class="pd-img">
+    } @else {
+      <div class="pd-img-placeholder"><i class="bi bi-box-seam"></i></div>
+    }
+  </div>
+
+  <div class="pd-body">
+    <h2 class="pd-name">{{ productoDetail.nombre }}</h2>
+    <div class="pd-price">${{ productoDetail.precio | number:'1.0-0' }}</div>
+    <p class="pd-desc">{{ productoDetail.descripcion }}</p>
+
+    <div class="pd-meta">
+      @if (productoDetail.marca) {
+        <div class="pd-meta-item">
+          <span class="pd-meta-label">Marca</span>
+          <span class="pd-meta-val">{{ productoDetail.marca.nombre }}</span>
+        </div>
+      }
+      @if (productoDetail.proveedor) {
+        <div class="pd-meta-item">
+          <span class="pd-meta-label">Proveedor</span>
+          <span class="pd-meta-val">{{ productoDetail.proveedor.nombre }}</span>
+        </div>
+      }
+      @if (esAdmin) {
+        <div class="pd-meta-item">
+          <span class="pd-meta-label">Stock</span>
+          <span class="pd-meta-val">{{ productoDetail.stock }}</span>
+        </div>
+        <div class="pd-meta-item">
+          <span class="pd-meta-label">Stock mínimo</span>
+          <span class="pd-meta-val">{{ productoDetail.stockMinimo }}</span>
+        </div>
       }
     </div>
 
-    <div class="col-12 col-md-8">
-      <h3 class="h4 mb-2">{{ productoDetail.nombre }}</h3>
-      <p class="text-muted">{{ productoDetail.descripcion }}</p>
-
-      <dl class="row mb-0">
-        <dt class="col-sm-4">Precio</dt>
-        <dd class="col-sm-8">${{ productoDetail.precio }}</dd>
-
-        @if (esAdmin) {
-          <dt class="col-sm-4">Stock</dt>
-          <dd class="col-sm-8">{{ productoDetail.stock }}</dd>
-
-          <dt class="col-sm-4">Stock minimo</dt>
-          <dd class="col-sm-8">{{ productoDetail.stockMinimo }}</dd>
+    @if (productoDetail.categoria && productoDetail.categoria.length > 0) {
+      <div class="pd-cats">
+        @for (cat of productoDetail.categoria; track cat.id) {
+          <span class="pd-cat-chip">{{ cat.nombre }}</span>
         }
+      </div>
+    }
 
-        <dt class="col-sm-4">Marca</dt>
-        <dd class="col-sm-8">{{ productoDetail.marca ? productoDetail.marca.nombre : 'Sin marca' }}</dd>
+    <button class="pd-cart-btn" [class.added]="agregado" (click)="agregarAlCarrito()">
+      @if (agregado) {
+        <i class="bi bi-check-lg"></i> Agregado al carrito
+      } @else {
+        <i class="bi bi-cart-plus"></i> Agregar al carrito
+      }
+    </button>
 
-        <dt class="col-sm-4">Proveedor</dt>
-        <dd class="col-sm-8">
-          {{ productoDetail.proveedor ? productoDetail.proveedor.nombre : 'Sin proveedor' }}
-        </dd>
+    <!-- ── Reviews ── -->
+    <div class="pd-reviews">
 
-        <dt class="col-sm-4">Categorias</dt>
-        <dd class="col-sm-8">
-          @if (productoDetail.categoria && productoDetail.categoria.length > 0) {
-            @for (categoria of productoDetail.categoria; track categoria.id) {
-              <span class="badge text-bg-secondary me-1">{{ categoria.nombre }}</span>
-            }
-          } @else {
-            Sin categorias
+      <div class="pd-reviews-header">
+        <div class="pd-reviews-title">
+          Reseñas
+          @if (reviews.length > 0) {
+            <span class="pd-reviews-avg">
+              <span class="pd-star-filled">★</span> {{ promedioEstrellas }}
+              <span class="pd-reviews-count">({{ reviews.length }})</span>
+            </span>
           }
-        </dd>
-      </dl>
-
-      <button class="btn btn-dark mt-3 w-100" (click)="agregarAlCarrito()">
-        @if (agregado) {
-          <i class="bi bi-check-lg me-1"></i> Agregado
-        } @else {
-          <i class="bi bi-cart-plus me-1"></i> Agregar al carrito
+        </div>
+        @if (!mostrarFormReview) {
+          <button class="pd-write-btn" (click)="mostrarFormReview = true">
+            <i class="bi bi-pencil-square"></i> Escribir reseña
+          </button>
         }
-      </button>
+      </div>
+
+      @if (mostrarFormReview) {
+        <div class="pd-rf">
+          <form [formGroup]="reviewForm" (ngSubmit)="crearReview()">
+
+            <fieldset class="pd-rf-stars-group">
+              <legend class="pd-rf-label">Puntuación</legend>
+              <div class="pd-rf-stars">
+                @for (estrella of estrellas(); track $index) {
+                  <button type="button" class="pd-rf-star" [class.active]="estrella === '★'"
+                          (mouseenter)="estrellaHover = $index + 1"
+                          (mouseleave)="estrellaHover = 0"
+                          (click)="seleccionarEstrella($index + 1)">{{ estrella }}</button>
+                }
+              </div>
+            </fieldset>
+
+            <div class="pd-rf-field">
+              <label for="pd-contenido" class="pd-rf-label">
+                Comentario
+                <span class="pd-rf-counter">({{ reviewForm.get('contenido')!.value?.length || 0 }}/500)</span>
+              </label>
+              <textarea id="pd-contenido" class="pd-rf-textarea" rows="3"
+                        formControlName="contenido"
+                        placeholder="Comparte tu experiencia con este producto…"></textarea>
+            </div>
+
+            @if (reviewError) {
+              <div class="pd-rf-error">{{ reviewError }}</div>
+            }
+
+            <div class="pd-rf-actions">
+              <button type="button" class="pd-rf-cancel"
+                      (click)="mostrarFormReview = false; estrellaHover = 0">Cancelar</button>
+              <button type="submit" class="pd-rf-submit"
+                      [disabled]="reviewForm.invalid || reviewForm.get('puntuacion')!.value === 0">
+                Publicar
+              </button>
+            </div>
+
+          </form>
+        </div>
+      }
+
+      @if (cargandoReviews) {
+        <div class="pd-reviews-loading">
+          <span class="oc-spinner"></span>
+        </div>
+      }
+
+      @if (!cargandoReviews && reviews.length === 0 && !mostrarFormReview) {
+        <p class="pd-reviews-empty">Sé el primero en dejar una reseña.</p>
+      }
+
+      @for (review of reviews; track review.id) {
+        <div class="pd-review-card">
+          <div class="pd-review-top">
+            <div>
+              <span class="pd-review-author">{{ review.autor?.nombre || 'Usuario' }}</span>
+              <span class="pd-review-date">{{ review.fecha }}</span>
+            </div>
+            <div class="pd-review-stars">
+              @for (filled of starRange(review.puntuacion); track $index) {
+                <span [class.pd-star-filled]="filled">★</span>
+              }
+            </div>
+          </div>
+          <p class="pd-review-content">{{ review.contenido }}</p>
+        </div>
+      }
+
     </div>
   </div>
+
 </div>
