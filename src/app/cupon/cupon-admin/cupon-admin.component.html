@@ -1,0 +1,96 @@
+<div class="container mt-4">
+  <h2 class="fw-bold mb-4">Administrar Cupones</h2>
+
+  <div class="card shadow-sm mb-5 p-4" style="max-width: 560px;">
+    <h5 class="fw-semibold mb-3">Crear cupón</h5>
+
+    <form [formGroup]="cuponForm" (ngSubmit)="crearCupon()">
+      <div class="mb-3">
+        <label for="codigo" class="form-label">Código</label>
+        <input id="codigo" type="text" class="form-control" formControlName="codigoCupon"
+          placeholder="Ej: EVENTO2025, COMPRA10">
+        @if (cuponForm.get('codigoCupon')!.invalid && cuponForm.get('codigoCupon')!.touched) {
+          <div class="text-danger small">El código es obligatorio</div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="porcentaje" class="form-label">Porcentaje de descuento (%)</label>
+        <input id="porcentaje" type="number" class="form-control" formControlName="porcentaje"
+          min="1" max="100" placeholder="1 – 100">
+        @if (cuponForm.get('porcentaje')!.invalid && cuponForm.get('porcentaje')!.touched) {
+          <div class="text-danger small">Ingresa un porcentaje entre 1 y 100</div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="fecha" class="form-label">Fecha de vencimiento</label>
+        <input id="fecha" type="datetime-local" class="form-control" formControlName="fechaVencimiento">
+        @if (cuponForm.get('fechaVencimiento')!.invalid && cuponForm.get('fechaVencimiento')!.touched) {
+          <div class="text-danger small">La fecha es obligatoria</div>
+        }
+      </div>
+
+      <div class="mb-4">
+        <label for="ordenId" class="form-label">
+          Asignar a compra <span class="text-muted small">(opcional)</span>
+        </label>
+        <select id="ordenId" class="form-select" formControlName="ordenId">
+          <option value="">— Sin asignar (cupón por evento) —</option>
+          @for (orden of ordenes; track orden.id) {
+            <option [value]="orden.id">
+              {{ orden.estadoPedido }} — {{ orden.fechaOrden | date:'dd/MM/yyyy' }}
+            </option>
+          }
+        </select>
+      </div>
+
+      @if (errorMsg) {
+        <div class="alert alert-danger py-2">{{ errorMsg }}</div>
+      }
+      @if (successMsg) {
+        <div class="alert alert-success py-2">{{ successMsg }}</div>
+      }
+
+      <button type="submit" class="btn btn-dark" [disabled]="cuponForm.invalid">Crear cupón</button>
+    </form>
+  </div>
+
+  <h5 class="fw-semibold mb-3">Cupones existentes</h5>
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Código</th>
+          <th>Descuento</th>
+          <th>Vencimiento</th>
+          <th>Estado</th>
+          <th>Orden asignada</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (cupon of cupones; track cupon.id) {
+          <tr>
+            <td class="font-monospace fw-semibold">{{ cupon.codigoCupon }}</td>
+            <td>{{ cupon.porcentaje }}%</td>
+            <td>{{ cupon.fechaVencimiento | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>
+              @if (esVigente(cupon.fechaVencimiento)) {
+                <span class="badge bg-success">Vigente</span>
+              } @else {
+                <span class="badge bg-danger">Vencido</span>
+              }
+            </td>
+            <td>{{ cupon.ordenCompra?.estadoPedido ?? '—' }}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-danger" (click)="eliminarCupon(cupon.id)">Eliminar</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr><td colspan="6" class="text-center text-muted">No hay cupones registrados.</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

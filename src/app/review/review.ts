@@ -6,5 +6,6 @@ export interface Review {
   fecha: string;
   contenido: string;
   usuarioId: string;
-  autor?: Usuario; 
+  productoId?: string;
+  autor?: Usuario;
 }
