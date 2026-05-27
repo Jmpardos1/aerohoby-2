@@ -1,123 +1,103 @@
-<div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="mb-0">Productos</h2>
-    <a routerLink="/carrito" class="btn btn-outline-dark position-relative">
-      <i class="bi bi-cart3"></i>
-      @if (carritoService.getCantidadTotal() > 0) {
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-          {{ carritoService.getCantidadTotal() }}
-        </span>
-      }
-    </a>
-  </div>
+<div class="pl-page">
 
-  <div class="row g-3 align-items-end mb-4">
-    <div class="col-12 col-md-4">
-      <label for="precioMaximo" class="form-label">Precio maximo</label>
-      <div class="input-group">
-        <span class="input-group-text">$</span>
-        <input
-          id="precioMaximo"
-          type="number"
-          class="form-control"
-          inputmode="decimal"
-          min="0"
-          placeholder="Ingresa un precio"
-          [(ngModel)]="precioMaximo"
-        />
-        <button type="button" class="btn btn-outline-secondary" (click)="limpiarFiltroPrecio()">
-          Limpiar
-        </button>
+  <!-- Filter bar -->
+  <div class="pl-filter-bar">
+
+    <div class="pl-filter-group">
+      <label class="pl-filter-label" for="pl-precio-slider">Precio máx.</label>
+      <div class="pl-slider-wrap">
+        <input type="range"
+               id="pl-precio-slider"
+               class="ah-price-slider"
+               min="0"
+               [max]="precioSliderMax"
+               [(ngModel)]="precioSlider"
+               [style.background]="sliderBackground">
+        <span class="pl-price-value">${{ precioSlider | number:'1.0-0' }}</span>
       </div>
     </div>
 
-    <div class="col-12 col-md-4">
-      <label class="form-label">Categoria</label>
-      <div class="position-relative">
-        <button type="button" class="btn btn-outline-primary w-100" (click)="alternarCategorias()">
-          {{ categoriaSeleccionada ? categoriaSeleccionada.nombre : 'Todas las categorias' }}
+    <div class="pl-filter-divider"></div>
+
+    <div class="pl-filter-group">
+      <span class="pl-filter-label" id="pl-cat-label">Categoría</span>
+      <div class="pl-cat-wrap">
+        <button class="pl-cat-btn" aria-labelledby="pl-cat-label" (click)="alternarCategorias()">
+          {{ categoriaSeleccionada ? categoriaSeleccionada.nombre : 'Todas' }}
+          <i class="bi bi-chevron-down pl-cat-chevron" [class.rotated]="mostrarCategorias"></i>
         </button>
-
         @if (mostrarCategorias) {
-          <div class="list-group position-absolute w-100 shadow-sm z-3 mt-1">
-            <button
-              type="button"
-              class="list-group-item list-group-item-action"
-              [class.active]="categoriaSeleccionadaId === null"
-              (click)="seleccionarCategoria(null)"
-            >
-              Todas las categorias
-            </button>
-
-            @for (categoria of categoriasDisponibles; track categoria.id) {
-              <button
-                type="button"
-                class="list-group-item list-group-item-action"
-                [class.active]="categoriaSeleccionadaId === categoria.id"
-                (click)="seleccionarCategoria(categoria.id)"
-              >
-                {{ categoria.nombre }}
-              </button>
+          <div class="pl-cat-dropdown">
+            <button class="pl-cat-opt" [class.active]="categoriaSeleccionadaId === null"
+                    (click)="seleccionarCategoria(null)">Todas las categorías</button>
+            @for (cat of categoriasDisponibles; track cat.id) {
+              <button class="pl-cat-opt" [class.active]="categoriaSeleccionadaId === cat.id"
+                      (click)="seleccionarCategoria(cat.id)">{{ cat.nombre }}</button>
             }
           </div>
         }
       </div>
     </div>
+
+    <span class="pl-result-count">{{ productosFiltrados.length }} producto{{ productosFiltrados.length !== 1 ? 's' : '' }}</span>
+
+    @if (precioSlider < precioSliderMax || categoriaSeleccionadaId !== null) {
+      <button class="pl-reset-btn" (click)="resetFiltros()">
+        <i class="bi bi-x-circle"></i> Limpiar filtros
+      </button>
+    }
+
   </div>
 
-  <div class="row g-4">
-    <div class="col-12 col-lg-5">
-      <div class="list-group">
-        @for (producto of productosFiltrados; track producto.id) {
-          <button
-            type="button"
-            class="list-group-item list-group-item-action"
-            [class.active]="selectedProducto?.id === producto.id"
-            (click)="onSelected(producto)"
-          >
-            <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
-              <div>
-                <h5 class="mb-1">{{ producto.nombre }}</h5>
-                <p class="mb-2" [class.text-muted]="selectedProducto?.id !== producto.id">
-                  {{ producto.descripcion }}
-                </p>
-                <div class="small">
-                  <span>{{ producto.marca ? producto.marca.nombre : 'Sin marca' }}</span>
-                  <span> | </span>
-                  <span>
-                    @if (producto.categoria && producto.categoria.length > 0) {
-                      {{ producto.categoria[0].nombre }}
-                    } @else {
-                      Sin categoria
-                    }
-                  </span>
-                </div>
-              </div>
+  <!-- Content -->
+  <div class="pl-content" [class.pl-has-detail]="!!selectedProducto">
 
-              <div class="text-md-end">
-                <div class="fw-bold">${{ producto.precio }}</div>
-                <span
-                  class="badge"
-                  [class.bg-success]="producto.stock > producto.stockMinimo"
-                  [class.bg-danger]="producto.stock <= producto.stockMinimo"
-                >
-                  Stock: {{ producto.stock }}
+    <div class="pl-cards-col">
+      <div class="pl-cards-grid">
+        @for (producto of productosFiltrados; track producto.id) {
+          <button class="pl-card" [class.pl-card-active]="selectedProducto?.id === producto.id"
+                  (click)="onSelected(producto)">
+            <div class="pl-card-img-wrap">
+              @if (producto.imagen) {
+                <img [src]="producto.imagen" [alt]="producto.nombre" class="pl-card-img">
+              } @else {
+                <div class="pl-card-no-img"><i class="bi bi-box-seam"></i></div>
+              }
+            </div>
+            <div class="pl-card-body">
+              <div class="pl-card-top-row">
+                @if (producto.marca) {
+                  <span class="pl-brand-chip">{{ producto.marca.nombre }}</span>
+                }
+                @if (producto.categoria && producto.categoria.length > 0) {
+                  <span class="pl-cat-chip">{{ producto.categoria[0].nombre }}</span>
+                }
+              </div>
+              <h4 class="pl-card-name">{{ producto.nombre }}</h4>
+              <p class="pl-card-desc">{{ producto.descripcion }}</p>
+              <div class="pl-card-footer">
+                <span class="pl-price">${{ producto.precio | number:'1.0-0' }}</span>
+                <span class="pl-stock" [class.ok]="producto.stock > producto.stockMinimo">
+                  {{ producto.stock > producto.stockMinimo ? 'En stock' : 'Stock bajo' }}
                 </span>
               </div>
             </div>
           </button>
         } @empty {
-          <p class="list-group-item text-muted mb-0">No hay productos que cumplan con los filtros ingresados.</p>
+          <div class="pl-empty">
+            <i class="bi bi-search" style="font-size:2rem"></i>
+            <p>No hay productos que coincidan con los filtros.</p>
+          </div>
         }
       </div>
     </div>
 
-    <div class="col-12 col-lg-7">
-      @if (selectedProducto) {
+    @if (selectedProducto) {
+      <div class="pl-detail">
         <app-producto-detail [productoDetail]="selectedProducto"></app-producto-detail>
-      } @else {
-        <div class="border rounded p-4 text-muted">Selecciona un producto para ver su detalle.</div>
-      }
-    </div>
+      </div>
+    }
+
   </div>
+
 </div>

@@ -4,6 +4,7 @@ export class Usuario {
     correo: string;
     telefono: string;
     rol: string;
+    direcciones: string[];
 
     constructor(id: any, nombre: string, correo: string, telefono: string, rol: string) {
         this.id = id;
@@ -11,5 +12,6 @@ export class Usuario {
         this.correo = correo;
         this.telefono = telefono;
         this.rol = rol;
+        this.direcciones = direcciones;
     }
 }
