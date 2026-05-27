@@ -1,9 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { ToastrModule } from 'ngx-toastr';
 import { CarritoComponent } from './carrito.component';
 import { CarritoService } from '../carrito.service';
 import { CarritoItem } from '../carrito-item';
@@ -28,12 +24,8 @@ describe('CarritoComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [CarritoComponent],
-      imports: [ToastrModule.forRoot()],
       providers: [
         { provide: CarritoService, useValue: spy },
-        provideHttpClient(),
-        provideHttpClientTesting(),
-        provideAnimationsAsync(),
         provideRouter([])
       ]
     }).compileComponents();

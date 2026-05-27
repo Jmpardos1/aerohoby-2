@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router'; 
 import { ReviewListComponent } from './review-list/review-list';
 import { ReviewDetailComponent } from './review-detail/review-detail';
 
@@ -11,9 +10,8 @@ import { ReviewDetailComponent } from './review-detail/review-detail';
     ReviewDetailComponent
   ],
   imports: [
-    CommonModule,
-    RouterModule,
-    ReactiveFormsModule
+    CommonModule, 
+    RouterModule  
   ],
   exports: [
     ReviewListComponent,

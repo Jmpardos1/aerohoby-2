@@ -107,60 +107,11 @@
               "src/styles.css"
             ]
           }
-        },
-        "cypress-run": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "ISIS2603_202610_S2_E4_Aerohobby_Front:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ISIS2603_202610_S2_E4_Aerohobby_Front:serve:production"
-            }
-          }
-        },
-        "cypress-open": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "watch": true,
-            "headless": false
-          }
-        },
-        "ct": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "ISIS2603_202610_S2_E4_Aerohobby_Front:serve",
-            "watch": true,
-            "headless": false,
-            "testingType": "component"
-          },
-          "configurations": {
-            "development": {
-              "devServerTarget": "ISIS2603_202610_S2_E4_Aerohobby_Front:serve:development"
-            }
-          }
-        },
-        "e2e": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "ISIS2603_202610_S2_E4_Aerohobby_Front:serve",
-            "watch": true,
-            "headless": false
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ISIS2603_202610_S2_E4_Aerohobby_Front:serve:production"
-            }
-          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false,
-    "schematicCollections": [
-      "@cypress/schematic",
-      "@schematics/angular"
-    ]
+    "analytics": false
   }
 }

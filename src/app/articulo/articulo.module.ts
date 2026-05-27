@@ -17,4 +17,4 @@ import { ArticuloDetailComponent } from './articulo-detail/articulo-detail.compo
     ArticuloListComponent
   ]
 })
-export class ArticuloModule {}
+export class ArticuloModule { }

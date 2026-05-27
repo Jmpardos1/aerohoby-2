@@ -77,13 +77,16 @@ describe('OrdenCompraListComponent', () => {
   });
 
 
-  it('Cargar las ordenes correctamente', () => {
+  it('Cargar las ordenes correctamente', (done) => {
     service.getAllOrdenCompra.and.returnValue(of(mockOrdenes));
 
-    fixture.detectChanges();
+    component.loadOrdenesCompra();
 
-    expect(component.ordenesCompra).toEqual(mockOrdenes);
-    expect(component.isLoading).toBeFalsy();
-    expect(component.errorMessage).toBe('');
+    setTimeout(() => {
+      expect(component.ordenesCompra).toEqual(mockOrdenes);
+      expect(component.isLoading).toBeFalsy();
+      expect(component.errorMessage).toBe('');
+      done();
+    }, 100);
   });
 });

@@ -1,61 +1,29 @@
 @if (authService.isLoggedIn()) {
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+    <a class="navbar-brand fw-bold" routerLink="/productos">AeroHobby</a>
 
-  @if (sidebarOpen) {
-    <button class="ah-sidebar-backdrop" (click)="closeAll()" (keydown.escape)="closeAll()" aria-label="Cerrar menú"></button>
-  }
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/productos" routerLinkActive="active">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/ordenes-compra" routerLinkActive="active">Órdenes de compra</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/reviews" routerLinkActive="active">Reseñas</a>
+        </li>
+      </ul>
 
-  <aside class="ah-sidebar" [class.ah-sidebar-open]="sidebarOpen" aria-label="Menú lateral"
-         (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
-    <nav class="ah-sidebar-nav" aria-label="Navegación lateral">
-      <a class="ah-sidebar-link" routerLink="/articulos" routerLinkActive="ah-sidebar-active" (click)="sidebarOpen = false">Artículos</a>
-      @if (authService.getRol() === 'ADMIN') {
-        <div class="ah-sidebar-section">Admin</div>
-        <a class="ah-sidebar-link" routerLink="/admin/productos" routerLinkActive="ah-sidebar-active" (click)="sidebarOpen = false">Admin productos</a>
-        <a class="ah-sidebar-link" routerLink="/admin/cupones" routerLinkActive="ah-sidebar-active" (click)="sidebarOpen = false">Admin cupones</a>
-        <a class="ah-sidebar-link" routerLink="/admin/usuarios" routerLinkActive="ah-sidebar-active" (click)="sidebarOpen = false">Admin usuarios</a>
-      }
-    </nav>
-  </aside>
-
-  <nav class="ah-navbar">
-    <button class="ah-hamburger" (click)="toggleSidebar($event)">
-      <i class="bi bi-list"></i>
-    </button>
-
-    <a class="ah-brand" routerLink="/productos">
-      <span class="ah-brand-aero">AERO</span>
-      <span class="ah-brand-sep"></span>
-      <span class="ah-brand-hobby">HOBBY</span>
-    </a>
-
-    <div class="ah-nav-spacer"></div>
-
-    <div class="ah-nav-actions">
-      <a routerLink="/carrito" class="ah-cart-btn">
-        <img src="/images/834526.png" alt="Carrito" class="ah-cart-icon">
-        @if (carritoService.getCantidadTotal() > 0) {
-          <span class="ah-cart-badge">{{ carritoService.getCantidadTotal() }}</span>
-        }
-      </a>
-
-      <div class="ah-profile-wrapper">
-        <button class="ah-avatar" (click)="toggleProfile($event)">
-          {{ authService.getNombre()?.charAt(0)?.toUpperCase() }}
-        </button>
-        @if (profileOpen) {
-          <div class="ah-profile-dropdown">
-            <a class="ah-dd-item" routerLink="/ordenes-compra" (click)="closeAll()">Mis órdenes de compra</a>
-            <a class="ah-dd-item" routerLink="/reviews" (click)="closeAll()">Mis reseñas</a>
-            <a class="ah-dd-item" routerLink="/cupones" (click)="closeAll()">Mis cupones</a>
-            <a class="ah-dd-item" routerLink="/perfil" (click)="closeAll()">Perfil</a>
-            <div class="ah-dd-divider"></div>
-            <button class="ah-dd-item ah-dd-logout" (click)="logout()">Cerrar sesión</button>
-          </div>
-        }
+      <div class="d-flex align-items-center gap-3">
+        <a routerLink="/carrito" class="btn btn-outline-light btn-sm">
+          <i class="bi bi-cart3"></i> Carrito
+        </a>
+        <span class="text-light small">{{ authService.getRol() }}</span>
+        <button class="btn btn-outline-light btn-sm" (click)="logout()">Cerrar sesión</button>
       </div>
     </div>
   </nav>
-
 }
 
 <router-outlet />

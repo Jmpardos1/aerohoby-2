@@ -1,47 +1,28 @@
-<div class="rv-page">
-
-  <div class="oc-header">
-    <h2 class="oc-title">Mis reseñas</h2>
-    @if (!isLoading) {
-      <span class="oc-count">{{ reviews.length }} reseña{{ reviews.length !== 1 ? 's' : '' }}</span>
-    }
-  </div>
-
-  @if (isLoading) {
-    <div class="oc-loading">
-      <span class="oc-spinner"></span>
-      Cargando reseñas…
-    </div>
-  }
-
-  @if (!isLoading && reviews.length === 0) {
-    <div class="oc-empty">
-      <i class="bi bi-chat-square-text" style="font-size:2.5rem"></i>
-      <p>Aún no has escrito ninguna reseña.</p>
-      <p class="rv-empty-hint">Puedes escribir reseñas desde el detalle de cada producto.</p>
-    </div>
-  }
-
-  <div class="rv-grid">
-    @for (review of reviews; track review.id) {
-      <div class="rv-card">
-        <div class="rv-card-top">
-          <div class="rv-stars">
-            @for (filled of starRange(review.puntuacion); track $index) {
-              <span [class.rv-star-filled]="filled">★</span>
-            }
+<div class="container mt-4">
+  <h2 class="mb-4">Reseñas de Usuarios</h2>
+  
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let review of reviews">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="card-title mb-0">{{ review.autor?.nombre || 'Usuario Anónimo' }}</h5>
+            <span class="badge bg-warning text-dark"> {{ review.puntuacion }}/5</span>
           </div>
-          <span class="rv-score">{{ review.puntuacion }}/5</span>
+          <h6 class="card-subtitle mb-3 text-muted" style="font-size: 0.85rem;">
+            Publicado el: {{ review.fecha }}
+          </h6>
+          <p class="card-text text-truncate">{{ review.contenido }}</p>
         </div>
-        <p class="rv-content">{{ review.contenido }}</p>
-        <div class="rv-card-footer">
-          <span class="rv-date">{{ review.fecha }}</span>
-          <a [routerLink]="['/reviews', review.id]" class="rv-detail-link">
-            Leer completo <i class="bi bi-arrow-right"></i>
-          </a>
+        <div class="card-footer bg-white border-top-0">
+          <button [routerLink]="['/reviews', review.id]" class="btn btn-outline-primary btn-sm w-100">
+            Leer detalle completo
+          </button>
         </div>
       </div>
-    }
+    </div>
   </div>
-
+  <div class="alert alert-info" *ngIf="reviews.length === 0">
+    No hay reseñas disponibles en este momento.
+  </div>
 </div>

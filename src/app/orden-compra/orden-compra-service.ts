@@ -8,10 +8,10 @@ import { environment } from '../../environments/environment.development';
   providedIn: 'root',
 })
 export class OrdenCompraService {
-  private readonly apiUrl = `${environment.baseUrl}ordenes-compra`;
+  private apiUrl = `${environment.baseUrl}ordenes-compra`;
   private ordenesCompraList: OrdenCompra[] = [];
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   createOrdenCompra(ordenCompra: { fechaOrden: Date; estadoPedido: string; usuarioId: string; productoId: string }): Observable<OrdenCompra> {
     return this.http.post<OrdenCompra>(this.apiUrl, ordenCompra);
@@ -37,9 +37,5 @@ export class OrdenCompraService {
 
   deleteOrdenCompraFecha(fecha: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/fecha?fecha=${fecha}`);
-  }
-
-  updateEstado(id: string, estadoPedido: string): Observable<OrdenCompra> {
-    return this.http.patch<OrdenCompra>(`${this.apiUrl}/${id}/estado`, { estadoPedido });
   }
 }

@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -10,34 +8,25 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
+  nombre = '';
+  correo = '';
+  telefono = '';
+  password = '';
   readonly rol = 'CLIENT';
   error = '';
   showPassword = false;
-  registerForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router, private toaster: ToastrService, private formBuilder: FormBuilder) {
-  }
-
-  ngOnInit(): void {
-    this.registerForm = this.formBuilder.group({
-      nombre: ['', [Validators.required]],
-      correo: ['', [Validators.required, Validators.email]],
-      telefono: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
-    });
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   onRegister(): void {
     this.error = '';
-    if (this.registerForm.invalid) {
-      this.toaster.error('Por favor, complete todos los campos correctamente.', 'Error');
+    if (this.password.length < 8) {
+      this.error = 'La contraseña debe tener mínimo 8 caracteres.';
       return;
     }
-    this.authService.register(this.registerForm.value.nombre, this.registerForm.value.correo, this.registerForm.value.telefono, this.registerForm.value.password, this.rol).subscribe({
+    this.authService.register(this.nombre, this.correo, this.telefono, this.password, this.rol).subscribe({
       next: () => {
-        console.log('Se registro el usuario: \n'
-           + this.userinfoprint(this.registerForm.value.correo, this.registerForm.value.nombre));
         this.router.navigate(['/login']);
       },
       error: (err) => {
@@ -48,9 +37,5 @@ export class RegisterComponent implements OnInit {
         }
       },
     });
-  }
-
-  userinfoprint(correo: string, nombre: string): string{
-    return 'Correo: ' + correo + '\nNombre: ' + nombre;
   }
 }
