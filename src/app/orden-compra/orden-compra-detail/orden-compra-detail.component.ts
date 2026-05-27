@@ -16,6 +16,8 @@ export class OrdenCompraDetailComponent implements OnInit{
   constructor() { }
 
   ngOnInit(): void {
-  }
 
+    
+    
+  }
 }

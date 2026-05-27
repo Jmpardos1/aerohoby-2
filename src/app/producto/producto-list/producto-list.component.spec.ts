@@ -10,6 +10,15 @@ import { ProductoListComponent } from './producto-list.component';
 import { ProductoDetailComponent } from '../producto-detail/producto-detail.component';
 import { ProductoService } from '../producto.service';
 
+const mockProductos = [
+  { id: 1, nombre: 'Ala', descripcion: '', precio: 1000, stock: 5, stockMinimo: 1,
+    categoria: [{ id: 1, nombre: 'Repuestos', descripcion: '' }],
+    marca: null as any, imagen: '', proveedor: null as any },
+  { id: 2, nombre: 'Avion RC', descripcion: '', precio: 5000, stock: 3, stockMinimo: 1,
+    categoria: [{ id: 2, nombre: 'Aviones', descripcion: '' }],
+    marca: null as any, imagen: '', proveedor: null as any },
+];
+
 describe('ProductoListComponent', () => {
   let component: ProductoListComponent;
   let fixture: ComponentFixture<ProductoListComponent>;
@@ -23,10 +32,7 @@ describe('ProductoListComponent', () => {
         provideHttpClientTesting(),
         provideRouter([]),
         { provide: PLATFORM_ID, useValue: 'browser' },
-        {
-          provide: ProductoService,
-          useValue: { getProductos: () => of([]) }
-        }
+        { provide: ProductoService, useValue: { getProductos: () => of([]) } }
       ]
     }).compileComponents();
 
@@ -39,28 +45,48 @@ describe('ProductoListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('filtra productos por precio máximo', () => {
-    component.productos = [
-      { id: 1, nombre: 'Producto barato', descripcion: '', precio: 1000, stock: 1, stockMinimo: 0, categoria: [], marca: null as any, imagen: '', proveedor: null as any },
-      { id: 2, nombre: 'Producto costoso', descripcion: '', precio: 5000, stock: 1, stockMinimo: 0, categoria: [], marca: null as any, imagen: '', proveedor: null as any }
-    ];
-    component.precioMaximo = 2000;
+  it('precioSliderMax redondea al múltiplo de 1000 del precio más alto', () => {
+    component.productos = mockProductos;
+    expect(component.precioSliderMax).toBe(5000);
+  });
 
+  it('sliderBackground genera el gradiente correcto al 50%', () => {
+    component.productos = mockProductos;
+    component.precioSlider = 2500;
+    const bg = component.sliderBackground;
+    expect(bg).toContain('linear-gradient');
+    expect(bg).toContain('50%');
+  });
+
+  it('filtra productos por precio con el slider', () => {
+    component.productos = mockProductos;
+    component.precioSlider = 2000;
     expect(component.productosFiltrados.length).toBe(1);
-    expect(component.productosFiltrados[0].nombre).toBe('Producto barato');
+    expect(component.productosFiltrados[0].nombre).toBe('Ala');
   });
 
   it('filtra productos por categoría', () => {
-    const categoriaBaterias = { id: 1, nombre: 'Baterias', descripcion: '' };
-    const categoriaRepuestos = { id: 2, nombre: 'Repuestos', descripcion: '' };
-
-    component.productos = [
-      { id: 1, nombre: 'Ala', descripcion: '', precio: 1000, stock: 1, stockMinimo: 0, categoria: [categoriaRepuestos], marca: null as any, imagen: '', proveedor: null as any },
-      { id: 2, nombre: 'Avion RC', descripcion: '', precio: 5000, stock: 1, stockMinimo: 0, categoria: [categoriaBaterias], marca: null as any, imagen: '', proveedor: null as any }
-    ];
-    component.seleccionarCategoria(categoriaBaterias.id);
-
+    component.productos = mockProductos;
+    component.precioSlider = component.precioSliderMax;
+    component.seleccionarCategoria(2);
     expect(component.productosFiltrados.length).toBe(1);
     expect(component.productosFiltrados[0].nombre).toBe('Avion RC');
+  });
+
+  it('resetFiltros restaura el slider al máximo y limpia la categoría', () => {
+    component.productos = mockProductos;
+    component.precioSlider = 100;
+    component.categoriaSeleccionadaId = 1;
+    component.resetFiltros();
+    expect(component.precioSlider).toBe(component.precioSliderMax);
+    expect(component.categoriaSeleccionadaId).toBeNull();
+  });
+
+  it('mostrarCategorias alterna con alternarCategorias', () => {
+    expect(component.mostrarCategorias).toBeFalse();
+    component.alternarCategorias();
+    expect(component.mostrarCategorias).toBeTrue();
+    component.alternarCategorias();
+    expect(component.mostrarCategorias).toBeFalse();
   });
 });

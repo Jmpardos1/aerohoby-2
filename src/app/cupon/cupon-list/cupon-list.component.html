@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <h2 class="mb-4 fw-bold">Mis Cupones</h2>
+
+  <div class="card shadow-sm mb-4 p-3" style="max-width: 480px;">
+    <h6 class="fw-semibold mb-2">Aplicar cupón</h6>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Ingresa el código"
+        [(ngModel)]="codigoIngresado" (keydown.enter)="aplicarCodigo()">
+      <button class="btn btn-dark" (click)="aplicarCodigo()">Aplicar</button>
+    </div>
+    @if (errorCodigo) {
+      <div class="text-danger small mt-1">{{ errorCodigo }}</div>
+    }
+    @if (cuponAplicado) {
+      <div class="alert alert-success mt-2 mb-0 py-2">
+        Cupón <strong>{{ cuponAplicado.codigoCupon }}</strong> válido —
+        <strong>{{ cuponAplicado.porcentaje }}% de descuento</strong>
+      </div>
+    }
+  </div>
+
+  <h5 class="mb-3">Cupones disponibles</h5>
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+    @for (cupon of cupones; track cupon.id) {
+      <div class="col">
+        <div class="card h-100 shadow-sm" [class.opacity-50]="!esVigente(cupon.fechaVencimiento)">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="badge bg-dark fs-6 font-monospace">{{ cupon.codigoCupon }}</span>
+              @if (esVigente(cupon.fechaVencimiento)) {
+                <span class="badge bg-success">Vigente</span>
+              } @else {
+                <span class="badge bg-danger">Vencido</span>
+              }
+            </div>
+            <p class="fs-4 fw-bold text-success mb-1">{{ cupon.porcentaje }}% off</p>
+            <p class="text-muted small mb-0">
+              Vence: {{ cupon.fechaVencimiento | date:'dd/MM/yyyy' }}
+            </p>
+            @if (cupon.ordenCompra) {
+              <p class="text-muted small mb-0">Orden: {{ cupon.ordenCompra.estadoPedido }}</p>
+            }
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <p class="text-muted">No hay cupones disponibles.</p>
+    }
+  </div>
+</div>

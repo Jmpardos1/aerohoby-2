@@ -15,20 +15,25 @@ import { OrdenCompraDetailComponent } from '../orden-compra-detail/orden-compra-
 export class OrdenCompraListComponent implements OnInit {
   ordenesCompra: OrdenCompra[] = [];
   selectedOrdenCompra: OrdenCompra | null = null;
-  isLoading: boolean = false;
-  errorMessage: string = '';
+  isLoading = false;
+  errorMessage = '';
 
   private destroyRef = inject(DestroyRef);
 
-  constructor(private ordenCompraService: OrdenCompraService) { }
+  constructor(private readonly ordenCompraService: OrdenCompraService) {}
 
-  ngOnInit(): void {
-    this.loadOrdenesCompra();
+  get esAdmin(): boolean {
+    return localStorage.getItem('rol') === 'ADMIN';
   }
 
-  loadOrdenesCompra(): void {
+  get ordenesFiltradas(): OrdenCompra[] {
+    if (this.esAdmin) return this.ordenesCompra;
+    const uid = localStorage.getItem('uid');
+    return this.ordenesCompra.filter(o => String(o.usuario?.id) === uid);
+  }
+
+  ngOnInit(): void {
     this.isLoading = true;
-    this.errorMessage = '';
     this.ordenCompraService.getAllOrdenCompra()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
@@ -37,14 +42,13 @@ export class OrdenCompraListComponent implements OnInit {
           this.isLoading = false;
         },
         error: (err: any) => {
-          this.errorMessage = 'Error al cargar ordenes de compra: ' + (err.message || 'Error desconocido');
-          console.error('Error al cargar órdenes de compra', err);
+          this.errorMessage = 'Error al cargar órdenes: ' + (err.message || 'Error desconocido');
           this.isLoading = false;
         }
       });
   }
 
   selectOrdenCompra(orden: OrdenCompra): void {
-    this.selectedOrdenCompra = orden;
+    this.selectedOrdenCompra = this.selectedOrdenCompra?.id === orden.id ? null : orden;
   }
 }

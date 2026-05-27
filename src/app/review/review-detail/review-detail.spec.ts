@@ -18,12 +18,13 @@ describe('ReviewDetailComponent', () => {
     fecha: '2026-05-03',
     contenido: '¡Excelente tienda! El propulsor llegó en perfecto estado.',
     usuarioId: '100',
-    autor: { 
-      id: 100, 
-      nombre: 'Juan Perez', 
-      correo: 'juan@test.com', 
-      telefono: '123456', 
-      rol: 'CLIENT' 
+    autor: {
+      id: 100,
+      nombre: 'Juan Perez',
+      correo: 'juan@test.com',
+      telefono: '123456',
+      rol: 'CLIENT',
+      direcciones: []
     }
   };
 

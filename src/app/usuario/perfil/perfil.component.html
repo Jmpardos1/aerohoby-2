@@ -1,0 +1,104 @@
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow-lg" style="width: 460px;">
+    <div class="card-body p-4">
+
+      <div class="text-center mb-4 position-relative">
+        <div class="bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+          style="width: 72px; height: 72px; font-size: 2rem;">
+          {{ perfil?.nombre?.charAt(0)?.toUpperCase() }}
+        </div>
+        <h4 class="fw-bold mb-0">{{ perfil?.nombre }}</h4>
+        <span class="badge bg-secondary mt-1">{{ perfil?.rol }}</span>
+        @if (perfil) {
+          <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0"
+            (click)="abrirEditar()">
+            Editar
+          </button>
+        }
+      </div>
+
+      @if (perfil) {
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item d-flex justify-content-between">
+            <span class="text-muted">Correo</span>
+            <span>{{ perfil.correo }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span class="text-muted">Teléfono</span>
+            <span>{{ perfil.telefono }}</span>
+          </li>
+        </ul>
+
+        <h6 class="fw-semibold mb-2">Direcciones de envío</h6>
+
+        @if (perfil.direcciones.length) {
+          <ul class="list-group list-group-flush mb-3">
+            @for (dir of perfil.direcciones; track $index) {
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ dir }}</span>
+                <button class="btn btn-sm btn-outline-danger" (click)="eliminarDireccion($index)">✕</button>
+              </li>
+            }
+          </ul>
+        } @else {
+          <p class="text-muted small mb-3">No hay direcciones registradas.</p>
+        }
+
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Nueva dirección"
+            [(ngModel)]="nuevaDireccion" (keydown.enter)="agregarDireccion()">
+          <button class="btn btn-dark" (click)="agregarDireccion()">Agregar</button>
+        </div>
+
+      } @else {
+        <p class="text-center text-muted">Cargando perfil...</p>
+      }
+
+    </div>
+  </div>
+</div>
+
+@if (mostrarEditar) {
+  <button class="modal-backdrop-custom" (click)="mostrarEditar = false" (keydown.escape)="mostrarEditar = false"></button>
+  <div class="modal-custom">
+    <div class="card shadow-lg p-4" style="width: 420px;">
+      <h5 class="fw-bold mb-4">Editar perfil</h5>
+
+      <form [formGroup]="editForm" (ngSubmit)="guardarEditar()">
+        <div class="mb-3">
+          <label for="edit-nombre" class="form-label">Nombre</label>
+          <input id="edit-nombre" type="text" class="form-control" formControlName="nombre">
+          @if (editForm.get('nombre')!.invalid && editForm.get('nombre')!.touched) {
+            <div class="text-danger small">El nombre es obligatorio</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="edit-correo" class="form-label">Correo</label>
+          <input id="edit-correo" type="email" class="form-control" formControlName="correo">
+          @if (editForm.get('correo')!.invalid && editForm.get('correo')!.touched) {
+            <div class="text-danger small">Ingresa un correo válido</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="edit-telefono" class="form-label">Teléfono</label>
+          <input id="edit-telefono" type="text" class="form-control" formControlName="telefono">
+        </div>
+
+        <div class="mb-4">
+          <label for="edit-password" class="form-label">Nueva contraseña <span class="text-muted small">(dejar vacío para no cambiar)</span></label>
+          <input id="edit-password" type="password" class="form-control" formControlName="password">
+          @if (editForm.get('password')!.hasError('minlength') && editForm.get('password')!.touched) {
+            <div class="text-danger small">Mínimo 8 caracteres</div>
+          }
+        </div>
+
+        <div class="d-flex gap-2 justify-content-end">
+          <button type="button" class="btn btn-outline-secondary" (click)="mostrarEditar = false">Cancelar</button>
+          <button type="submit" class="btn btn-dark" [disabled]="editForm.invalid">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+}

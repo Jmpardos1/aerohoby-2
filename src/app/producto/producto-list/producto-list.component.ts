@@ -12,11 +12,9 @@ import { CarritoService } from '../../carrito/carrito.service';
 })
 export class ProductoListComponent implements OnInit {
   productos: Array<Producto> = [];
-
-  precioMaximo: number | null = null;
+  precioSlider = 0;
   categoriaSeleccionadaId: number | null = null;
   mostrarCategorias = false;
-
   selectedProducto: Producto | null = null;
 
   constructor(private productoService: ProductoService, public carritoService: CarritoService) {}
@@ -28,50 +26,56 @@ export class ProductoListComponent implements OnInit {
   getProductos(): void {
     this.productoService.getProductos().subscribe((data) => {
       this.productos = data;
+      this.precioSlider = this.precioSliderMax;
     });
+  }
+
+  get precioSliderMax(): number {
+    if (!this.productos.length) return 1000000;
+    return Math.ceil(Math.max(...this.productos.map(p => p.precio)) / 1000) * 1000;
+  }
+
+  get sliderBackground(): string {
+    const pct = this.precioSliderMax
+      ? (this.precioSlider / this.precioSliderMax) * 100
+      : 100;
+    return `linear-gradient(to right, #0f3999 ${pct}%, #dde4f0 ${pct}%)`;
   }
 
   get productosFiltrados(): Array<Producto> {
     return this.productos.filter((producto) => {
-      const cumplePrecio = this.precioMaximo === null || producto.precio <= this.precioMaximo;
+      const cumplePrecio = producto.precio <= this.precioSlider;
       const cumpleCategoria = this.categoriaSeleccionadaId === null ||
-        producto.categoria?.some((categoria) => categoria.id === this.categoriaSeleccionadaId);
-
+        producto.categoria?.some((c) => c.id === this.categoriaSeleccionadaId);
       return cumplePrecio && cumpleCategoria;
     });
   }
 
   get categoriasDisponibles(): Array<Categoria> {
     const categorias = new Map<number, Categoria>();
-
-    this.productos.forEach((producto) => {
-      producto.categoria?.forEach((categoria) => {
-        categorias.set(categoria.id, categoria);
-      });
-    });
-
+    this.productos.forEach((p) => p.categoria?.forEach((c) => categorias.set(c.id, c)));
     return Array.from(categorias.values());
   }
 
   get categoriaSeleccionada(): Categoria | undefined {
-    return this.categoriasDisponibles.find((categoria) => categoria.id === this.categoriaSeleccionadaId);
+    return this.categoriasDisponibles.find((c) => c.id === this.categoriaSeleccionadaId);
   }
 
   alternarCategorias(): void {
     this.mostrarCategorias = !this.mostrarCategorias;
   }
 
-  seleccionarCategoria(categoriaId: number | null): void {
-    this.categoriaSeleccionadaId = categoriaId;
+  seleccionarCategoria(id: number | null): void {
+    this.categoriaSeleccionadaId = id;
     this.mostrarCategorias = false;
   }
 
-  limpiarFiltroPrecio(): void {
-    this.precioMaximo = null;
+  resetFiltros(): void {
+    this.precioSlider = this.precioSliderMax;
+    this.categoriaSeleccionadaId = null;
   }
 
   onSelected(producto: Producto): void {
     this.selectedProducto = producto;
   }
-
 }
