@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroHobby – Login</title>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ══════════════════════════════
+       PAGE SPLIT
+    ══════════════════════════════ */
+    .page {
+      display: flex;
+      height: 100vh;
+    }
+
+    /* ══════════════════════════════
+       LEFT – BRAND PANEL
+    ══════════════════════════════ */
+    .panel-brand {
+      flex: 1;
+      background: linear-gradient(145deg,
+        #1B2B6B  0%,
+        #2952A3 50%,
+        #4169E1 100%
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle decorative circles */
+    .panel-brand::before,
+    .panel-brand::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .panel-brand::before {
+      width: 420px;
+      height: 420px;
+      top: -120px;
+      left: -120px;
+    }
+    .panel-brand::after {
+      width: 300px;
+      height: 300px;
+      bottom: -80px;
+      right: -60px;
+    }
+
+    .brand-inner {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      user-select: none;
+    }
+
+    .brand-name {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 4.2rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .brand-aero  { color: #ffffff; }
+
+    .brand-sep {
+      width: 3px;
+      height: 52px;
+      background: linear-gradient(to bottom, #00A8E8, #87CEEB);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .brand-hobby { color: #87CEEB; }
+
+    .brand-tagline {
+      margin-top: 18px;
+      color: #B8C5E8;
+      font-size: 0.88rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════
+       RIGHT – FORM PANEL
+    ══════════════════════════════ */
+    .panel-form {
+      flex: 1;
+      background: #eef1f8;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8%;
+    }
+
+    /* ══════════════════════════════
+       CARD
+    ══════════════════════════════ */
+    .card {
+      position: relative;
+      width: 360px;
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 52px 44px 48px;
+      overflow: visible;   /* ← allows inputs to bleed out left */
+      box-shadow:
+        -24px 0  60px rgba(27,  43, 107, 0.13),
+         0    30px 70px rgba(0,   0,   0, 0.09);
+    }
+
+    .card-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1B2B6B;
+      margin-bottom: 6px;
+    }
+
+    .card-subtitle {
+      font-size: 0.875rem;
+      color: #9aa3b8;
+      margin-bottom: 44px;
+    }
+
+    /* ══════════════════════════════
+       INPUTS  – overflow left
+    ══════════════════════════════ */
+
+    /*
+      Card content width = 360 - 44 - 44 = 272px
+      Input width        = 272 + 150 = 422px
+      margin-left        = -150px  →  left edge at 44-150 = -106px (extends 106px left of card)
+      right edge         = -106 + 422 = 316px  = 360 - 44  ✓ (aligns with content right)
+    */
+
+    .input-group {
+      margin-bottom: 24px;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.75);
+      /* same leftward shift as the input, aligned with its text */
+      margin-left: -150px;
+      padding-left: 28px;
+      margin-bottom: 8px;
+    }
+
+    .input-pill {
+      display: block;
+      width: calc(100% + 150px);   /* 272 + 150 = 422px */
+      margin-left: -150px;
+      height: 54px;
+      border-radius: 50px;
+      border: 2px solid rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0 28px;
+      font-size: 0.95rem;
+      color: #1B2B6B;
+      font-family: inherit;
+      outline: none;
+      box-shadow:
+        0  6px 24px rgba(27, 43, 107, 0.14),
+        0  2px  6px rgba(0,   0,   0, 0.06);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .input-pill:focus {
+      border-color: #00A8E8;
+      background: #ffffff;
+      box-shadow:
+        0  6px 32px rgba(0, 168, 232, 0.28),
+        0  2px  6px rgba(0,   0,   0, 0.06);
+    }
+
+    .input-pill::placeholder {
+      color: #a8b4c8;
+      font-size: 0.9rem;
+    }
+
+    /* ══════════════════════════════
+       BUTTON
+    ══════════════════════════════ */
+    .btn-login {
+      display: block;
+      width: 100%;
+      height: 54px;
+      margin-top: 36px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #2952A3 0%, #00A8E8 100%);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: inherit;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      box-shadow: 0 8px 26px rgba(0, 168, 232, 0.38);
+      transition: opacity 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-login:hover {
+      opacity: 0.91;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 34px rgba(0, 168, 232, 0.48);
+    }
+
+    .btn-login:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 14px rgba(0, 168, 232, 0.3);
+    }
+
+    /* ══════════════════════════════
+       LINKS
+    ══════════════════════════════ */
+    .auth-links {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .auth-links p {
+      font-size: 0.85rem;
+      color: #9aa3b8;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .auth-links p:last-child {
+      margin-bottom: 0;
+    }
+
+    .auth-links a {
+      color: #2952A3;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .auth-links a:hover {
+      color: #00A8E8;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- ── LEFT: brand ── -->
+    <div class="panel-brand">
+      <div class="brand-inner">
+        <div class="brand-name">
+          <span class="brand-aero">AERO</span>
+          <span class="brand-sep"></span>
+          <span class="brand-hobby">HOBBY</span>
+        </div>
+        <p class="brand-tagline">Tu universo del hobbyismo aéreo</p>
+      </div>
+    </div>
+
+    <!-- ── RIGHT: form ── -->
+    <div class="panel-form">
+      <div class="card">
+
+        <h2 class="card-title">Bienvenido</h2>
+        <p class="card-subtitle">Inicia sesión para continuar</p>
+
+        <div class="input-group">
+          <span class="input-label">Correo electrónico</span>
+          <input type="email" class="input-pill" placeholder="tu@correo.com" autocomplete="email">
+        </div>
+
+        <div class="input-group">
+          <span class="input-label">Contraseña</span>
+          <input type="password" class="input-pill" placeholder="Mínimo 8 caracteres" autocomplete="current-password">
+        </div>
+
+        <button class="btn-login" type="button">Entrar</button>
+
+        <div class="auth-links">
+          <p>¿No tienes cuenta? <a href="#">Regístrate</a></p>
+          <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

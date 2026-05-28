@@ -5,7 +5,11 @@ import { OrdenCompraDetailComponent } from './orden-compra-detail/orden-compra-d
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    OrdenCompraDetailComponent
+  ],
+  exports: [
+    OrdenCompraDetailComponent
   ]
 })
 export class OrdenCompraModule { }

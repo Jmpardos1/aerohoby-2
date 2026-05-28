@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Articulos de blog</h2>
+
+  <div *ngIf="isLoading" class="d-flex justify-content-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <p class="ms-2">Cargando articulos...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!isLoading" class="row g-4">
+    <div class="col-12 col-lg-5">
+      <div class="list-group">
+        @for (articulo of articulos; track articulo.id) {
+          <div class="list-group-item">
+            <div class="d-flex justify-content-between align-items-start gap-3">
+              <div>
+                <h5 class="mb-1">{{ articulo.titulo }}</h5>
+                <p class="mb-2 text-muted">{{ articulo.descripcion }}</p>
+                <small>
+                  {{ articulo.autor?.nombre }} | {{ articulo.fechaPublicacion | date:'mediumDate' }}
+                </small>
+              </div>
+              <button type="button" class="btn btn-outline-primary btn-sm" (click)="verDetalle(articulo)">
+                Ver detalle
+              </button>
+            </div>
+          </div>
+        } @empty {
+          <div class="list-group-item text-muted">No hay articulos disponibles.</div>
+        }
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-7">
+      <div *ngIf="isDetailLoading" class="border rounded p-4 text-muted">
+        Cargando detalle del articulo...
+      </div>
+
+      <div *ngIf="detailErrorMessage" class="alert alert-danger" role="alert">
+        {{ detailErrorMessage }}
+      </div>
+
+      @if (!isDetailLoading && selectedArticulo) {
+        <app-articulo-detail [articuloDetail]="selectedArticulo"></app-articulo-detail>
+      } @else if (!isDetailLoading && !detailErrorMessage) {
+        <div class="border rounded p-4 text-muted">Selecciona un articulo para ver todo su detalle.</div>
+      }
+    </div>
+  </div>
+</div>
