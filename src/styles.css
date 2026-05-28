@@ -78,12 +78,11 @@
   display: flex;
   align-items: center;
   padding: 2.5rem 3rem;
-  overflow: visible;           /* inputs desbordan hacia la izquierda */
+  overflow: hidden;
 }
 
 .auth-form-content {
   width: 100%;
-  overflow: visible;
 }
 
 /* Títulos opcionales (usados en register y recuperar, no en login) */
@@ -97,7 +96,6 @@
 /* ── Input groups ── */
 .input-group {
   margin-bottom: 16px;
-  overflow: visible;
 }
 
 .input-label {
@@ -110,11 +108,8 @@
   margin-bottom: 8px;
 }
 
-/* Wrapper que desplaza el input 130 px a la izquierda */
 .input-overflow-wrapper {
-  transform: translateX(-130px);
-  width: calc(100% + 130px);
-  overflow: visible;
+  width: 100%;
 }
 
 .input-pill {
@@ -212,7 +207,7 @@
     padding: 2rem 1.5rem;
     overflow: hidden;
   }
-  .input-overflow-wrapper { transform: none; width: 100%; }
+
   .input-label { color: #555; }
 }
 
