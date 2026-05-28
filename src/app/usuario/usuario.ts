@@ -12,6 +12,6 @@ export class Usuario {
         this.correo = correo;
         this.telefono = telefono;
         this.rol = rol;
-        this.direcciones = direcciones;
+        this.direcciones = [];
     }
 }

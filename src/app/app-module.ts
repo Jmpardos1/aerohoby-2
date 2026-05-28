@@ -16,8 +16,6 @@ import { CategoriaModule } from './categoria/categoria.module';
 import { ProveedorModule } from './proveedor/proveedor.module';
 import { ArticuloModule } from './articulo/articulo.module';
 import { CarritoModule } from './carrito/carrito.module';
-import { CuponModule } from './cupon/cupon.module';
-import { ArticuloModule } from './articulo/articulo.module';
 import { AuthInterceptor } from './usuario/auth.interceptor';
 
 @NgModule({
@@ -39,8 +37,6 @@ import { AuthInterceptor } from './usuario/auth.interceptor';
     ReviewModule,
     UsuarioModule,
     CarritoModule,
-    CuponModule,
-    ArticuloModule,
     HttpClientModule
   ],
   providers: [

@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CuponListComponent } from './cupon-list/cupon-list.component';
+import { CuponAdminComponent } from './cupon-admin/cupon-admin.component';
 
 @NgModule({
   declarations: [
-    CuponListComponent
+    CuponListComponent,
+    CuponAdminComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
-    CuponListComponent
+    CuponListComponent,
+    CuponAdminComponent
   ]
 })
 export class CuponModule { }
