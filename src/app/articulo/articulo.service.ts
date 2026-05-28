@@ -26,4 +26,15 @@ export class ArticuloService {
       params: { page: page.toString(), size: size.toString() }
     });
   }
+
+  createArticulo(data: {
+    titulo: string; descripcion: string; contenido: string;
+    fechaPublicacion: string; autorId: string;
+  }): Observable<Articulo> {
+    return this.http.post<Articulo>(this.apiUrl, data);
+  }
+
+  addProducto(articuloId: string, productoId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${articuloId}/productos/${productoId}`, {});
+  }
 }

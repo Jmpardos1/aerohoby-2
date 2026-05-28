@@ -17,7 +17,7 @@ import { Marca } from '../../marca/marca';
   styleUrl: './producto-admin.component.css',
 })
 export class ProductoAdminComponent implements OnInit {
-  tab: 'productos' | 'categorias' | 'marcas' = 'productos';
+  tab: 'productos' | 'categorias' | 'marcas' | 'proveedores' = 'productos';
 
   productos: Producto[] = [];
   categorias: Categoria[] = [];
@@ -34,6 +34,7 @@ export class ProductoAdminComponent implements OnInit {
 
   productoAsignarId = '';
   categoriaAsignarId = '';
+  proveedorForm!: FormGroup;
 
   constructor(
     private readonly productoService: ProductoService,
@@ -71,6 +72,12 @@ export class ProductoAdminComponent implements OnInit {
       nombre:      ['', Validators.required],
       descripcion: [''],
     });
+    this.proveedorForm = this.fb.group({
+      nombre:    ['', Validators.required],
+      correo:    ['', [Validators.required, Validators.email]],
+      telefono:  ['', [Validators.required, Validators.min(1)]],
+      direccion: ['', Validators.required],
+    });
     this.cargarTodo();
   }
 
@@ -100,7 +107,7 @@ export class ProductoAdminComponent implements OnInit {
         this.cargarTodo();
         this.toastr.success('Producto creado.');
       },
-      error: (e: any) => this.toastr.error(e?.error?.message || 'Error al crear producto.'),
+      error: (e: any) => this.toastr.error(this.apiMsg(e, 'Error al crear producto.')),
     });
   }
 
@@ -158,7 +165,7 @@ export class ProductoAdminComponent implements OnInit {
         this.categoriaAsignarId = '';
         this.cargarTodo();
       },
-      error: (e: any) => this.toastr.error(e?.error?.message || 'Error al asignar.'),
+      error: (e: any) => this.toastr.error(this.apiMsg(e, 'Error al asignar categoría.')),
     });
   }
 
@@ -181,7 +188,7 @@ export class ProductoAdminComponent implements OnInit {
         this.categorias = this.categorias.filter(c => String(c.id) !== id);
         this.toastr.success('Categoría eliminada.');
       },
-      error: () => this.toastr.error('Error al eliminar categoría.'),
+      error: (e: any) => this.toastr.error(this.apiMsg(e, 'Error al eliminar categoría.')),
     });
   }
 
@@ -204,11 +211,39 @@ export class ProductoAdminComponent implements OnInit {
         this.marcas = this.marcas.filter(m => String(m.id) !== id);
         this.toastr.success('Marca eliminada.');
       },
-      error: () => this.toastr.error('Error al eliminar marca.'),
+      error: (e: any) => this.toastr.error(this.apiMsg(e, 'Error al eliminar marca.')),
+    });
+  }
+
+  crearProveedor(): void {
+    if (this.proveedorForm.invalid) return;
+    const { nombre, correo, telefono, direccion } = this.proveedorForm.value;
+    this.proveedorService.createProveedor({ nombre, correo, telefono: Number(telefono), direccion }).subscribe({
+      next: p => {
+        this.proveedores.push(p as any);
+        this.proveedorForm.reset();
+        this.toastr.success('Proveedor creado.');
+      },
+      error: (e: any) => this.toastr.error(this.apiMsg(e, 'Error al crear proveedor.')),
+    });
+  }
+
+  eliminarProveedor(id: string): void {
+    if (!confirm('¿Eliminar este proveedor?')) return;
+    this.proveedorService.deleteProveedor(id).subscribe({
+      next: () => {
+        this.proveedores = this.proveedores.filter(p => String(p.id) !== id);
+        this.toastr.success('Proveedor eliminado.');
+      },
+      error: (e: any) => this.toastr.error(this.apiMsg(e, 'Error al eliminar proveedor.')),
     });
   }
 
   get stockBajo(): Producto[] {
     return this.productos.filter(p => p.stock <= p.stockMinimo);
+  }
+
+  private apiMsg(e: any, fallback: string): string {
+    return e?.error?.apierror?.message || e?.error?.message || fallback;
   }
 }

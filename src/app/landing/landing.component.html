@@ -118,7 +118,7 @@
 
         <div class="lp-art-grid">
           @for (articulo of articulos; track articulo.id) {
-            <a [routerLink]="['/articulos', articulo.id]" class="lp-art-card">
+            <a routerLink="/articulos" [queryParams]="{ articuloId: articulo.id }" class="lp-art-card">
               <div class="lp-art-badge">Tutorial</div>
               <h3 class="lp-art-title">{{ articulo.titulo }}</h3>
               <p class="lp-art-desc">{{ articulo.descripcion }}</p>

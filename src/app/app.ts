@@ -40,7 +40,8 @@ export class App {
 
   get isPublicPage(): boolean {
     const url = this.router.url.split('?')[0].split('#')[0];
-    return ['/', '/productos', '/articulos', '/carrito', '/perfil', '/ordenes-compra', '/cupones'].includes(url) || url.startsWith('/articulos/');
+    return ['/', '/productos', '/articulos', '/carrito', '/perfil', '/ordenes-compra', '/cupones',
+            '/admin/productos', '/admin/usuarios', '/admin/cupones'].includes(url) || url.startsWith('/articulos/');
   }
 
   logout(): void {

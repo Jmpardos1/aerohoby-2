@@ -6,8 +6,8 @@
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:12:15:
+[37m      12 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -39,8 +39,60 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+          ╵                               [32m~~~~~~[0m
+
+  Warning occurs in the template of component ProductoAdminComponent.
+
+    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
+[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
+[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
+          ╵                                      [32m~~~~~~[0m
+
+  Warning occurs in the template of component ArticuloListComponent.
+
+    src/app/articulo/articulo-list/articulo-list.component.ts:12:15:
+[37m      12 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/landing/landing.component.html:82:64:
+[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
+         ╵                                        [32m~~~~~~[0m
+
+  Warning occurs in the template of component LandingComponent.
+
+    src/app/landing/landing.component.ts:16:15:
+[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/landing/landing.component.html:126:41:
+[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
+          ╵                                        [32m~~~~~~[0m
+
+  Warning occurs in the template of component LandingComponent.
+
+    src/app/landing/landing.component.ts:16:15:
+[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.
@@ -51,7 +103,7 @@
 
 [39m[22m
 [1m[33mNG02801: Angular detected that `HttpClient` is not configured to use `fetch` APIs. It's strongly recommended to enable `fetch` for applications that use Server-Side Rendering for better performance and compatibility. To enable `fetch`, add the `withFetch()` to the `provideHttpClient()` call at the root of the application.[39m[22m
-[1m[31m(node:40916) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+[1m[31m(node:24692) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
 (Use `node --trace-deprecation ...` to show where the warning was created)[39m[22m
 [1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
@@ -61,8 +113,8 @@
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:12:15:
+[37m      12 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -94,8 +146,8 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.
@@ -113,8 +165,8 @@
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:12:15:
+[37m      12 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -146,8 +198,8 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.
@@ -165,8 +217,8 @@
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:12:15:
+[37m      12 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -198,8 +250,8 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.
@@ -217,8 +269,8 @@
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -250,8 +302,8 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.
@@ -269,8 +321,8 @@
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -302,8 +354,8 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.
@@ -321,8 +373,8 @@
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -354,73 +406,8 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'isPublicPage' does not exist on type 'App'.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/app.html:1:34:
-[37m      1 │ @if (authService.isLoggedIn() && ![32misPublicPage[37m) {
-        ╵                                   [32m~~~~~~~~~~~~[0m
-
-  Error occurs in the template of component App.
-
-    src/app/app.ts:8:15:
-[37m      8 │   templateUrl: [32m'./app.html'[37m,
-        ╵                [32m~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.
@@ -432,14 +419,14 @@
 [39m[22m
 [1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
+    src/app/articulo/articulo-list/articulo-list.component.html:116:37:
+[37m      116 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
           ╵                                      [32m~~~~~~[0m
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -471,8 +458,8 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.
@@ -484,14 +471,14 @@
 [39m[22m
 [1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
+    src/app/articulo/articulo-list/articulo-list.component.html:116:37:
+[37m      116 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
           ╵                                      [32m~~~~~~[0m
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -523,8 +510,99 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+          ╵                               [32m~~~~~~[0m
+
+  Warning occurs in the template of component ProductoAdminComponent.
+
+    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
+[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'String' does not exist on type 'ArticuloListComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/articulo/articulo-list/articulo-list.component.html:215:72:
+[37m      215 │ ... [class.na-prod-chip--sel]="isProductoSeleccionado([32mString[37m(p.id))"
+          ╵                                                       [32m~~~~~~[0m
+
+  Error occurs in the template of component ArticuloListComponent.
+
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'String' does not exist on type 'ArticuloListComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/articulo/articulo-list/articulo-list.component.html:216:58:
+[37m      216 │ ...              (click)="toggleProductoSeleccionado([32mString[37m(p.id))">
+          ╵                                                      [32m~~~~~~[0m
+
+  Error occurs in the template of component ArticuloListComponent.
+
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'String' does not exist on type 'ArticuloListComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/articulo/articulo-list/articulo-list.component.html:217:44:
+[37m      217 │                 @if (isProductoSeleccionado([32mString[37m(p.id))) {
+          ╵                                             [32m~~~~~~[0m
+
+  Error occurs in the template of component ArticuloListComponent.
+
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/articulo/articulo-list/articulo-list.component.html:116:37:
+[37m      116 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
+          ╵                                      [32m~~~~~~[0m
+
+  Warning occurs in the template of component ArticuloListComponent.
+
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/landing/landing.component.html:82:64:
+[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
+         ╵                                        [32m~~~~~~[0m
+
+  Warning occurs in the template of component LandingComponent.
+
+    src/app/landing/landing.component.ts:16:15:
+[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/landing/landing.component.html:126:41:
+[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
+          ╵                                        [32m~~~~~~[0m
+
+  Warning occurs in the template of component LandingComponent.
+
+    src/app/landing/landing.component.ts:16:15:
+[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.
@@ -536,14 +614,14 @@
 [39m[22m
 [1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
+    src/app/articulo/articulo-list/articulo-list.component.html:116:37:
+[37m      116 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
           ╵                                      [32m~~~~~~[0m
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -575,8 +653,8 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.
@@ -588,14 +666,14 @@
 [39m[22m
 [1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
+    src/app/articulo/articulo-list/articulo-list.component.html:116:37:
+[37m      116 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
           ╵                                      [32m~~~~~~[0m
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -627,8 +705,8 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.
@@ -640,14 +718,14 @@
 [39m[22m
 [1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
+    src/app/articulo/articulo-list/articulo-list.component.html:116:37:
+[37m      116 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
           ╵                                      [32m~~~~~~[0m
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -679,8 +757,8 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.
@@ -692,14 +770,14 @@
 [39m[22m
 [1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
+    src/app/articulo/articulo-list/articulo-list.component.html:116:37:
+[37m      116 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
           ╵                                      [32m~~~~~~[0m
 
   Warning occurs in the template of component ArticuloListComponent.
 
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
+    src/app/articulo/articulo-list/articulo-list.component.ts:14:15:
+[37m      14 │   templateUrl: [32m'./articulo-list.component.html'[37m,
          ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
 
 
@@ -731,1947 +809,8 @@
 
 [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
 
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2552: Cannot find name 'map'. Did you mean 'Map'?[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/review/review.service.ts:23:6:
-[37m      23 │       [32mmap[37m(res => Array.isArray(res) ? res : (res?.content ?? []))
-         ╵       [32m~~~[0m
-
-  'Map' is declared here.
-
-    node_modules/typescript/lib/lib.es2015.collection.d.ts:53:12:
-[37m      53 │ declare var [32mMap[37m: MapConstructor;
-         ╵             [32m~~~[0m
-
-
-[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS7006: Parameter 'res' implicitly has an 'any' type.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/review/review.service.ts:23:10:
-[37m      23 │       map([32mres[37m => Array.isArray(res) ? res : (res?.content ?? []))
-         ╵           [32m~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/usuario/perfil/perfil.component.html:21:64:
-[37m      21 │ ...atar-initials">{{ perfil.nombre?.[32mcharAt[37m(0)?.toUpperCase() }}</div>
-         ╵                                     [32m~~~~~~[0m
-
-  Warning occurs in the template of component PerfilComponent.
-
-    src/app/usuario/perfil/perfil.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./perfil.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/usuario/perfil/perfil.component.html:21:64:
-[37m      21 │ ...-initials">{{ perfil.nombre?.[32mcharAt[37m(0)?.toUpperCase() ?? '' }}<...
-         ╵                                 [32m~~~~~~[0m
-
-  Warning occurs in the template of component PerfilComponent.
-
-    src/app/usuario/perfil/perfil.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./perfil.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: PublicNavComponent is not used within the template of OrdenCompraListComponent[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/orden-compra/orden-compra-list/orden-compra-list.component.ts:15:54:
-[37m      15 │ ..., OrdenCompraDetailComponent, [32mPublicNavComponent[37m, FooterComponent]
-         ╵                                  [32m~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: FooterComponent is not used within the template of OrdenCompraListComponent[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/orden-compra/orden-compra-list/orden-compra-list.component.ts:15:74:
-[37m      15 │ ..., OrdenCompraDetailComponent, PublicNavComponent, [32mFooterComponent[37m]
-         ╵                                                      [32m~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8113: FooterComponent is not used within the template of OrdenCompraListComponent[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/orden-compra/orden-compra-list/orden-compra-list.component.ts:15:74:
-[37m      15 │ ..., OrdenCompraDetailComponent, PublicNavComponent, [32mFooterComponent[37m]
-         ╵                                                      [32m~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
-          ╵                               [32m~~~~~~[0m
-
-  Warning occurs in the template of component ProductoAdminComponent.
-
-    src/app/producto/producto-admin/producto-admin.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./producto-admin.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-[39m[22m
-[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/articulo/articulo-list/articulo-list.component.html:110:37:
-[37m      110 │                   {{ articulo.autor?.[32mnombre[37m || 'Experto' }}
-          ╵                                      [32m~~~~~~[0m
-
-  Warning occurs in the template of component ArticuloListComponent.
-
-    src/app/articulo/articulo-list/articulo-list.component.ts:11:15:
-[37m      11 │   templateUrl: [32m'./articulo-list.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:82:64:
-[37m      82 │ ...="lp-prod-brand">{{ producto.marca?.[32mnombre[37m || 'AeroHobby' }}</div>
-         ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/landing/landing.component.html:126:41:
-[37m      126 │ ...           <span>{{ articulo.autor?.[32mnombre[37m || 'Experto' }}</span>
-          ╵                                        [32m~~~~~~[0m
-
-  Warning occurs in the template of component LandingComponent.
-
-    src/app/landing/landing.component.ts:16:15:
-[37m      16 │   templateUrl: [32m'./landing.component.html'[37m,
-         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
-
-
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
-
-    src/app/producto/producto-admin/producto-admin.component.html:118:30:
-[37m      118 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
+    src/app/producto/producto-admin/producto-admin.component.html:124:30:
+[37m      124 │               <td>{{ p.marca?.[32mnombre[37m }}</td>
           ╵                               [32m~~~~~~[0m
 
   Warning occurs in the template of component ProductoAdminComponent.

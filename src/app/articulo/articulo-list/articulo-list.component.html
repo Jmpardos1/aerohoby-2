@@ -31,6 +31,12 @@
 
       <span class="al-result-count">{{ articulosFiltrados.length }} articulo{{ articulosFiltrados.length !== 1 ? 's' : '' }}</span>
 
+      @if (puedeCrear) {
+        <button class="al-new-btn" (click)="abrirFormCrear()">
+          <i class="bi bi-plus-lg"></i> Nuevo artículo
+        </button>
+      }
+
     </div>
 
     @if (mostrarFiltros) {
@@ -148,3 +154,92 @@
 </div>
 
 <app-footer></app-footer>
+
+<!-- ── Modal: Nuevo artículo ── -->
+@if (mostrarFormCrear) {
+  <button class="na-backdrop" (click)="cerrarFormCrear()" aria-label="Cerrar"></button>
+  <div class="na-modal" role="dialog" aria-modal="true">
+
+    <div class="na-header">
+      <div>
+        <div class="na-title">Nuevo artículo</div>
+        <div class="na-sub">Visible para todos los usuarios</div>
+      </div>
+      <button class="na-close" (click)="cerrarFormCrear()"><i class="bi bi-x-lg"></i></button>
+    </div>
+
+    <div class="na-body">
+      <form [formGroup]="crearForm" (ngSubmit)="crearArticulo()">
+
+        <div class="na-field">
+          <label class="na-label" for="na-titulo">Título *</label>
+          <input id="na-titulo" type="text" class="na-input" formControlName="titulo"
+                 placeholder="Título del artículo">
+          @if (crearForm.get('titulo')!.invalid && crearForm.get('titulo')!.touched) {
+            <span class="na-err">El título es obligatorio</span>
+          }
+        </div>
+
+        <div class="na-field">
+          <label class="na-label" for="na-desc">Descripción corta *</label>
+          <input id="na-desc" type="text" class="na-input" formControlName="descripcion"
+                 placeholder="Resumen de una línea">
+          @if (crearForm.get('descripcion')!.invalid && crearForm.get('descripcion')!.touched) {
+            <span class="na-err">La descripción es obligatoria</span>
+          }
+        </div>
+
+        <div class="na-field">
+          <label class="na-label" for="na-contenido">Contenido *</label>
+          <textarea id="na-contenido" class="na-textarea" formControlName="contenido"
+                    placeholder="Escribe el contenido completo del artículo…" rows="8"></textarea>
+          @if (crearForm.get('contenido')!.invalid && crearForm.get('contenido')!.touched) {
+            <span class="na-err">El contenido es obligatorio</span>
+          }
+        </div>
+
+        <div class="na-field">
+          <label class="na-label" for="na-fecha">Fecha de publicación *</label>
+          <input id="na-fecha" type="datetime-local" class="na-input" formControlName="fechaPublicacion">
+          @if (crearForm.get('fechaPublicacion')!.invalid && crearForm.get('fechaPublicacion')!.touched) {
+            <span class="na-err">La fecha es obligatoria</span>
+          }
+        </div>
+
+        <!-- Productos referenciados -->
+        <div class="na-field">
+          <label class="na-label">Productos del catálogo (opcional)</label>
+          <div class="na-prod-list">
+            @for (p of productos; track p.id) {
+              <button type="button" class="na-prod-chip"
+                      [class.na-prod-chip--sel]="isProductoSeleccionado(productoId(p))"
+                      (click)="toggleProductoSeleccionado(productoId(p))">
+                @if (isProductoSeleccionado(productoId(p))) {
+                  <i class="bi bi-check-circle-fill"></i>
+                } @else {
+                  <i class="bi bi-circle"></i>
+                }
+                {{ p.nombre }}
+              </button>
+            }
+          </div>
+        </div>
+
+        @if (errorCrear) {
+          <div class="na-error-msg">{{ errorCrear }}</div>
+        }
+
+        <div class="na-actions">
+          <button type="button" class="na-btn-cancel" (click)="cerrarFormCrear()" [disabled]="guardando">
+            Cancelar
+          </button>
+          <button type="submit" class="na-btn-submit" [disabled]="crearForm.invalid || guardando">
+            {{ guardando ? 'Publicando…' : 'Publicar artículo' }}
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+}

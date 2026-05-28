@@ -37,10 +37,10 @@ const routes: Routes = [
   { path: 'reviews', component: ReviewListComponent, canActivate: [authGuard] },
   { path: 'reviews/:id', component: ReviewDetailComponent, canActivate: [authGuard] },
   { path: 'perfil', component: PerfilComponent, canActivate: [authGuard] },
-  { path: 'admin/cupones', component: CuponAdminComponent, canActivate: [authGuard] },
-  { path: 'admin/usuarios', component: UsuarioAdminComponent, canActivate: [authGuard] },
-  { path: 'admin/productos', component: ProductoAdminComponent, canActivate: [authGuard] },
-  { path: 'articulos/:id', component: ArticuloDetailComponent, canActivate: [authGuard] },
+  { path: 'admin/cupones', component: CuponAdminComponent, canActivate: [authGuard, adminGuard] },
+  { path: 'admin/usuarios', component: UsuarioAdminComponent, canActivate: [authGuard, adminGuard] },
+  { path: 'admin/productos', component: ProductoAdminComponent, canActivate: [authGuard, adminGuard] },
+  { path: 'articulos/:id', component: ArticuloDetailComponent },
 ];
 
 @NgModule({

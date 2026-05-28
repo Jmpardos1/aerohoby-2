@@ -1,54 +1,76 @@
-@if (articuloDetail) {
-  <div class="ad-panel">
+@if (esStandalone) { <app-public-nav></app-public-nav> }
 
-    <div class="ad-header">
-      <div class="ad-badge">Artículo</div>
-      <h2 class="ad-title">{{ articuloDetail.titulo }}</h2>
-      <p class="ad-desc">{{ articuloDetail.descripcion }}</p>
-      <div class="ad-meta">
-        <span class="ad-meta-item">
-          <i class="bi bi-person"></i>
-          {{ articuloDetail.autor.nombre || 'Experto' }}
-        </span>
-        <span class="ad-meta-sep">·</span>
-        <span class="ad-meta-item">
-          <i class="bi bi-calendar3"></i>
-          {{ articuloDetail.fechaPublicacion | date:'dd MMM yyyy' }}
-        </span>
-      </div>
+<div [class.ad-full-page]="esStandalone">
+
+  @if (cargando) {
+    <div class="ad-panel">
+      <p class="ad-empty-msg">Cargando artículo...</p>
     </div>
-
-    <div class="ad-section">
-      <h3 class="ad-section-title">Contenido</h3>
-      <p class="ad-content">{{ articuloDetail.contenido }}</p>
+  } @else if (error) {
+    <div class="ad-panel">
+      <p class="ad-empty-msg">{{ error }}</p>
+      <a routerLink="/articulos" class="ad-back-link">Volver al blog</a>
     </div>
+  } @else if (articuloDetail) {
+    <div class="ad-panel">
 
-    <div class="ad-section">
-      <h3 class="ad-section-title">Productos sugeridos</h3>
-      @if (articuloDetail.productos.length > 0) {
-        <div class="ad-prods-grid">
-          @for (producto of articuloDetail.productos; track producto.id) {
-            <a class="ad-prod-card" routerLink="/productos" [queryParams]="{ productoId: producto.id }">
-              <div class="ad-prod-icon">
-                <i class="bi bi-box"></i>
-              </div>
-              <div class="ad-prod-body">
-                <div class="ad-prod-name">{{ producto.nombre }}</div>
-                @if (producto.descripcion) {
-                  <div class="ad-prod-desc">{{ producto.descripcion }}</div>
-                }
-                @if (producto.precio) {
-                  <div class="ad-prod-price">${{ producto.precio | number:'1.0-0' }}</div>
-                }
-              </div>
-              <i class="bi bi-chevron-right ad-prod-arrow"></i>
-            </a>
-          }
+      <div class="ad-header">
+        <div class="ad-badge">Artículo</div>
+        <h2 class="ad-title">{{ articuloDetail.titulo }}</h2>
+        <p class="ad-desc">{{ articuloDetail.descripcion }}</p>
+        <div class="ad-meta">
+          <span class="ad-meta-item">
+            <i class="bi bi-person"></i>
+            {{ articuloDetail.autor.nombre || 'Experto' }}
+          </span>
+          <span class="ad-meta-sep">·</span>
+          <span class="ad-meta-item">
+            <i class="bi bi-calendar3"></i>
+            {{ articuloDetail.fechaPublicacion | date:'dd MMM yyyy' }}
+          </span>
         </div>
-      } @else {
-        <p class="ad-empty-msg">Este artículo no tiene productos relacionados.</p>
-      }
-    </div>
+        @if (esStandalone) {
+          <a routerLink="/articulos" class="ad-back-link" style="margin-top:12px;display:inline-block">
+            <i class="bi bi-arrow-left"></i> Volver al blog
+          </a>
+        }
+      </div>
 
-  </div>
-}
+      <div class="ad-section">
+        <h3 class="ad-section-title">Contenido</h3>
+        <p class="ad-content">{{ articuloDetail.contenido }}</p>
+      </div>
+
+      <div class="ad-section">
+        <h3 class="ad-section-title">Productos sugeridos</h3>
+        @if (articuloDetail.productos.length > 0) {
+          <div class="ad-prods-grid">
+            @for (producto of articuloDetail.productos; track producto.id) {
+              <a class="ad-prod-card" routerLink="/productos" [queryParams]="{ productoId: producto.id }">
+                <div class="ad-prod-icon">
+                  <i class="bi bi-box"></i>
+                </div>
+                <div class="ad-prod-body">
+                  <div class="ad-prod-name">{{ producto.nombre }}</div>
+                  @if (producto.descripcion) {
+                    <div class="ad-prod-desc">{{ producto.descripcion }}</div>
+                  }
+                  @if (producto.precio) {
+                    <div class="ad-prod-price">${{ producto.precio | number:'1.0-0' }}</div>
+                  }
+                </div>
+                <i class="bi bi-chevron-right ad-prod-arrow"></i>
+              </a>
+            }
+          </div>
+        } @else {
+          <p class="ad-empty-msg">Este artículo no tiene productos relacionados.</p>
+        }
+      </div>
+
+    </div>
+  }
+
+</div>
+
+@if (esStandalone) { <app-footer></app-footer> }

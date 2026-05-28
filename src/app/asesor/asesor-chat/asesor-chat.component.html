@@ -1,0 +1,108 @@
+<!-- Botón flotante -->
+<button class="aw-fab" (click)="asesorService.toggleWidget()" [class.aw-fab-open]="abierto"
+        aria-label="Abrir asesor IA">
+  @if (abierto) {
+    <i class="bi bi-x-lg"></i>
+  } @else {
+    <i class="bi bi-robot"></i>
+  }
+</button>
+
+<!-- Panel del chat -->
+@if (abierto) {
+  <div class="aw-panel">
+
+    <!-- Header -->
+    <div class="aw-header">
+      <div class="aw-header-info">
+        <div class="aw-avatar-dot"></div>
+        <div>
+          <div class="aw-header-title">Asesor AeroHobby</div>
+          <div class="aw-header-sub">IA · Siempre disponible</div>
+        </div>
+      </div>
+      <button class="aw-close" (click)="asesorService.cerrarWidget()" aria-label="Cerrar">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <!-- Mensajes -->
+    <div class="aw-messages" #mensajesRef>
+      @for (msg of mensajes; track $index) {
+        <div class="aw-msg" [class.aw-msg-user]="msg.autor === 'cliente'">
+          @if (msg.autor === 'asesor') {
+            <div class="aw-msg-avatar">AI</div>
+          }
+          <div class="aw-bubble">
+            <p class="aw-bubble-text">{{ msg.texto }}</p>
+            @if (msg.modo) {
+              <span class="aw-mode-tag">
+                {{ msg.modo === 'gemini' ? '✦ Gemini' : '⟳ Fallback local' }}
+              </span>
+            }
+            @if (msg.productos && msg.productos.length > 0) {
+              <div class="aw-products">
+                @for (p of msg.productos; track p.id) {
+                  <a class="aw-product" routerLink="/productos" [queryParams]="productoQueryParams(p)"
+                     (click)="asesorService.cerrarWidget()">
+                    @if (p.imagenUrl) {
+                      <img [src]="p.imagenUrl" [alt]="p.nombre" class="aw-product-img">
+                    }
+                    <div class="aw-product-info">
+                      <span class="aw-product-name">{{ p.nombre }}</span>
+                      <span class="aw-product-price">${{ p.precio | number:'1.0-0' }}</span>
+                    </div>
+                    <i class="bi bi-arrow-right aw-product-arrow"></i>
+                  </a>
+                }
+              </div>
+            }
+            @if (msg.articulos && msg.articulos.length > 0) {
+              <div class="aw-articles">
+                <div class="aw-section-label">Guias relacionadas</div>
+                @for (a of msg.articulos; track a.id) {
+                  <a class="aw-article" [routerLink]="['/articulos', a.id]"
+                     (click)="asesorService.cerrarWidget()">
+                    <i class="bi bi-journal-text aw-article-icon"></i>
+                    <div class="aw-article-info">
+                      <span class="aw-article-title">{{ a.titulo }}</span>
+                      <span class="aw-article-desc">{{ a.descripcion }}</span>
+                    </div>
+                  </a>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      @if (cargando) {
+        <div class="aw-thinking">
+          <div class="aw-msg-avatar">AI</div>
+          <div class="aw-dots">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Sugerencias rápidas -->
+    @if (!sugerenciasUsadas) {
+      <div class="aw-suggestions">
+        @for (s of sugerencias; track s) {
+          <button class="aw-chip" (click)="usarSugerencia(s)">{{ s }}</button>
+        }
+      </div>
+    }
+
+    <!-- Composer -->
+    <form class="aw-composer" (ngSubmit)="enviar()">
+      <input class="aw-input" name="msg" [(ngModel)]="mensaje"
+             placeholder="Escribe tu pregunta…" autocomplete="off">
+      <button class="aw-send" type="submit" [disabled]="cargando || !mensaje.trim()">
+        <i class="bi bi-send-fill"></i>
+      </button>
+    </form>
+
+  </div>
+}

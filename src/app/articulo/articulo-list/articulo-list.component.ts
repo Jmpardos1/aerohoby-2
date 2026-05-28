@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { forkJoin, of } from 'rxjs';
 import { Articulo } from '../articulo';
 import { ArticuloDetail } from '../articulo-detail';
 import { ArticuloService } from '../articulo.service';
@@ -29,17 +32,103 @@ export class ArticuloListComponent implements OnInit {
   mostrarAutores = false;
   mostrarProductos = false;
 
+  // Crear artículo
+  mostrarFormCrear = false;
+  crearForm!: FormGroup;
+  productosSeleccionados = new Set<string>();
+  guardando = false;
+  errorCrear = '';
+
   constructor(
     private articuloService: ArticuloService,
     private productoService: ProductoService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
   ) {}
 
+  get puedeCrear(): boolean {
+    const rol = localStorage.getItem('rol');
+    return rol === 'EXPERT' || rol === 'ADMIN';
+  }
+
   ngOnInit(): void {
+    this.crearForm = this.fb.group({
+      titulo:           ['', Validators.required],
+      descripcion:      ['', Validators.required],
+      contenido:        ['', Validators.required],
+      fechaPublicacion: ['', Validators.required],
+    });
     this.loadArticulos();
     this.productoService.getProductos().subscribe({
       next: (data) => { this.productos = data; },
       error: () => {}
     });
+  }
+
+  toggleProductoSeleccionado(id: string): void {
+    this.productosSeleccionados.has(id)
+      ? this.productosSeleccionados.delete(id)
+      : this.productosSeleccionados.add(id);
+  }
+
+  isProductoSeleccionado(id: string): boolean {
+    return this.productosSeleccionados.has(id);
+  }
+
+  abrirFormCrear(): void {
+    this.mostrarFormCrear = true;
+    this.errorCrear = '';
+    this.crearForm.reset();
+    this.productosSeleccionados.clear();
+  }
+
+  cerrarFormCrear(): void {
+    this.mostrarFormCrear = false;
+    this.errorCrear = '';
+  }
+
+  crearArticulo(): void {
+    if (this.crearForm.invalid || this.guardando) return;
+    const uid = localStorage.getItem('uid');
+    if (!uid) return;
+
+    this.guardando = true;
+    this.errorCrear = '';
+
+    const { titulo, descripcion, contenido, fechaPublicacion } = this.crearForm.value;
+
+    this.articuloService.createArticulo({
+      titulo, descripcion, contenido, fechaPublicacion, autorId: uid
+    }).subscribe({
+      next: (articulo) => {
+        const ids = Array.from(this.productosSeleccionados);
+        const peticiones = ids.length
+          ? ids.map(pid => this.articuloService.addProducto(String(articulo.id), pid))
+          : [of(null)];
+
+        forkJoin(peticiones).subscribe({
+          next: () => {
+            this.guardando = false;
+            this.cerrarFormCrear();
+            this.loadArticulos();
+          },
+          error: () => {
+            this.guardando = false;
+            this.cerrarFormCrear();
+            this.loadArticulos();
+          }
+        });
+      },
+      error: (e: any) => {
+        this.guardando = false;
+        this.errorCrear = e?.error?.apierror?.message || e?.error?.message || 'Error al crear el artículo.';
+      }
+    });
+  }
+
+  private abrirDesdeParam(articuloId: string): void {
+    const articulo = this.todosArticulos.find(a => String(a.id) === articuloId);
+    if (articulo) this.verDetalle(articulo);
   }
 
   loadArticulos(): void {
@@ -50,8 +139,10 @@ export class ArticuloListComponent implements OnInit {
         this.todosArticulos = data || [];
         this.articulos = this.todosArticulos;
         this.isLoading = false;
+        const articuloId = this.route.snapshot.queryParamMap.get('articuloId');
+        if (articuloId) this.abrirDesdeParam(articuloId);
       },
-      error: (err: any) => {
+      error: () => {
         this.errorMessage = 'Error al cargar artículos.';
         this.isLoading = false;
       }

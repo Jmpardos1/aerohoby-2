@@ -1,4 +1,7 @@
-<div class="pl-page">
+<app-public-nav></app-public-nav>
+
+<div class="adm-page">
+<div class="adm-page-inner">
 
   <!-- Header -->
   <div class="oc-header" style="margin-bottom:20px">
@@ -15,6 +18,9 @@
     </button>
     <button class="adm-tab" [class.adm-tab-active]="tab === 'marcas'" (click)="tab = 'marcas'">
       Marcas <span class="adm-tab-count">{{ marcas.length }}</span>
+    </button>
+    <button class="adm-tab" [class.adm-tab-active]="tab === 'proveedores'" (click)="tab = 'proveedores'">
+      Proveedores <span class="adm-tab-count">{{ proveedores.length }}</span>
     </button>
   </div>
 
@@ -242,7 +248,66 @@
     </div>
   }
 
-</div>
+  <!-- ══════ PROVEEDORES ══════ -->
+  @if (tab === 'proveedores') {
+    <div class="adm-form-card">
+      <div class="adm-form-title">Nuevo proveedor</div>
+      <form [formGroup]="proveedorForm" (ngSubmit)="crearProveedor()">
+        <div class="adm-inline-form">
+          <div class="adm-field">
+            <label class="adm-label" for="pv-nombre">Nombre *</label>
+            <input id="pv-nombre" type="text" class="adm-input" formControlName="nombre" placeholder="Nombre">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label" for="pv-correo">Correo *</label>
+            <input id="pv-correo" type="email" class="adm-input" formControlName="correo" placeholder="correo@empresa.com">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label" for="pv-tel">Teléfono *</label>
+            <input id="pv-tel" type="number" class="adm-input" formControlName="telefono" placeholder="Número">
+          </div>
+          <div class="adm-field adm-field-grow">
+            <label class="adm-label" for="pv-dir">Dirección *</label>
+            <input id="pv-dir" type="text" class="adm-input" formControlName="direccion" placeholder="Dirección">
+          </div>
+          <button type="submit" class="adm-btn-primary adm-inline-btn" [disabled]="proveedorForm.invalid">Crear</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="oc-table-card">
+      <table class="oc-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of proveedores; track p.id) {
+            <tr>
+              <td class="adm-td-name">{{ p.nombre }}</td>
+              <td class="adm-td-desc">{{ p.correo }}</td>
+              <td class="adm-td-muted">{{ p.telefono }}</td>
+              <td class="adm-td-desc">{{ p.direccion }}</td>
+              <td class="adm-td-actions">
+                <button class="adm-icon-btn adm-icon-delete" title="Eliminar"
+                        (click)="eliminarProveedor($any(p.id))">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+</div><!-- /adm-page-inner -->
+</div><!-- /adm-page -->
 
 <!-- ══════ EDIT MODAL ══════ -->
 @if (productoEditando) {
@@ -295,3 +360,5 @@
     </div>
   </div>
 }
+
+<app-footer></app-footer>

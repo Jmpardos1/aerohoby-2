@@ -2536,6 +2536,7 @@ select.adm-input { cursor: pointer; }
   transition: color 0.15s, background 0.15s;
 }
 .lp-hn-link:hover { color: #fff; background: rgba(255,255,255,0.07); }
+.lp-hn-btn { background: none; border: none; cursor: pointer; font-family: inherit; }
 
 /* Auth buttons */
 .lp-header-actions {
@@ -4558,6 +4559,167 @@ select.adm-input { cursor: pointer; }
   flex-shrink: 0;
 }
 
+.al-new-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #fff;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.al-new-btn:hover { background: #e8e8e8; }
+
+/* ── Modal nuevo artículo (na-*) ── */
+.na-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.60);
+  z-index: 500;
+  border: none; cursor: default;
+}
+.na-modal {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 501;
+  width: min(680px, 95vw);
+  max-height: 88vh;
+  background: #1c1c1e;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+  animation: na-pop 0.18s ease;
+}
+@keyframes na-pop {
+  from { opacity: 0; transform: translate(-50%, -48%) scale(0.97); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.na-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0;
+}
+.na-title { font-size: 17px; font-weight: 700; color: #fff; }
+.na-sub { font-size: 12px; color: rgba(255,255,255,0.38); margin-top: 3px; }
+.na-close {
+  background: none; border: none;
+  color: rgba(255,255,255,0.35); font-size: 17px;
+  cursor: pointer; padding: 4px 6px; border-radius: 6px;
+  transition: color 0.12s, background 0.12s; line-height: 1;
+}
+.na-close:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+.na-body {
+  flex: 1; overflow-y: auto; padding: 20px 24px 24px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.12) transparent;
+}
+.na-body::-webkit-scrollbar { width: 4px; }
+.na-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
+
+.na-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.na-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.42);
+}
+.na-input {
+  padding: 10px 13px;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 8px;
+  color: #fff; font-size: 13px; font-family: inherit; outline: none;
+  transition: border-color 0.15s;
+}
+.na-input:focus { border-color: rgba(255,255,255,0.32); }
+.na-input::placeholder { color: rgba(255,255,255,0.22); }
+.na-input[type="datetime-local"] { color-scheme: dark; }
+
+.na-textarea {
+  padding: 10px 13px;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 8px;
+  color: #fff; font-size: 13px; font-family: inherit;
+  line-height: 1.55; resize: vertical; outline: none;
+  transition: border-color 0.15s; min-height: 160px;
+}
+.na-textarea:focus { border-color: rgba(255,255,255,0.32); }
+.na-textarea::placeholder { color: rgba(255,255,255,0.22); }
+
+.na-err { font-size: 11px; color: #fca5a5; }
+
+/* Producto chips */
+.na-prod-list {
+  display: flex; flex-wrap: wrap; gap: 7px;
+  max-height: 160px; overflow-y: auto;
+  padding: 4px 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.10) transparent;
+}
+.na-prod-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 20px;
+  color: rgba(255,255,255,0.60);
+  font-size: 12px; font-family: inherit; cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.na-prod-chip:hover { background: rgba(255,255,255,0.10); color: #fff; }
+.na-prod-chip--sel {
+  background: rgba(255,255,255,0.13);
+  border-color: rgba(255,255,255,0.35);
+  color: #fff;
+}
+
+.na-error-msg {
+  padding: 10px 14px;
+  background: rgba(239,68,68,0.12);
+  border: 1px solid rgba(239,68,68,0.30);
+  border-radius: 7px;
+  color: #fca5a5; font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.na-actions {
+  display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;
+}
+.na-btn-cancel {
+  padding: 10px 20px; background: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px; color: rgba(255,255,255,0.50);
+  font-size: 13px; font-family: inherit; cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.na-btn-cancel:hover:not(:disabled) { border-color: rgba(255,255,255,0.30); color: rgba(255,255,255,0.80); }
+.na-btn-cancel:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.na-btn-submit {
+  padding: 10px 24px; background: #fff;
+  border: none; border-radius: 8px;
+  color: #111; font-size: 13px; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+  transition: background 0.15s;
+}
+.na-btn-submit:hover:not(:disabled) { background: #e8e8e8; }
+.na-btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+
 /* Panel de filtros */
 .al-filtros-panel {
   border-top: 1px solid rgba(255,255,255,0.07);
@@ -4815,6 +4977,23 @@ select.adm-input { cursor: pointer; }
 /* =====================================================
    ARTÍCULO DETAIL — DJI Dark Style
    ===================================================== */
+
+.ad-full-page {
+  min-height: 100vh;
+  background: #111;
+  padding: 88px 24px 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.ad-full-page .ad-panel {
+  width: min(760px, 100%);
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.07);
+  overflow-y: visible;
+  align-self: flex-start;
+}
 
 .ad-panel {
   height: 100%;
@@ -6380,3 +6559,309 @@ select.adm-input { cursor: pointer; }
   .cp-table { font-size: 12px; }
   .cp-table td, .cp-table thead th { padding: 10px; }
 }
+
+/* ── Admin nav dropdown ─────────────────────────────────────── */
+.lp-admin-menu {
+  position: relative;
+}
+.lp-admin-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.80);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-family: inherit;
+  transition: color 0.15s, background 0.15s;
+}
+.lp-admin-trigger:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.lp-admin-chevron { font-size: 10px; transition: transform 0.2s; }
+.lp-admin-chevron.open { transform: rotate(180deg); }
+
+.lp-admin-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: #1c1c1e;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 10px;
+  padding: 6px;
+  min-width: 180px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  z-index: 200;
+}
+.lp-admin-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  color: rgba(255,255,255,0.80);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.12s, color 0.12s;
+}
+.lp-admin-item i { font-size: 15px; width: 18px; text-align: center; }
+.lp-admin-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+/* ── Admin page wrapper ─────────────────────────────────────── */
+.adm-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 88px 32px 60px;
+}
+.adm-page-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Usuario-admin dark table overrides ─────────────────────── */
+.adm-user-search {
+  position: relative;
+  max-width: 360px;
+  margin-bottom: 24px;
+}
+.adm-user-search i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.35);
+  font-size: 14px;
+}
+.adm-user-search input {
+  width: 100%;
+  padding: 10px 12px 10px 36px;
+  background: #1c1c1e;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+.adm-user-search input:focus { border-color: rgba(255,255,255,0.30); }
+.adm-user-search input::placeholder { color: rgba(255,255,255,0.30); }
+
+.adm-rol-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+.adm-rol-admin  { background: rgba(239,68,68,0.18);   color: #fca5a5; }
+.adm-rol-expert { background: rgba(139,92,246,0.18);  color: #c4b5fd; }
+.adm-rol-client { background: rgba(59,130,246,0.18);  color: #93c5fd; }
+
+.adm-user-row-expand {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.40);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  transition: color 0.12s, background 0.12s;
+}
+.adm-user-row-expand:hover { background: rgba(255,255,255,0.06); color: #fff; }
+
+.adm-detail-row td {
+  background: #161618 !important;
+  padding: 0 !important;
+}
+.adm-detail-panel {
+  padding: 20px 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.adm-detail-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 12px;
+}
+.adm-detail-empty {
+  color: rgba(255,255,255,0.30);
+  font-size: 13px;
+  padding: 8px 0;
+}
+
+/* cupon assignment form inside user detail */
+.adm-cupon-form {
+  background: #1c1c1e;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 20px;
+}
+.adm-cupon-form-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.70);
+  margin-bottom: 14px;
+}
+.adm-cupon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.adm-cupon-field { display: flex; flex-direction: column; gap: 5px; }
+.adm-cupon-field label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.adm-cupon-input {
+  padding: 8px 11px;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.adm-cupon-input:focus { border-color: rgba(255,255,255,0.30); }
+select.adm-cupon-input { cursor: pointer; }
+
+.adm-cupon-actions { margin-top: 14px; display: flex; justify-content: flex-end; }
+.adm-btn-sm {
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.adm-btn-sm-primary { background: #fff; color: #111; }
+.adm-btn-sm-primary:hover:not(:disabled) { background: #e8e8e8; }
+.adm-btn-sm-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.adm-rol-select {
+  padding: 6px 10px;
+  background: #1c1c1e;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 12px;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Cupon admin page */
+.adm-cupon-page {
+  min-height: 100vh;
+  background: #111;
+  color: #fff;
+  padding: 100px 24px 60px;
+}
+.adm-cupon-page-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .adm-page { padding: 80px 16px 40px; }
+  .adm-cupon-grid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════
+   ADMIN PAGE — dark theme overrides
+   (scoped to .adm-page; modal overridden globally)
+══════════════════════════════════════════ */
+
+.adm-page { background: #111; }
+.adm-page .oc-title { color: #fff !important; }
+
+/* Tabs */
+.adm-page .adm-tabs { border-bottom-color: rgba(255,255,255,0.10); }
+.adm-page .adm-tab { color: rgba(255,255,255,0.40); }
+.adm-page .adm-tab:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.adm-page .adm-tab-active { color: #fff; border-bottom-color: #fff; background: none; }
+.adm-page .adm-tab-count { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.40); }
+.adm-page .adm-tab-active .adm-tab-count { background: rgba(255,255,255,0.16); color: #fff; }
+
+/* Stock alert → amber dark */
+.adm-page .adm-stock-alert {
+  background: rgba(245,158,11,0.10);
+  border-color: rgba(245,158,11,0.30);
+  color: #fbbf24;
+}
+.adm-page .adm-stock-alert i { color: #f59e0b; }
+
+/* Section header */
+.adm-page .adm-section-count { color: rgba(255,255,255,0.35); }
+
+/* Buttons */
+.adm-page .adm-btn-primary { background: #fff; color: #111; }
+.adm-page .adm-btn-primary:hover:not(:disabled) { background: #e8e8e8; }
+.adm-page .adm-btn-primary:disabled { opacity: 0.4; }
+.adm-page .adm-btn-ghost {
+  color: rgba(255,255,255,0.50);
+  border-color: rgba(255,255,255,0.15);
+  background: none;
+}
+.adm-page .adm-btn-ghost:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.30);
+  color: #fff;
+}
+
+/* Form cards */
+.adm-page .adm-form-card {
+  background: #1c1c1e;
+  border-color: rgba(255,255,255,0.07);
+}
+.adm-page .adm-form-title { color: #fff; }
+.adm-page .adm-label { color: rgba(255,255,255,0.45); }
+
+/* Inputs & selects */
+.adm-page .adm-input {
+  background: #111;
+  border-color: rgba(255,255,255,0.10);
+  color: #fff;
+}
+.adm-page .adm-input:focus {
+  border-color: rgba(255,255,255,0.35);
+  box-shadow: none;
+  background: #0d0d0d;
+}
+.adm-page .adm-input::placeholder { color: rgba(255,255,255,0.22); }
+.adm-page .adm-input[disabled] { background: #1a1a1a; color: rgba(255,255,255,0.25); }
+.adm-page select.adm-input option { background: #1c1c1e; color: #fff; }
+
+/* Table cell text */
+.adm-page .adm-td-name { color: #fff; }
+.adm-page .adm-td-desc { color: rgba(255,255,255,0.42); }
+.adm-page .adm-td-muted { color: rgba(255,255,255,0.28); }
+
+/* Icon buttons */
+.adm-page .adm-icon-edit { color: rgba(255,255,255,0.50); }
+.adm-page .adm-icon-edit:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.adm-page .adm-icon-delete { color: #fca5a5; }
+.adm-page .adm-icon-delete:hover { background: rgba(239,68,68,0.12); }
+
+/* Edit modal — dark (modal renders outside .adm-page so scoped globally) */
+.adm-modal { background: #1c1c1e; }
+.adm-modal-header { border-bottom-color: rgba(255,255,255,0.07); }
+.adm-modal-title { color: #fff; }
+.adm-modal-sub { color: rgba(255,255,255,0.38); }
+.adm-modal-close { color: rgba(255,255,255,0.32); }
+.adm-modal-close:hover { background: rgba(255,255,255,0.08); color: #fff; }

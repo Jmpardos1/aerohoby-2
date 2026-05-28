@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 
 import { ArticuloDetailComponent } from './articulo-detail.component';
@@ -10,7 +11,7 @@ describe('ArticuloDetailComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ArticuloDetailComponent],
-      providers: [provideRouter([])]
+      providers: [provideHttpClient(), provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ArticuloDetailComponent);

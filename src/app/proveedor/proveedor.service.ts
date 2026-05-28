@@ -8,6 +8,9 @@ import { ProveedorDetail } from './proveedor-detail';
 export interface ProveedorItem {
   id?: any;
   nombre: string;
+  correo?: string;
+  telefono?: string | number;
+  direccion?: string;
 }
 
 @Injectable({
@@ -24,5 +27,13 @@ export class ProveedorService {
 
   getProveedor(id: string): Observable<ProveedorDetail> {
     return this.http.get<ProveedorDetail>(`${this.apiUrl}/${id}`);
+  }
+
+  createProveedor(data: { nombre: string; correo: string; telefono: number; direccion: string }): Observable<Proveedor> {
+    return this.http.post<Proveedor>(this.apiUrl, data);
+  }
+
+  deleteProveedor(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

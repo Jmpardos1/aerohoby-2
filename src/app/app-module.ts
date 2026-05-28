@@ -19,6 +19,7 @@ import { ProveedorModule } from './proveedor/proveedor.module';
 import { ArticuloModule } from './articulo/articulo.module';
 import { CarritoModule } from './carrito/carrito.module';
 import { AuthInterceptor } from './usuario/auth.interceptor';
+import { AsesorChatComponent } from './asesor/asesor-chat/asesor-chat.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AuthInterceptor } from './usuario/auth.interceptor';
     ReviewModule,
     UsuarioModule,
     CarritoModule,
-    HttpClientModule
+    HttpClientModule,
+    AsesorChatComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

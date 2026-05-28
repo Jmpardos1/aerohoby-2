@@ -1,43 +1,52 @@
-<div class="container mt-4">
-  <h2 class="fw-bold mb-4">Gestión de usuarios</h2>
+<app-public-nav></app-public-nav>
 
-  <div class="mb-4" style="max-width: 380px;">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Buscar por nombre o correo..."
-      [(ngModel)]="busqueda"
-    >
+<div class="oc-page">
+<div style="max-width:1100px;margin:0 auto;">
+
+  <div class="oc-header" style="margin-bottom:28px">
+    <h2 class="oc-title">Gestión de usuarios</h2>
+    @if (filas.length) {
+      <span class="oc-count">{{ filas.length }} usuario{{ filas.length !== 1 ? 's' : '' }}</span>
+    }
+  </div>
+
+  <div class="adm-user-search">
+    <i class="bi bi-search"></i>
+    <input type="text" placeholder="Buscar por nombre o correo…" [(ngModel)]="busqueda">
   </div>
 
   @if (filasFiltradas.length === 0) {
-    <p class="text-muted">No se encontraron usuarios.</p>
+    <div class="oc-empty">
+      <i class="bi bi-people" style="font-size:2.5rem"></i>
+      <p>No se encontraron usuarios.</p>
+    </div>
   } @else {
-    <div class="table-responsive">
-      <table class="table table-hover align-middle">
-        <thead class="table-dark">
+    <div class="oc-table-card">
+      <table class="oc-table">
+        <thead>
           <tr>
-            <th>Nombre</th>
+            <th>Usuario</th>
             <th>Correo</th>
             <th>Teléfono</th>
             <th>Rol actual</th>
-            <th>Nuevo rol</th>
+            <th>Cambiar rol</th>
+            <th></th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           @for (fila of filasFiltradas; track fila.usuario.id) {
-            <tr>
-              <td>{{ fila.usuario.nombre }}</td>
-              <td class="text-muted small">{{ fila.usuario.correo }}</td>
-              <td class="text-muted small">{{ fila.usuario.telefono || '—' }}</td>
+            <tr [class.oc-row-active]="fila.expandido">
+              <td class="oc-prod-name">{{ fila.usuario.nombre }}</td>
+              <td class="adm-td-muted" style="color:rgba(255,255,255,0.50)!important;font-size:12px">{{ fila.usuario.correo }}</td>
+              <td class="adm-td-muted" style="color:rgba(255,255,255,0.40)!important;font-size:12px">{{ fila.usuario.telefono || '—' }}</td>
               <td>
-                <span class="badge {{ badgeClass(fila.usuario.rol) }}">
+                <span class="adm-rol-badge {{ rolBadgeClass(fila.usuario.rol) }}">
                   {{ fila.usuario.rol }}
                 </span>
               </td>
-              <td style="min-width: 130px;">
-                <select class="form-select form-select-sm"
+              <td style="min-width:130px">
+                <select class="adm-rol-select"
                   [(ngModel)]="fila.rolSeleccionado"
                   (ngModelChange)="onRolChange(fila, $event)">
                   @for (rol of roles; track rol) {
@@ -47,15 +56,110 @@
               </td>
               <td>
                 @if (fila.cambiado) {
-                  <button class="btn btn-sm btn-dark" (click)="guardarRol(fila)">
+                  <button class="adm-btn-sm adm-btn-sm-primary" (click)="guardarRol(fila)">
                     Guardar
                   </button>
                 }
               </td>
+              <td>
+                <button class="adm-user-row-expand" (click)="toggleExpandir(fila)"
+                        [title]="fila.expandido ? 'Contraer' : 'Ver órdenes y cupones'">
+                  <i class="bi" [class.bi-chevron-down]="!fila.expandido" [class.bi-chevron-up]="fila.expandido"></i>
+                </button>
+              </td>
             </tr>
+
+            @if (fila.expandido) {
+              <tr class="adm-detail-row">
+                <td colspan="7">
+                  <div class="adm-detail-panel">
+
+                    <!-- Órdenes -->
+                    <div class="adm-detail-title">Órdenes de compra</div>
+                    @if (fila.ordenes.length === 0) {
+                      <p class="adm-detail-empty">Este usuario no tiene órdenes de compra.</p>
+                    } @else {
+                      <table class="oc-table" style="margin-bottom:0">
+                        <thead>
+                          <tr>
+                            <th>ID</th>
+                            <th>Fecha</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Estado</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @for (orden of fila.ordenes; track orden.id) {
+                            <tr>
+                              <td class="oc-id">{{ orden.id | slice:0:8 }}…</td>
+                              <td>{{ orden.fechaOrden | date:'dd/MM/yyyy HH:mm' }}</td>
+                              <td class="oc-prod-name">{{ orden.producto.nombre }}</td>
+                              <td class="oc-price">${{ orden.producto.precio | number:'1.0-0' }}</td>
+                              <td>
+                                <span class="oc-badge oc-badge-{{ orden.estadoPedido | lowercase }}">
+                                  {{ orden.estadoPedido }}
+                                </span>
+                              </td>
+                            </tr>
+                          }
+                        </tbody>
+                      </table>
+                    }
+
+                    <!-- Asignar cupón -->
+                    <div class="adm-cupon-form">
+                      <div class="adm-cupon-form-title">
+                        <i class="bi bi-tag"></i> Asignar cupón a este usuario
+                      </div>
+                      <form [formGroup]="fila.cuponForm" (ngSubmit)="asignarCupon(fila)">
+                        <div class="adm-cupon-grid">
+                          <div class="adm-cupon-field">
+                            <label>Código *</label>
+                            <input type="text" class="adm-cupon-input" formControlName="codigoCupon"
+                                   placeholder="Ej: REGALO10">
+                          </div>
+                          <div class="adm-cupon-field">
+                            <label>Descuento (%) *</label>
+                            <input type="number" class="adm-cupon-input" formControlName="porcentaje"
+                                   min="1" max="100" placeholder="1 – 100">
+                          </div>
+                          <div class="adm-cupon-field">
+                            <label>Fecha de vencimiento *</label>
+                            <input type="datetime-local" class="adm-cupon-input" formControlName="fechaVencimiento">
+                          </div>
+                          <div class="adm-cupon-field">
+                            <label>Asignar a orden (opcional)</label>
+                            <select class="adm-cupon-input" formControlName="ordenId">
+                              <option value="">— Sin asignar —</option>
+                              @for (orden of fila.ordenes; track orden.id) {
+                                <option [value]="orden.id">
+                                  {{ orden.id | slice:0:8 }}… — {{ orden.estadoPedido }}
+                                </option>
+                              }
+                            </select>
+                          </div>
+                        </div>
+                        <div class="adm-cupon-actions">
+                          <button type="submit" class="adm-btn-sm adm-btn-sm-primary"
+                                  [disabled]="fila.cuponForm.invalid || fila.guardandoCupon">
+                            {{ fila.guardandoCupon ? 'Creando…' : 'Crear cupón' }}
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+
+                  </div>
+                </td>
+              </tr>
+            }
           }
         </tbody>
       </table>
     </div>
   }
+
 </div>
+</div>
+
+<app-footer></app-footer>
