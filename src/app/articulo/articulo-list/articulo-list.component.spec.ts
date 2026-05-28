@@ -28,6 +28,9 @@ describe('ArticuloListComponent', () => {
     }));
     productoSpy.getProductos.and.returnValue(of([]));
 
+    const authSpy = jasmine.createSpyObj('AuthService', ['getRol']);
+    authSpy.getRol.and.returnValue('EXPERT');
+
     await TestBed.configureTestingModule({
       imports: [FormsModule],
       declarations: [ArticuloListComponent, ArticuloDetailComponent],
