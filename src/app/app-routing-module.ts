@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'proveedores', component: ProveedorListComponent, canActivate: [authGuard, adminGuard] },
   { path: 'articulos', component: ArticuloListComponent, canActivate: [authGuard] },
   { path: 'ordenes-compra', component: OrdenCompraListComponent, canActivate: [authGuard] },
-  { path: 'cupones', component: CuponListComponent, canActivate: [authGuard, adminGuard] },
+  { path: 'cupones', component: CuponListComponent, canActivate: [authGuard] },
   { path: 'carrito', component: CarritoComponent, canActivate: [authGuard] },
   { path: 'reviews', component: ReviewListComponent, canActivate: [authGuard] },
   { path: 'reviews/:id', component: ReviewDetailComponent, canActivate: [authGuard] },
