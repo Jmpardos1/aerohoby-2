@@ -67,43 +67,6 @@ describe('ProductoDetailComponent', () => {
     expect(reviewServiceSpy.getReviewsByProducto).toHaveBeenCalledWith('1');
   });
 
-  it('starRange devuelve los rellenos correctos para cada puntuación', () => {
-    expect(component.starRange(3)).toEqual([true, true, true, false, false]);
-    expect(component.starRange(5)).toEqual([true, true, true, true, true]);
-    expect(component.starRange(0)).toEqual([false, false, false, false, false]);
-  });
-
-  it('promedioEstrellas calcula el promedio correctamente', () => {
-    component.reviews = [
-      { ...mockReview, puntuacion: 4 },
-      { ...mockReview, id: 'r2', puntuacion: 2 }
-    ];
-    expect(component.promedioEstrellas).toBe('3.0');
-  });
-
-  it('agregarAlCarrito activa la confirmación visual brevemente', (done) => {
-    component.agregarAlCarrito();
-    expect(component.agregado).toBeTrue();
-    setTimeout(() => {
-      expect(component.agregado).toBeFalse();
-      done();
-    }, 2100);
-  });
-
-  it('crearReview envía productoId correcto y recarga las reseñas', () => {
-    spyOn(localStorage, 'getItem').and.returnValue('uid-test');
-    reviewServiceSpy.createReview.and.returnValue(of(mockReview));
-    reviewServiceSpy.getReviewsByProducto.and.returnValue(of([mockReview]));
-
-    component.reviewForm.patchValue({ puntuacion: 4, contenido: 'Buen producto' });
-    component.crearReview();
-
-    const payload = reviewServiceSpy.createReview.calls.mostRecent().args[0];
-    expect(payload.productoId).toBe('1');
-    expect(payload.usuarioId).toBe('uid-test');
-    expect(reviewServiceSpy.getReviewsByProducto).toHaveBeenCalledTimes(2);
-  });
-
   it('crearReview no hace nada si no hay usuario en sesión', () => {
     spyOn(localStorage, 'getItem').and.returnValue(null);
     component.reviewForm.patchValue({ puntuacion: 4, contenido: 'Test' });

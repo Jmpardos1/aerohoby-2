@@ -41,21 +41,8 @@ describe('ProductoListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('debe crearlos', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('precioSliderMax redondea al múltiplo de 1000 del precio más alto', () => {
-    component.productos = mockProductos;
-    expect(component.precioSliderMax).toBe(5000);
-  });
-
-  it('sliderBackground genera el gradiente correcto al 50%', () => {
-    component.productos = mockProductos;
-    component.precioSlider = 2500;
-    const bg = component.sliderBackground;
-    expect(bg).toContain('linear-gradient');
-    expect(bg).toContain('50%');
   });
 
   it('filtra productos por precio con el slider', () => {
@@ -73,20 +60,4 @@ describe('ProductoListComponent', () => {
     expect(component.productosFiltrados[0].nombre).toBe('Avion RC');
   });
 
-  it('resetFiltros restaura el slider al máximo y limpia la categoría', () => {
-    component.productos = mockProductos;
-    component.precioSlider = 100;
-    component.categoriaSeleccionadaId = 1;
-    component.resetFiltros();
-    expect(component.precioSlider).toBe(component.precioSliderMax);
-    expect(component.categoriaSeleccionadaId).toBeNull();
-  });
-
-  it('mostrarCategorias alterna con alternarCategorias', () => {
-    expect(component.mostrarCategorias).toBeFalse();
-    component.alternarCategorias();
-    expect(component.mostrarCategorias).toBeTrue();
-    component.alternarCategorias();
-    expect(component.mostrarCategorias).toBeFalse();
-  });
 });

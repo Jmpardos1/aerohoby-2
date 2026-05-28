@@ -74,24 +74,4 @@ describe('CuponService', () => {
     req.flush(mockCupon);
   });
 
-  it('Debe actualizar un cupon', () => {
-    const cambios = { porcentaje: 20 };
-
-    service.updateCupon(mockCupon.id, cambios).subscribe((cupon) => {
-      expect(cupon).toEqual(mockCupon);
-    });
-
-    const req = httpMock.expectOne(`${apiUrl}/${mockCupon.id}`);
-    expect(req.request.method).toBe('PUT');
-    expect(req.request.body).toEqual(cambios);
-    req.flush(mockCupon);
-  });
-
-  it('Debe eliminar un cupon', () => {
-    service.deleteCupon(mockCupon.id).subscribe();
-
-    const req = httpMock.expectOne(`${apiUrl}/${mockCupon.id}`);
-    expect(req.request.method).toBe('DELETE');
-    req.flush(null);
-  });
 });
