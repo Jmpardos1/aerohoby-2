@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { ArticuloListComponent } from './articulo-list.component';
 import { ArticuloService } from '../articulo.service';
 import { ArticuloDetailComponent } from '../articulo-detail/articulo-detail.component';
+import { AuthService } from '../../usuario/auth.service';
 
 describe('ArticuloListComponent', () => {
   let component: ArticuloListComponent;
@@ -23,10 +24,14 @@ describe('ArticuloListComponent', () => {
       productos: []
     }));
 
+    const authSpy = jasmine.createSpyObj('AuthService', ['getRol']);
+    authSpy.getRol.and.returnValue('EXPERT');
+
     await TestBed.configureTestingModule({
       declarations: [ArticuloListComponent, ArticuloDetailComponent],
       providers: [
-        { provide: ArticuloService, useValue: serviceSpy }
+        { provide: ArticuloService, useValue: serviceSpy },
+        { provide: AuthService, useValue: authSpy }
       ]
     }).compileComponents();
 
