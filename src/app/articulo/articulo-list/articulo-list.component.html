@@ -1,5 +1,10 @@
 <div class="container mt-4">
-  <h2 class="mb-4">Articulos de blog</h2>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Articulos de blog</h2>
+    @if (puedeCrear) {
+      <button class="btn btn-dark" (click)="mostrarFormCrear = true">+ Nuevo artículo</button>
+    }
+  </div>
 
   <div *ngIf="isLoading" class="d-flex justify-content-center">
     <div class="spinner-border text-primary" role="status">
@@ -53,3 +58,38 @@
     </div>
   </div>
 </div>
+
+@if (mostrarFormCrear) {
+  <button class="modal-backdrop-custom" (click)="mostrarFormCrear = false"></button>
+  <div class="modal-custom">
+    <div class="card shadow-lg p-4" style="width: 480px;">
+      <h5 class="fw-bold mb-4">Nuevo artículo</h5>
+
+      @if (errorCrear) {
+        <div class="alert alert-danger py-2">{{ errorCrear }}</div>
+      }
+
+      <div class="mb-3">
+        <label for="art-titulo" class="form-label">Título</label>
+        <input id="art-titulo" type="text" class="form-control" [(ngModel)]="nuevoTitulo">
+      </div>
+      <div class="mb-3">
+        <label for="art-descripcion" class="form-label">Descripción</label>
+        <input id="art-descripcion" type="text" class="form-control" [(ngModel)]="nuevaDescripcion">
+      </div>
+      <div class="mb-3">
+        <label for="art-contenido" class="form-label">Contenido</label>
+        <textarea id="art-contenido" class="form-control" rows="4" [(ngModel)]="nuevoContenido"></textarea>
+      </div>
+      <div class="mb-4">
+        <label for="art-fecha" class="form-label">Fecha de publicación</label>
+        <input id="art-fecha" type="date" class="form-control" [(ngModel)]="nuevaFecha">
+      </div>
+
+      <div class="d-flex gap-2 justify-content-end">
+        <button type="button" class="btn btn-outline-secondary" (click)="mostrarFormCrear = false">Cancelar</button>
+        <button type="button" class="btn btn-dark" (click)="crearArticulo()">Publicar</button>
+      </div>
+    </div>
+  </div>
+}

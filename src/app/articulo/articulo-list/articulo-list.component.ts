@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Articulo } from '../articulo';
 import { ArticuloDetail } from '../articulo-detail';
 import { ArticuloService } from '../articulo.service';
+import { AuthService } from '../../usuario/auth.service';
 
 @Component({
   selector: 'app-articulo-list',
@@ -17,7 +18,19 @@ export class ArticuloListComponent implements OnInit {
   errorMessage: string = '';
   detailErrorMessage: string = '';
 
-  constructor(private articuloService: ArticuloService) {}
+  mostrarFormCrear = false;
+  nuevoTitulo = '';
+  nuevaDescripcion = '';
+  nuevoContenido = '';
+  nuevaFecha = '';
+  errorCrear = '';
+
+  constructor(private articuloService: ArticuloService, private authService: AuthService) {}
+
+  get puedeCrear(): boolean {
+    const rol = this.authService.getRol();
+    return rol === 'EXPERT' || rol === 'ADMIN';
+  }
 
   ngOnInit(): void {
     this.loadArticulos();
@@ -37,6 +50,32 @@ export class ArticuloListComponent implements OnInit {
         console.error('Error al cargar articulos', err);
         this.isLoading = false;
       }
+    });
+  }
+
+  crearArticulo(): void {
+    const autorId = localStorage.getItem('uid');
+    if (!this.nuevoTitulo.trim() || !this.nuevaDescripcion.trim() || !this.nuevoContenido.trim() || !this.nuevaFecha || !autorId) {
+      this.errorCrear = 'Todos los campos son obligatorios.';
+      return;
+    }
+    this.articuloService.createArticulo({
+      titulo: this.nuevoTitulo.trim(),
+      descripcion: this.nuevaDescripcion.trim(),
+      contenido: this.nuevoContenido.trim(),
+      fechaPublicacion: this.nuevaFecha,
+      autorId
+    }).subscribe({
+      next: () => {
+        this.mostrarFormCrear = false;
+        this.nuevoTitulo = '';
+        this.nuevaDescripcion = '';
+        this.nuevoContenido = '';
+        this.nuevaFecha = '';
+        this.errorCrear = '';
+        this.loadArticulos();
+      },
+      error: () => { this.errorCrear = 'Error al crear el artículo.'; }
     });
   }
 
