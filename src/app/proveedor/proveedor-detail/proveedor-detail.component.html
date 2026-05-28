@@ -1,0 +1,39 @@
+@if (proveedorDetail) {
+  <div class="border rounded p-3 h-100">
+    <h3 class="h4 mb-3">{{ proveedorDetail.nombre }}</h3>
+
+    <dl class="row mb-4">
+      <dt class="col-sm-4">Correo</dt>
+      <dd class="col-sm-8">{{ proveedorDetail.correo }}</dd>
+
+      <dt class="col-sm-4">Telefono</dt>
+      <dd class="col-sm-8">{{ proveedorDetail.telefono }}</dd>
+
+      <dt class="col-sm-4">Direccion</dt>
+      <dd class="col-sm-8">{{ proveedorDetail.direccion }}</dd>
+    </dl>
+
+    <h4 class="h6 mb-3">Productos asociados</h4>
+
+    @if (proveedorDetail.productos.length > 0) {
+      <div class="list-group">
+        @for (producto of proveedorDetail.productos; track producto.id) {
+          <div class="list-group-item">
+            <div class="d-flex justify-content-between gap-3">
+              <div>
+                <div class="fw-semibold">{{ producto.nombre }}</div>
+                <div class="small text-muted">{{ producto.descripcion }}</div>
+              </div>
+              <div class="text-end">
+                <div>${{ producto.precio }}</div>
+                <small class="text-muted">Stock: {{ producto.stock }}</small>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="text-muted mb-0">Este proveedor no tiene productos asociados.</p>
+    }
+  </div>
+}

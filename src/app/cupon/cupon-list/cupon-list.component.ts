@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CuponService } from '../cupon.service';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Cupon } from '../cupon';
+import { CuponService } from '../cupon.service';
 
 @Component({
   selector: 'app-cupon-list',
@@ -10,34 +11,37 @@ import { Cupon } from '../cupon';
 })
 export class CuponListComponent implements OnInit {
   cupones: Cupon[] = [];
-  codigoIngresado = '';
-  cuponAplicado: Cupon | null = null;
-  errorCodigo = '';
+  isLoading: boolean = false;
+  errorMessage: string = '';
+
+  private destroyRef = inject(DestroyRef);
 
   constructor(private cuponService: CuponService) {}
 
   ngOnInit(): void {
-    this.cuponService.getCupones().subscribe(c => this.cupones = c);
+    this.loadCupones();
   }
 
-  aplicarCodigo(): void {
-    this.cuponAplicado = null;
-    this.errorCodigo = '';
-    const encontrado = this.cupones.find(
-      c => c.codigoCupon.toLowerCase() === this.codigoIngresado.trim().toLowerCase()
-    );
-    if (!encontrado) {
-      this.errorCodigo = 'Código no encontrado.';
-      return;
-    }
-    if (new Date(encontrado.fechaVencimiento) < new Date()) {
-      this.errorCodigo = 'Este cupón ya venció.';
-      return;
-    }
-    this.cuponAplicado = encontrado;
+  loadCupones(): void {
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.cuponService.getCupones()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (data: Cupon[]) => {
+          this.cupones = data;
+          this.isLoading = false;
+        },
+        error: (err: any) => {
+          this.errorMessage = 'Error al cargar cupones: ' + (err.message || 'Error desconocido');
+          console.error('Error al cargar cupones', err);
+          this.isLoading = false;
+        }
+      });
   }
 
-  esVigente(fecha: string): boolean {
-    return new Date(fecha) >= new Date();
+  estaVencido(cupon: Cupon): boolean {
+    return new Date(cupon.fechaVencimiento).getTime() < Date.now();
   }
 }

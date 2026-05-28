@@ -1,16 +1,19 @@
-export interface Articulo {
-  id: string;
-  titulo: string;
-  descripcion: string;
-  contenido: string;
-  fechaPublicacion: string;
-  autor: { id: string; nombre: string; correo: string };
-}
+import { Usuario } from "../usuario/usuario";
 
-export interface Comentario {
-  id: string;
-  contenido: string;
-  fecha: string;
-  autorId: string;
-  autorNombre: string;
+export class Articulo {
+    id: any;
+    titulo: string;
+    descripcion: string;
+    contenido: string;
+    fechaPublicacion: string | Date;
+    autor: Usuario;
+
+    constructor(id: any, titulo: string, descripcion: string, contenido: string, fechaPublicacion: string | Date, autor: Usuario) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.contenido = contenido;
+        this.fechaPublicacion = fechaPublicacion;
+        this.autor = autor;
+    }
 }
