@@ -75,7 +75,7 @@ export class PerfilComponent implements OnInit {
   eliminarDireccion(index: number): void {
     if (!this.perfil) return;
     const userId = localStorage.getItem('uid')!;
-    const direcciones = this.perfil.direcciones.filter((_, i) => i !== index);
+    const direcciones = (this.perfil.direcciones ?? []).filter((_, i) => i !== index);
     this.perfilService.updatePerfil(userId, { ...this.perfil, direcciones }).subscribe(p => this.perfil = p);
   }
 }
