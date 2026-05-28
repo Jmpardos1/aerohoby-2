@@ -1,95 +1,150 @@
-<div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="mb-0">Articulos de blog</h2>
-    @if (puedeCrear) {
-      <button class="btn btn-dark" (click)="mostrarFormCrear = true">+ Nuevo artículo</button>
+<app-public-nav></app-public-nav>
+
+<div class="al-page">
+
+  <div class="al-filter-bar">
+    <div class="al-toolbar">
+
+      <div class="al-search-wrap">
+        <i class="bi bi-search al-search-icon"></i>
+        <input
+          type="text"
+          class="al-search-input"
+          placeholder="Buscar por titulo, descripcion, autor o producto..."
+          [(ngModel)]="textoBusqueda"
+          autocomplete="off"
+        >
+        @if (textoBusqueda) {
+          <button class="al-search-clear" (click)="textoBusqueda = ''" aria-label="Limpiar">
+            <i class="bi bi-x"></i>
+          </button>
+        }
+      </div>
+
+      <button class="al-filtros-btn" [class.al-filtros-btn--active]="tieneFiltrosActivos" (click)="toggleFiltros()">
+        <i class="bi bi-sliders2"></i>
+        Filtros
+        @if (tieneFiltrosActivos) {
+          <span class="al-filtros-dot"></span>
+        }
+      </button>
+
+      <span class="al-result-count">{{ articulosFiltrados.length }} articulo{{ articulosFiltrados.length !== 1 ? 's' : '' }}</span>
+
+    </div>
+
+    @if (mostrarFiltros) {
+      <div class="al-filtros-panel">
+        <div class="al-filtros-inner">
+
+          <div class="al-filtros-group">
+            <span class="al-filtros-label">Autor</span>
+            <div class="al-dd-wrap">
+              <button class="al-dd-btn" (click)="mostrarAutores = !mostrarAutores; mostrarProductos = false">
+                {{ autorSeleccionado ? autorSeleccionado.nombre : 'Todos los autores' }}
+                <i class="bi bi-chevron-down" [class.rotated]="mostrarAutores"></i>
+              </button>
+              @if (mostrarAutores) {
+                <div class="al-dd-list">
+                  <button class="al-dd-opt" [class.active]="autorSeleccionadoId === null" (click)="seleccionarAutor(null)">Todos los autores</button>
+                  @for (autor of autoresDisponibles; track autor.id) {
+                    <button class="al-dd-opt" [class.active]="autorSeleccionadoId === autor.id" (click)="seleccionarAutor(autor.id)">{{ autor.nombre }}</button>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="al-filtros-sep"></div>
+
+          <div class="al-filtros-group">
+            <span class="al-filtros-label">Producto asociado</span>
+            <div class="al-dd-wrap">
+              <button class="al-dd-btn" (click)="mostrarProductos = !mostrarProductos; mostrarAutores = false">
+                {{ productoSeleccionado ? productoSeleccionado.nombre : 'Todos los productos' }}
+                <i class="bi bi-chevron-down" [class.rotated]="mostrarProductos"></i>
+              </button>
+              @if (mostrarProductos) {
+                <div class="al-dd-list">
+                  <button class="al-dd-opt" [class.active]="productoSeleccionadoId === null" (click)="seleccionarProducto(null)">Todos los productos</button>
+                  @for (p of productos; track p.id) {
+                    <button class="al-dd-opt" [class.active]="productoSeleccionadoId === productoId(p)" (click)="seleccionarProducto(productoId(p))">{{ p.nombre }}</button>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+
+          @if (tieneFiltrosActivos) {
+            <button class="al-reset-btn" (click)="resetFiltros()">
+              <i class="bi bi-x-circle"></i> Limpiar filtros
+            </button>
+          }
+
+        </div>
+      </div>
     }
   </div>
 
-  <div *ngIf="isLoading" class="d-flex justify-content-center">
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Cargando...</span>
-    </div>
-    <p class="ms-2">Cargando articulos...</p>
-  </div>
+  <div class="al-content" [class.al-has-detail]="!!selectedArticulo">
 
-  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
-    {{ errorMessage }}
-  </div>
+    <div class="al-list-col">
 
-  <div *ngIf="!isLoading" class="row g-4">
-    <div class="col-12 col-lg-5">
-      <div class="list-group">
-        @for (articulo of articulos; track articulo.id) {
-          <div class="list-group-item">
-            <div class="d-flex justify-content-between align-items-start gap-3">
-              <div>
-                <h5 class="mb-1">{{ articulo.titulo }}</h5>
-                <p class="mb-2 text-muted">{{ articulo.descripcion }}</p>
-                <small>
-                  {{ articulo.autor?.nombre }} | {{ articulo.fechaPublicacion | date:'mediumDate' }}
-                </small>
+      @if (isLoading) {
+        <div class="al-loading">
+          <div class="al-spinner"></div>
+          <p>Cargando articulos...</p>
+        </div>
+      } @else if (errorMessage) {
+        <div class="al-error-msg">{{ errorMessage }}</div>
+      } @else {
+        <div class="al-list">
+          @for (articulo of articulosFiltrados; track articulo.id) {
+            <button class="al-card" [class.al-card--active]="selectedArticulo?.id === articulo.id" (click)="verDetalle(articulo)">
+              <div class="al-card-badge">Articulo</div>
+              <h3 class="al-card-title">{{ articulo.titulo }}</h3>
+              <p class="al-card-desc">{{ articulo.descripcion }}</p>
+              <div class="al-card-meta">
+                <span class="al-card-author">
+                  <i class="bi bi-person"></i>
+                  {{ articulo.autor?.nombre || 'Experto' }}
+                </span>
+                <span class="al-card-date">{{ articulo.fechaPublicacion | date:'dd MMM yyyy' }}</span>
               </div>
-              <button type="button" class="btn btn-outline-primary btn-sm" (click)="verDetalle(articulo)">
-                Ver detalle
-              </button>
+              @if (articulo.productos && articulo.productos.length > 0) {
+                <div class="al-card-meta">
+                  @for (producto of articulo.productos.slice(0, 3); track producto.id) {
+                    <span class="al-prod-chip">{{ producto.nombre }}</span>
+                  }
+                </div>
+              }
+            </button>
+          } @empty {
+            <div class="al-empty">
+              <i class="bi bi-journal-x"></i>
+              <p>No hay articulos que coincidan con los filtros.</p>
             </div>
+          }
+        </div>
+      }
+
+    </div>
+
+    @if (selectedArticulo || isDetailLoading) {
+      <div class="al-detail-col">
+        @if (isDetailLoading) {
+          <div class="al-loading">
+            <div class="al-spinner"></div>
+            <p>Cargando articulo...</p>
           </div>
-        } @empty {
-          <div class="list-group-item text-muted">No hay articulos disponibles.</div>
+        } @else if (selectedArticulo) {
+          <app-articulo-detail [articuloDetail]="selectedArticulo"></app-articulo-detail>
         }
       </div>
-    </div>
+    }
 
-    <div class="col-12 col-lg-7">
-      <div *ngIf="isDetailLoading" class="border rounded p-4 text-muted">
-        Cargando detalle del articulo...
-      </div>
-
-      <div *ngIf="detailErrorMessage" class="alert alert-danger" role="alert">
-        {{ detailErrorMessage }}
-      </div>
-
-      @if (!isDetailLoading && selectedArticulo) {
-        <app-articulo-detail [articuloDetail]="selectedArticulo"></app-articulo-detail>
-      } @else if (!isDetailLoading && !detailErrorMessage) {
-        <div class="border rounded p-4 text-muted">Selecciona un articulo para ver todo su detalle.</div>
-      }
-    </div>
   </div>
+
 </div>
 
-@if (mostrarFormCrear) {
-  <button class="modal-backdrop-custom" (click)="mostrarFormCrear = false"></button>
-  <div class="modal-custom">
-    <div class="card shadow-lg p-4" style="width: 480px;">
-      <h5 class="fw-bold mb-4">Nuevo artículo</h5>
-
-      @if (errorCrear) {
-        <div class="alert alert-danger py-2">{{ errorCrear }}</div>
-      }
-
-      <div class="mb-3">
-        <label for="art-titulo" class="form-label">Título</label>
-        <input id="art-titulo" type="text" class="form-control" [(ngModel)]="nuevoTitulo">
-      </div>
-      <div class="mb-3">
-        <label for="art-descripcion" class="form-label">Descripción</label>
-        <input id="art-descripcion" type="text" class="form-control" [(ngModel)]="nuevaDescripcion">
-      </div>
-      <div class="mb-3">
-        <label for="art-contenido" class="form-label">Contenido</label>
-        <textarea id="art-contenido" class="form-control" rows="4" [(ngModel)]="nuevoContenido"></textarea>
-      </div>
-      <div class="mb-4">
-        <label for="art-fecha" class="form-label">Fecha de publicación</label>
-        <input id="art-fecha" type="date" class="form-control" [(ngModel)]="nuevaFecha">
-      </div>
-
-      <div class="d-flex gap-2 justify-content-end">
-        <button type="button" class="btn btn-outline-secondary" (click)="mostrarFormCrear = false">Cancelar</button>
-        <button type="button" class="btn btn-dark" (click)="crearArticulo()">Publicar</button>
-      </div>
-    </div>
-  </div>
-}
+<app-footer></app-footer>

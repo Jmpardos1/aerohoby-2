@@ -21,7 +21,9 @@ export class ArticuloService {
     return this.http.get<ArticuloDetail>(`${this.apiUrl}/${id}/detail`);
   }
 
-  createArticulo(data: { titulo: string; descripcion: string; contenido: string; fechaPublicacion: string; autorId: string }): Observable<Articulo> {
-    return this.http.post<Articulo>(this.apiUrl, data);
+  getArticulosPorProducto(productoId: number, page = 0, size = 100): Observable<Articulo[]> {
+    return this.http.get<Articulo[]>(`${this.apiUrl}/producto/${productoId}`, {
+      params: { page: page.toString(), size: size.toString() }
+    });
   }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Articulo } from '../articulo';
 import { ArticuloDetail } from '../articulo-detail';
 import { ArticuloService } from '../articulo.service';
-import { AuthService } from '../../usuario/auth.service';
+import { ProductoService } from '../../producto/producto.service';
+import { Producto } from '../../producto/producto';
 
 @Component({
   selector: 'app-articulo-list',
@@ -12,85 +13,130 @@ import { AuthService } from '../../usuario/auth.service';
 })
 export class ArticuloListComponent implements OnInit {
   articulos: Articulo[] = [];
+  todosArticulos: Articulo[] = [];
+  productos: Producto[] = [];
+
   selectedArticulo: ArticuloDetail | null = null;
-  isLoading: boolean = false;
-  isDetailLoading: boolean = false;
-  errorMessage: string = '';
-  detailErrorMessage: string = '';
+  isLoading = false;
+  isDetailLoading = false;
+  errorMessage = '';
+  detailErrorMessage = '';
 
-  mostrarFormCrear = false;
-  nuevoTitulo = '';
-  nuevaDescripcion = '';
-  nuevoContenido = '';
-  nuevaFecha = '';
-  errorCrear = '';
+  textoBusqueda = '';
+  autorSeleccionadoId: string | null = null;
+  productoSeleccionadoId: string | null = null;
+  mostrarFiltros = false;
+  mostrarAutores = false;
+  mostrarProductos = false;
 
-  constructor(private articuloService: ArticuloService, private authService: AuthService) {}
-
-  get puedeCrear(): boolean {
-    const rol = this.authService.getRol();
-    return rol === 'EXPERT' || rol === 'ADMIN';
-  }
+  constructor(
+    private articuloService: ArticuloService,
+    private productoService: ProductoService,
+  ) {}
 
   ngOnInit(): void {
     this.loadArticulos();
+    this.productoService.getProductos().subscribe({
+      next: (data) => { this.productos = data; },
+      error: () => {}
+    });
   }
 
   loadArticulos(): void {
     this.isLoading = true;
     this.errorMessage = '';
-
     this.articuloService.getArticulos().subscribe({
       next: (data: Articulo[]) => {
-        this.articulos = data || [];
+        this.todosArticulos = data || [];
+        this.articulos = this.todosArticulos;
         this.isLoading = false;
       },
       error: (err: any) => {
-        this.errorMessage = 'Error al cargar articulos: ' + (err.message || 'Error desconocido');
-        console.error('Error al cargar articulos', err);
+        this.errorMessage = 'Error al cargar artículos.';
         this.isLoading = false;
       }
     });
   }
 
-  crearArticulo(): void {
-    const autorId = localStorage.getItem('uid');
-    if (!this.nuevoTitulo.trim() || !this.nuevaDescripcion.trim() || !this.nuevoContenido.trim() || !this.nuevaFecha || !autorId) {
-      this.errorCrear = 'Todos los campos son obligatorios.';
-      return;
-    }
-    this.articuloService.createArticulo({
-      titulo: this.nuevoTitulo.trim(),
-      descripcion: this.nuevaDescripcion.trim(),
-      contenido: this.nuevoContenido.trim(),
-      fechaPublicacion: this.nuevaFecha,
-      autorId
-    }).subscribe({
-      next: () => {
-        this.mostrarFormCrear = false;
-        this.nuevoTitulo = '';
-        this.nuevaDescripcion = '';
-        this.nuevoContenido = '';
-        this.nuevaFecha = '';
-        this.errorCrear = '';
-        this.loadArticulos();
-      },
-      error: () => { this.errorCrear = 'Error al crear el artículo.'; }
+  get autoresDisponibles(): Array<{ id: string; nombre: string }> {
+    const autores = new Map<string, string>();
+    this.todosArticulos.forEach((articulo) => {
+      if (articulo.autor?.id && articulo.autor?.nombre) {
+        autores.set(String(articulo.autor.id), articulo.autor.nombre);
+      }
     });
+    return Array.from(autores.entries()).map(([id, nombre]) => ({ id, nombre }));
+  }
+
+  get articulosFiltrados(): Articulo[] {
+    const texto = this.textoBusqueda.toLowerCase().trim();
+    return this.todosArticulos.filter((a) => {
+      const productosAsociados = a.productos ?? [];
+      const coincideProductoAsociado = this.productoSeleccionadoId === null
+        || productosAsociados.some((producto) => String(producto.id) === this.productoSeleccionadoId);
+      const cumpleTexto = !texto ||
+        a.titulo?.toLowerCase().includes(texto) ||
+        a.descripcion?.toLowerCase().includes(texto) ||
+        a.autor?.nombre?.toLowerCase().includes(texto) ||
+        productosAsociados.some((producto) =>
+          producto.nombre?.toLowerCase().includes(texto) ||
+          producto.descripcion?.toLowerCase().includes(texto)
+        );
+      const cumpleAutor = !this.autorSeleccionadoId ||
+        String(a.autor?.id) === this.autorSeleccionadoId;
+      return cumpleTexto && cumpleAutor && coincideProductoAsociado;
+    });
+  }
+
+  get tieneFiltrosActivos(): boolean {
+    return !!this.autorSeleccionadoId || this.productoSeleccionadoId !== null || !!this.textoBusqueda.trim();
+  }
+
+  toggleFiltros(): void {
+    this.mostrarFiltros = !this.mostrarFiltros;
+    this.mostrarAutores = false;
+    this.mostrarProductos = false;
+  }
+
+  seleccionarAutor(id: string | null): void {
+    this.autorSeleccionadoId = id;
+    this.mostrarAutores = false;
+  }
+
+  seleccionarProducto(id: string | null): void {
+    this.productoSeleccionadoId = id;
+    this.mostrarProductos = false;
+    this.selectedArticulo = null;
+  }
+
+  get productoSeleccionado(): Producto | undefined {
+    return this.productos.find((p) => String(p.id) === this.productoSeleccionadoId);
+  }
+
+  get autorSeleccionado(): { id: string; nombre: string } | undefined {
+    return this.autoresDisponibles.find((autor) => autor.id === this.autorSeleccionadoId);
+  }
+
+  productoId(producto: Producto): string {
+    return String(producto.id);
+  }
+
+  resetFiltros(): void {
+    this.autorSeleccionadoId = null;
+    this.productoSeleccionadoId = null;
+    this.textoBusqueda = '';
   }
 
   verDetalle(articulo: Articulo): void {
     this.isDetailLoading = true;
     this.detailErrorMessage = '';
-
     this.articuloService.getArticuloDetail(String(articulo.id)).subscribe({
       next: (detail: ArticuloDetail) => {
         this.selectedArticulo = detail;
         this.isDetailLoading = false;
       },
-      error: (err: any) => {
-        this.detailErrorMessage = 'Error al cargar detalle del articulo: ' + (err.message || 'Error desconocido');
-        console.error('Error al cargar detalle del articulo', err);
+      error: () => {
+        this.detailErrorMessage = 'Error al cargar el detalle del artículo.';
         this.isDetailLoading = false;
       }
     });

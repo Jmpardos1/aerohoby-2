@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PLATFORM_ID } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideRouter } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { PLATFORM_ID } from '@angular/core';
+import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
 import { of } from 'rxjs';
 
 import { ProductoListComponent } from './producto-list.component';
@@ -11,12 +11,30 @@ import { ProductoDetailComponent } from '../producto-detail/producto-detail.comp
 import { ProductoService } from '../producto.service';
 
 const mockProductos = [
-  { id: 1, nombre: 'Ala', descripcion: '', precio: 1000, stock: 5, stockMinimo: 1,
+  {
+    id: 1,
+    nombre: 'Ala',
+    descripcion: '',
+    precio: 1000,
+    stock: 5,
+    stockMinimo: 1,
     categoria: [{ id: 1, nombre: 'Repuestos', descripcion: '' }],
-    marca: null as any, imagen: '', proveedor: null as any },
-  { id: 2, nombre: 'Avion RC', descripcion: '', precio: 5000, stock: 3, stockMinimo: 1,
+    marca: null as any,
+    imagen: '',
+    proveedor: null as any
+  },
+  {
+    id: 2,
+    nombre: 'Avion RC',
+    descripcion: '',
+    precio: 5000,
+    stock: 3,
+    stockMinimo: 1,
     categoria: [{ id: 2, nombre: 'Aviones', descripcion: '' }],
-    marca: null as any, imagen: '', proveedor: null as any },
+    marca: null as any,
+    imagen: '',
+    proveedor: null as any
+  },
 ];
 
 describe('ProductoListComponent', () => {
@@ -32,6 +50,12 @@ describe('ProductoListComponent', () => {
         provideHttpClientTesting(),
         provideRouter([]),
         { provide: PLATFORM_ID, useValue: 'browser' },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            queryParamMap: of(convertToParamMap({}))
+          }
+        },
         { provide: ProductoService, useValue: { getProductos: () => of([]) } }
       ]
     }).compileComponents();
@@ -41,23 +65,33 @@ describe('ProductoListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('debe crearlos', () => {
+  it('debe crearse', () => {
     expect(component).toBeTruthy();
   });
 
   it('filtra productos por precio con el slider', () => {
-    component.productos = mockProductos;
+    component.productos = mockProductos as any;
     component.precioSlider = 2000;
+
     expect(component.productosFiltrados.length).toBe(1);
     expect(component.productosFiltrados[0].nombre).toBe('Ala');
   });
 
-  it('filtra productos por categoría', () => {
-    component.productos = mockProductos;
+  it('filtra productos por categoria', () => {
+    component.productos = mockProductos as any;
     component.precioSlider = component.precioSliderMax;
     component.seleccionarCategoria(2);
+
     expect(component.productosFiltrados.length).toBe(1);
     expect(component.productosFiltrados[0].nombre).toBe('Avion RC');
   });
 
+  it('selecciona un producto cuando llega productoId por query param', () => {
+    component.productos = mockProductos as any;
+    (component as any).productoIdSolicitado = '2';
+
+    (component as any).aplicarProductoSolicitado();
+
+    expect(component.selectedProducto?.nombre).toBe('Avion RC');
+  });
 });

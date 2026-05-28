@@ -48,6 +48,7 @@ export class ProductoAdminComponent implements OnInit {
     this.createForm = this.fb.group({
       nombre:      ['', Validators.required],
       descripcion: ['', Validators.required],
+      imagenUrl:   [''],
       precio:      [0, [Validators.required, Validators.min(0)]],
       stock:       [0, [Validators.required, Validators.min(0)]],
       stockMinimo: [0, [Validators.required, Validators.min(0)]],
@@ -57,6 +58,7 @@ export class ProductoAdminComponent implements OnInit {
     this.editForm = this.fb.group({
       nombre:      ['', Validators.required],
       descripcion: ['', Validators.required],
+      imagenUrl:   [''],
       precio:      [0, [Validators.required, Validators.min(0)]],
       stock:       [0, [Validators.required, Validators.min(0)]],
       stockMinimo: [0, [Validators.required, Validators.min(0)]],
@@ -92,10 +94,10 @@ export class ProductoAdminComponent implements OnInit {
   crearProducto(): void {
     if (this.createForm.invalid) return;
     this.productoService.createProducto(this.createForm.value).subscribe({
-      next: p => {
-        this.productos.unshift(p);
+      next: () => {
         this.mostrarCrear = false;
-        this.createForm.reset({ precio: 0, stock: 0, stockMinimo: 0 });
+        this.createForm.reset({ imagenUrl: '', precio: 0, stock: 0, stockMinimo: 0 });
+        this.cargarTodo();
         this.toastr.success('Producto creado.');
       },
       error: (e: any) => this.toastr.error(e?.error?.message || 'Error al crear producto.'),
@@ -107,6 +109,7 @@ export class ProductoAdminComponent implements OnInit {
     this.editForm.setValue({
       nombre: p.nombre,
       descripcion: p.descripcion,
+      imagenUrl: p.imagen,
       precio: p.precio,
       stock: p.stock,
       stockMinimo: p.stockMinimo,
@@ -116,10 +119,11 @@ export class ProductoAdminComponent implements OnInit {
   guardarEditar(): void {
     if (!this.productoEditando || this.editForm.invalid) return;
     const id = String(this.productoEditando.id);
-    const { nombre, descripcion, precio, stock, stockMinimo } = this.editForm.value;
+    const { nombre, descripcion, imagenUrl, precio, stock, stockMinimo } = this.editForm.value;
     forkJoin([
       this.productoService.updateNombre(id, nombre),
       this.productoService.updateDescripcion(id, descripcion),
+      this.productoService.updateImagenUrl(id, imagenUrl),
       this.productoService.updatePrecio(id, precio),
       this.productoService.updateStock(id, stock),
       this.productoService.updateStockMinimo(id, stockMinimo),

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { LandingComponent } from './landing/landing.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -21,10 +23,11 @@ import { AuthInterceptor } from './usuario/auth.interceptor';
 @NgModule({
   declarations: [
     App,
-    LandingComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    LandingComponent,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     AppRoutingModule,

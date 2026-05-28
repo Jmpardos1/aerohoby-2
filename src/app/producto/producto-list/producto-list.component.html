@@ -1,50 +1,90 @@
+<app-public-nav></app-public-nav>
+
 <div class="pl-page">
 
-  <!-- Filter bar -->
+  <!-- Toolbar: búsqueda + filtros -->
   <div class="pl-filter-bar">
 
-    <div class="pl-filter-group">
-      <label class="pl-filter-label" for="pl-precio-slider">Precio máx.</label>
-      <div class="pl-slider-wrap">
-        <input type="range"
-               id="pl-precio-slider"
-               class="ah-price-slider"
-               min="0"
-               [max]="precioSliderMax"
-               [(ngModel)]="precioSlider"
-               [style.background]="sliderBackground">
-        <span class="pl-price-value">${{ precioSlider | number:'1.0-0' }}</span>
-      </div>
-    </div>
+    <div class="pl-toolbar">
 
-    <div class="pl-filter-divider"></div>
-
-    <div class="pl-filter-group">
-      <span class="pl-filter-label" id="pl-cat-label">Categoría</span>
-      <div class="pl-cat-wrap">
-        <button class="pl-cat-btn" aria-labelledby="pl-cat-label" (click)="alternarCategorias()">
-          {{ categoriaSeleccionada ? categoriaSeleccionada.nombre : 'Todas' }}
-          <i class="bi bi-chevron-down pl-cat-chevron" [class.rotated]="mostrarCategorias"></i>
-        </button>
-        @if (mostrarCategorias) {
-          <div class="pl-cat-dropdown">
-            <button class="pl-cat-opt" [class.active]="categoriaSeleccionadaId === null"
-                    (click)="seleccionarCategoria(null)">Todas las categorías</button>
-            @for (cat of categoriasDisponibles; track cat.id) {
-              <button class="pl-cat-opt" [class.active]="categoriaSeleccionadaId === cat.id"
-                      (click)="seleccionarCategoria(cat.id)">{{ cat.nombre }}</button>
-            }
-          </div>
+      <div class="pl-search-wrap">
+        <i class="bi bi-search pl-search-icon"></i>
+        <input
+          type="text"
+          class="pl-search-input"
+          placeholder="Buscar por nombre, descripción o marca..."
+          [(ngModel)]="textoBusqueda"
+          autocomplete="off"
+        >
+        @if (textoBusqueda) {
+          <button class="pl-search-clear" (click)="textoBusqueda = ''" aria-label="Limpiar búsqueda">
+            <i class="bi bi-x"></i>
+          </button>
         }
       </div>
+
+      <button class="pl-filtros-btn" [class.pl-filtros-btn--active]="tieneFilrosActivos" (click)="toggleFiltros()">
+        <i class="bi bi-sliders2"></i>
+        Filtros
+        @if (tieneFilrosActivos) {
+          <span class="pl-filtros-dot"></span>
+        }
+      </button>
+
+      <span class="pl-result-count">{{ productosFiltrados.length }} resultado{{ productosFiltrados.length !== 1 ? 's' : '' }}</span>
+
     </div>
 
-    <span class="pl-result-count">{{ productosFiltrados.length }} producto{{ productosFiltrados.length !== 1 ? 's' : '' }}</span>
+    <!-- Panel de filtros desplegable -->
+    @if (mostrarFiltros) {
+      <div class="pl-filtros-panel">
 
-    @if (precioSlider < precioSliderMax || categoriaSeleccionadaId !== null) {
-      <button class="pl-reset-btn" (click)="resetFiltros()">
-        <i class="bi bi-x-circle"></i> Limpiar filtros
-      </button>
+        <div class="pl-filtros-inner">
+
+          <div class="pl-filtros-group">
+            <label class="pl-filtros-label" for="pl-precio-slider">Precio máximo</label>
+            <div class="pl-slider-wrap">
+              <input type="range"
+                     id="pl-precio-slider"
+                     class="ah-price-slider"
+                     min="0"
+                     [max]="precioSliderMax"
+                     [(ngModel)]="precioSlider"
+                     [style.background]="sliderBackground">
+              <span class="pl-price-value">${{ precioSlider | number:'1.0-0' }}</span>
+            </div>
+          </div>
+
+          <div class="pl-filtros-sep"></div>
+
+          <div class="pl-filtros-group">
+            <span class="pl-filtros-label">Categoría</span>
+            <div class="pl-cat-wrap">
+              <button class="pl-cat-btn" (click)="alternarCategorias()">
+                {{ categoriaSeleccionada ? categoriaSeleccionada.nombre : 'Todas las categorías' }}
+                <i class="bi bi-chevron-down pl-cat-chevron" [class.rotated]="mostrarCategorias"></i>
+              </button>
+              @if (mostrarCategorias) {
+                <div class="pl-cat-dropdown">
+                  <button class="pl-cat-opt" [class.active]="categoriaSeleccionadaId === null"
+                          (click)="seleccionarCategoria(null)">Todas las categorías</button>
+                  @for (cat of categoriasDisponibles; track cat.id) {
+                    <button class="pl-cat-opt" [class.active]="categoriaSeleccionadaId === cat.id"
+                            (click)="seleccionarCategoria(cat.id)">{{ cat.nombre }}</button>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+
+          @if (tieneFilrosActivos) {
+            <button class="pl-reset-btn" (click)="resetFiltros()">
+              <i class="bi bi-x-circle"></i> Limpiar filtros
+            </button>
+          }
+
+        </div>
+      </div>
     }
 
   </div>
@@ -101,3 +141,5 @@
   </div>
 
 </div>
+
+<app-footer></app-footer>
