@@ -10,18 +10,17 @@ import { ReviewDetailComponent } from './review/review-detail/review-detail';
 import { ReviewListComponent } from './review/review-list/review-list';
 import { authGuard } from './usuario/auth.guard';
 import { adminGuard } from './usuario/admin.guard';
+import { guestGuard } from './usuario/guest.guard';
 import { CuponListComponent } from './cupon/cupon-list/cupon-list.component';
+import { CuponAdminComponent } from './cupon/cupon-admin/cupon-admin.component';
 import { CategoriaListComponent } from './categoria/categoria-list/categoria-list.component';
 import { ProveedorListComponent } from './proveedor/proveedor-list/proveedor-list.component';
 import { ArticuloListComponent } from './articulo/articulo-list/articulo-list.component';
+import { ArticuloDetailComponent } from './articulo/articulo-detail/articulo-detail.component';
 import { CarritoComponent } from './carrito/carrito/carrito.component';
 import { PerfilComponent } from './usuario/perfil/perfil.component';
 import { RecuperarContrasenaComponent } from './usuario/recuperar-contrasena/recuperar-contrasena.component';
-import { CuponListComponent } from './cupon/cupon-list/cupon-list.component';
-import { CuponAdminComponent } from './cupon/cupon-admin/cupon-admin.component';
 import { UsuarioAdminComponent } from './usuario/usuario-admin/usuario-admin.component';
-import { ArticuloListComponent } from './articulo/articulo-list/articulo-list.component';
-import { ArticuloDetailComponent } from './articulo/articulo-detail/articulo-detail.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent, canActivate: [guestGuard] },
@@ -38,11 +37,9 @@ const routes: Routes = [
   { path: 'reviews', component: ReviewListComponent, canActivate: [authGuard] },
   { path: 'reviews/:id', component: ReviewDetailComponent, canActivate: [authGuard] },
   { path: 'perfil', component: PerfilComponent, canActivate: [authGuard] },
-  { path: 'cupones', component: CuponListComponent, canActivate: [authGuard] },
   { path: 'admin/cupones', component: CuponAdminComponent, canActivate: [authGuard] },
   { path: 'admin/usuarios', component: UsuarioAdminComponent, canActivate: [authGuard] },
   { path: 'admin/productos', component: ProductoAdminComponent, canActivate: [authGuard] },
-  { path: 'articulos', component: ArticuloListComponent, canActivate: [authGuard] },
   { path: 'articulos/:id', component: ArticuloDetailComponent, canActivate: [authGuard] },
 ];
 

@@ -5,6 +5,11 @@ import { environment } from '../../environments/environment.development';
 import { Proveedor } from './proveedor';
 import { ProveedorDetail } from './proveedor-detail';
 
+export interface ProveedorItem {
+  id?: any;
+  nombre: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
