@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { OrdenCompra } from './orden-compra';
 import { environment } from '../../environments/environment.development';
 
@@ -22,7 +22,8 @@ export class OrdenCompraService {
   }
 
   getAllOrdenCompra(): Observable<OrdenCompra[]> {
-    return this.http.get<OrdenCompra[]>(this.apiUrl).pipe(
+    return this.http.get<any>(this.apiUrl).pipe(
+      map(res => Array.isArray(res) ? res : (res?.content ?? [])),
       tap(data => this.ordenesCompraList = data)
     );
   }

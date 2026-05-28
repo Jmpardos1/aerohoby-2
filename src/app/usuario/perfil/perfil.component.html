@@ -1,120 +1,144 @@
-<div class="container mt-5 d-flex justify-content-center">
-  <div class="card shadow-lg" style="width: 460px;">
-    <div class="card-body p-4">
+<app-public-nav></app-public-nav>
 
-      <div class="text-center mb-4 position-relative">
-        @if (perfil?.imagenUrl) {
-          <img [src]="perfil!.imagenUrl" [alt]="perfil!.nombre" class="rounded-circle mb-3"
-            style="width: 72px; height: 72px; object-fit: cover;">
-        } @else {
-          <div class="bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-            style="width: 72px; height: 72px; font-size: 2rem;">
-            {{ perfil?.nombre?.charAt(0)?.toUpperCase() }}
-          </div>
-        }
-        <h4 class="fw-bold mb-0">{{ perfil?.nombre }}</h4>
-        <span class="badge bg-secondary mt-1">{{ perfil?.rol }}</span>
-        @if (perfil) {
-          <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0"
-            (click)="abrirEditar()">
-            Editar
-          </button>
-        }
+<div class="pf-page">
+  <div class="pf-wrap">
+
+    @if (!perfil) {
+      <div class="pf-loading">
+        <div class="pf-spinner"></div>
+        <p>Cargando perfil...</p>
       </div>
+    } @else {
 
-      @if (perfil) {
-        <ul class="list-group list-group-flush mb-4">
-          <li class="list-group-item d-flex justify-content-between">
-            <span class="text-muted">Correo</span>
-            <span>{{ perfil.correo }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between">
-            <span class="text-muted">Teléfono</span>
-            <span>{{ perfil.telefono }}</span>
-          </li>
-        </ul>
+      <div class="pf-card">
 
-        <h6 class="fw-semibold mb-2">Direcciones de envío</h6>
-
-        @if (perfil.direcciones?.length) {
-          <ul class="list-group list-group-flush mb-3">
-            @for (dir of perfil.direcciones!; track $index) {
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span>{{ dir }}</span>
-                <button class="btn btn-sm btn-outline-danger" (click)="eliminarDireccion($index)">✕</button>
-              </li>
+        <!-- Avatar + nombre -->
+        <div class="pf-hero">
+          <div class="pf-avatar-wrap">
+            @if (perfil.imagenUrl) {
+              <img [src]="perfil.imagenUrl" [alt]="perfil.nombre" class="pf-avatar-img">
+            } @else {
+              <div class="pf-avatar-initials">{{ (perfil.nombre || '').charAt(0).toUpperCase() }}</div>
             }
-          </ul>
-        } @else {
-          <p class="text-muted small mb-3">No hay direcciones registradas.</p>
-        }
-
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Nueva dirección"
-            [(ngModel)]="nuevaDireccion" (keydown.enter)="agregarDireccion()">
-          <button class="btn btn-dark" (click)="agregarDireccion()">Agregar</button>
+          </div>
+          <div class="pf-hero-info">
+            <h1 class="pf-nombre">{{ perfil.nombre }}</h1>
+            <span class="pf-rol">{{ perfil.rol }}</span>
+          </div>
+          <button class="pf-edit-btn" (click)="abrirEditar()">
+            <i class="bi bi-pencil"></i> Editar
+          </button>
         </div>
 
-        <hr class="my-4">
+        <!-- Info -->
+        <div class="pf-section">
+          <h2 class="pf-section-title">Información de cuenta</h2>
+          <div class="pf-info-grid">
+            <div class="pf-info-item">
+              <span class="pf-info-label">Correo</span>
+              <span class="pf-info-val">{{ perfil.correo }}</span>
+            </div>
+            <div class="pf-info-item">
+              <span class="pf-info-label">Teléfono</span>
+              <span class="pf-info-val">{{ perfil.telefono || '—' }}</span>
+            </div>
+          </div>
+        </div>
 
-        <a routerLink="/cupones" class="btn btn-outline-dark w-100">
-          Ver mis cupones
-        </a>
+        <!-- Direcciones -->
+        <div class="pf-section">
+          <h2 class="pf-section-title">Direcciones de envío</h2>
+          @if (perfil.direcciones?.length) {
+            <div class="pf-dir-list">
+              @for (dir of perfil.direcciones!; track $index) {
+                <div class="pf-dir-item">
+                  <i class="bi bi-geo-alt pf-dir-icon"></i>
+                  <span class="pf-dir-text">{{ dir }}</span>
+                  <button class="pf-dir-remove" (click)="eliminarDireccion($index)" aria-label="Eliminar">
+                    <i class="bi bi-x"></i>
+                  </button>
+                </div>
+              }
+            </div>
+          } @else {
+            <p class="pf-empty-msg">No hay direcciones registradas.</p>
+          }
+          <div class="pf-dir-add">
+            <input type="text" class="pf-dir-input" placeholder="Nueva dirección..."
+              [(ngModel)]="nuevaDireccion" (keydown.enter)="agregarDireccion()">
+            <button class="pf-dir-add-btn" (click)="agregarDireccion()">Agregar</button>
+          </div>
+        </div>
 
-      } @else {
-        <p class="text-center text-muted">Cargando perfil...</p>
-      }
+        <!-- Accesos rápidos -->
+        <div class="pf-section pf-links">
+          <a routerLink="/cupones" class="pf-link-btn">
+            <i class="bi bi-tag"></i> Mis cupones
+          </a>
+          <a routerLink="/ordenes-compra" class="pf-link-btn">
+            <i class="bi bi-receipt"></i> Mis órdenes
+          </a>
+        </div>
 
-    </div>
+      </div>
+    }
   </div>
 </div>
 
+<!-- Modal editar -->
 @if (mostrarEditar) {
-  <button class="modal-backdrop-custom" (click)="mostrarEditar = false" (keydown.escape)="mostrarEditar = false"></button>
-  <div class="modal-custom">
-    <div class="card shadow-lg p-4" style="width: 420px;">
-      <h5 class="fw-bold mb-4">Editar perfil</h5>
+  <button class="pf-backdrop" (click)="mostrarEditar = false" aria-label="Cerrar"></button>
+  <div class="pf-modal">
+    <div class="pf-modal-box">
+      <h2 class="pf-modal-title">Editar perfil</h2>
 
       <form [formGroup]="editForm" (ngSubmit)="guardarEditar()">
-        <div class="mb-3">
-          <label for="edit-nombre" class="form-label">Nombre</label>
-          <input id="edit-nombre" type="text" class="form-control" formControlName="nombre">
+
+        <div class="pf-field">
+          <label class="pf-label" for="pf-nombre">Nombre</label>
+          <input id="pf-nombre" type="text" class="pf-input" formControlName="nombre">
           @if (editForm.get('nombre')!.invalid && editForm.get('nombre')!.touched) {
-            <div class="text-danger small">El nombre es obligatorio</div>
+            <span class="pf-field-error">El nombre es obligatorio</span>
           }
         </div>
 
-        <div class="mb-3">
-          <label for="edit-imagen" class="form-label">URL de imagen</label>
-          <input id="edit-imagen" type="url" class="form-control" formControlName="imagenUrl" placeholder="https://...">
+        <div class="pf-field">
+          <label class="pf-label" for="pf-imagen">URL de imagen</label>
+          <input id="pf-imagen" type="url" class="pf-input" formControlName="imagenUrl" placeholder="https://...">
         </div>
 
-        <div class="mb-3">
-          <label for="edit-correo" class="form-label">Correo</label>
-          <input id="edit-correo" type="email" class="form-control" formControlName="correo">
+        <div class="pf-field">
+          <label class="pf-label" for="pf-correo">Correo</label>
+          <input id="pf-correo" type="email" class="pf-input" formControlName="correo">
           @if (editForm.get('correo')!.invalid && editForm.get('correo')!.touched) {
-            <div class="text-danger small">Ingresa un correo válido</div>
+            <span class="pf-field-error">Ingresa un correo válido</span>
           }
         </div>
 
-        <div class="mb-3">
-          <label for="edit-telefono" class="form-label">Teléfono</label>
-          <input id="edit-telefono" type="text" class="form-control" formControlName="telefono">
+        <div class="pf-field">
+          <label class="pf-label" for="pf-telefono">Teléfono</label>
+          <input id="pf-telefono" type="text" class="pf-input" formControlName="telefono">
         </div>
 
-        <div class="mb-4">
-          <label for="edit-password" class="form-label">Nueva contraseña <span class="text-muted small">(dejar vacío para no cambiar)</span></label>
-          <input id="edit-password" type="password" class="form-control" formControlName="password">
+        <div class="pf-field">
+          <label class="pf-label" for="pf-password">
+            Nueva contraseña
+            <span class="pf-label-hint">(dejar vacío para no cambiar)</span>
+          </label>
+          <input id="pf-password" type="password" class="pf-input" formControlName="password">
           @if (editForm.get('password')!.hasError('minlength') && editForm.get('password')!.touched) {
-            <div class="text-danger small">Mínimo 8 caracteres</div>
+            <span class="pf-field-error">Mínimo 8 caracteres</span>
           }
         </div>
 
-        <div class="d-flex gap-2 justify-content-end">
-          <button type="button" class="btn btn-outline-secondary" (click)="mostrarEditar = false">Cancelar</button>
-          <button type="submit" class="btn btn-dark" [disabled]="editForm.invalid">Guardar</button>
+        <div class="pf-modal-btns">
+          <button type="button" class="pf-btn-cancel" (click)="mostrarEditar = false">Cancelar</button>
+          <button type="submit" class="pf-btn-save" [disabled]="editForm.invalid">Guardar</button>
         </div>
+
       </form>
     </div>
   </div>
 }
+
+<app-footer></app-footer>

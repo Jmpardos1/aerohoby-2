@@ -38,6 +38,11 @@ export class App {
     this.sidebarOpen = false;
   }
 
+  get isPublicPage(): boolean {
+    const url = this.router.url.split('?')[0].split('#')[0];
+    return ['/', '/productos', '/articulos', '/carrito', '/perfil', '/ordenes-compra', '/cupones'].includes(url) || url.startsWith('/articulos/');
+  }
+
   logout(): void {
     this.closeAll();
     this.authService.logout();

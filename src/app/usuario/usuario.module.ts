@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuarioAdminComponent } from './usuario-admin/usuario-admin.component';
 import { RecuperarContrasenaComponent } from './recuperar-contrasena/recuperar-contrasena.component';
+import { PublicNavComponent } from '../shared/public-nav/public-nav.component';
+import { FooterComponent } from '../shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { RecuperarContrasenaComponent } from './recuperar-contrasena/recuperar-c
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    PublicNavComponent,
+    FooterComponent
   ]
 })
 export class UsuarioModule { }

@@ -1,4 +1,4 @@
-@if (authService.isLoggedIn()) {
+@if (authService.isLoggedIn() && !isPublicPage) {
 
   @if (sidebarOpen) {
     <button class="ah-sidebar-backdrop" (click)="closeAll()" (keydown.escape)="closeAll()" aria-label="Cerrar menú"></button>

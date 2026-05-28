@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import { OrdenCompra } from '../orden-compra';
 import { OrdenCompraService } from '../orden-compra-service';
 import { OrdenCompraDetailComponent } from '../orden-compra-detail/orden-compra-detail.component';
+import { PublicNavComponent } from '../../shared/public-nav/public-nav.component';
+import { FooterComponent } from '../../shared/footer/footer.component';
 
 @Component({
   selector: 'app-orden-compra-list',
   templateUrl: './orden-compra-list.component.html',
   styleUrls: ['./orden-compra-list.component.css'],
   standalone: true,
-  imports: [CommonModule, OrdenCompraDetailComponent]
+  imports: [CommonModule, OrdenCompraDetailComponent, PublicNavComponent, FooterComponent]
 })
 export class OrdenCompraListComponent implements OnInit {
   ordenesCompra: OrdenCompra[] = [];

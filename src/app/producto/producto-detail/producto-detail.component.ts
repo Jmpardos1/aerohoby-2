@@ -59,7 +59,7 @@ export class ProductoDetailComponent implements OnInit, OnChanges {
     this.cargandoReviews = true;
     this.reviewService.getReviewsByProducto(String(this.productoDetail.id)).subscribe({
       next: data => { this.reviews = data || []; this.cargandoReviews = false; },
-      error: ()  => { this.reviews = [];           this.cargandoReviews = false; },
+      error: ()  => { this.cargandoReviews = false; },
     });
   }
 
@@ -92,9 +92,7 @@ export class ProductoDetailComponent implements OnInit, OnChanges {
     const { puntuacion, contenido } = this.reviewForm.value;
 
     this.reviewService.createReview({
-      puntuacion,
-      contenido,
-      fecha: hoy,
+      puntuacion, contenido, fecha: hoy,
       usuarioId: uid,
       productoId: String(this.productoDetail.id),
     }).subscribe({
@@ -103,7 +101,11 @@ export class ProductoDetailComponent implements OnInit, OnChanges {
         this.reviewForm.reset({ puntuacion: 0, contenido: '' });
         this.cargarReviews();
       },
-      error: () => { this.reviewError = 'Error al publicar la reseña.'; },
+      error: (err: any) => {
+        console.error('[Reviews] POST error:', err);
+        const msg = err?.error?.message || err?.message || '';
+        this.reviewError = msg ? `Error: ${msg}` : 'No se pudo publicar la reseña. Verifica que el servidor esté activo.';
+      },
     });
   }
 }
