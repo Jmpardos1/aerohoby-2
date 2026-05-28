@@ -35,6 +35,42 @@ export class ProductoService {
     private categoriaService: CategoriaService
   ) {}
 
+  createProducto(data: Partial<Producto> & { marcaId?: string; proveedorId?: string }): Observable<Producto> {
+    return this.http.post<Producto>(this.apiUrl, data);
+  }
+
+  getProducto(id: string): Observable<Producto> {
+    return this.http.get<Producto>(`${this.apiUrl}/${id}`);
+  }
+
+  updateNombre(id: string, nombre: string): Observable<Producto> {
+    return this.http.patch<Producto>(`${this.apiUrl}/${id}/nombre`, { nombre });
+  }
+
+  updateDescripcion(id: string, descripcion: string): Observable<Producto> {
+    return this.http.patch<Producto>(`${this.apiUrl}/${id}/descripcion`, { descripcion });
+  }
+
+  updatePrecio(id: string, precio: number): Observable<Producto> {
+    return this.http.patch<Producto>(`${this.apiUrl}/${id}/precio`, { precio });
+  }
+
+  updateStock(id: string, stock: number): Observable<Producto> {
+    return this.http.patch<Producto>(`${this.apiUrl}/${id}/stock`, { stock });
+  }
+
+  updateStockMinimo(id: string, stockMinimo: number): Observable<Producto> {
+    return this.http.patch<Producto>(`${this.apiUrl}/${id}/stockMinimo`, { stockMinimo });
+  }
+
+  deleteProducto(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  addCategoria(productoId: string, categoriaId: string): Observable<Producto> {
+    return this.http.post<Producto>(`${this.apiUrl}/${productoId}/categorias/${categoriaId}`, {});
+  }
+
   getProductos(): Observable<Producto[]> {
     return forkJoin({
       productos: this.http.get<ProductoApiResponse[]>(this.apiUrl),
@@ -66,12 +102,12 @@ export class ProductoService {
       categoria: categoriasDelProducto,
       marca: producto.marca ?? ({ id: 0, nombre: 'Sin marca', descripcion: '' } as Producto['marca']),
       imagen: '',
-      proveedor: producto.proveedor ?? ({
+      proveedor: producto.proveedor ?? {
         nombre: 'Sin proveedor',
         direccion: '',
         correo: '',
         telefono: '',
-      } as Producto['proveedor']),
+      },
     };
   }
 

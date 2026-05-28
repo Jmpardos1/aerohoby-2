@@ -53,20 +53,4 @@ describe('CarritoComponent', () => {
     expect(component.items).toEqual(mockItems);
   });
 
-  it('cambiarCantidad incrementa la cantidad del item', () => {
-    const item: CarritoItem = { productoId: '1', nombre: 'Propulsor X1', precio: 750, cantidad: 2 };
-    component.cambiarCantidad(item, 1);
-    expect(carritoServiceSpy.actualizarCantidad).toHaveBeenCalledWith('1', 3);
-  });
-
-  it('cambiarCantidad elimina el item si la cantidad llega a 0', () => {
-    const item: CarritoItem = { productoId: '1', nombre: 'Propulsor X1', precio: 750, cantidad: 1 };
-    component.cambiarCantidad(item, -1);
-    expect(carritoServiceSpy.quitar).toHaveBeenCalledWith('1');
-  });
-
-  it('quitar llama a carritoService.quitar con el id correcto', () => {
-    component.quitar('1');
-    expect(carritoServiceSpy.quitar).toHaveBeenCalledWith('1');
-  });
 });

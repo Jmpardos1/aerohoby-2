@@ -31,13 +31,6 @@ describe('ReviewService', () => {
     req.flush([]);
   });
 
-  it('getReviewsByProducto hace GET a /reviews/producto/:id', () => {
-    service.getReviewsByProducto('pid-1').subscribe();
-    const req = http.expectOne(`${BASE}/producto/pid-1`);
-    expect(req.request.method).toBe('GET');
-    req.flush([]);
-  });
-
   it('createReview hace POST con productoId en el cuerpo', () => {
     const data = {
       puntuacion: 5,

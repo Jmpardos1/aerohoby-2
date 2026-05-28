@@ -31,9 +31,9 @@
 
         <h6 class="fw-semibold mb-2">Direcciones de envío</h6>
 
-        @if (perfil.direcciones.length) {
+        @if (perfil.direcciones?.length) {
           <ul class="list-group list-group-flush mb-3">
-            @for (dir of perfil.direcciones; track $index) {
+            @for (dir of perfil.direcciones!; track $index) {
               <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span>{{ dir }}</span>
                 <button class="btn btn-sm btn-outline-danger" (click)="eliminarDireccion($index)">✕</button>

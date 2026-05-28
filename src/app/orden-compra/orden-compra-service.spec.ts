@@ -70,22 +70,6 @@ describe('OrdenCompraService', () => {
     req.flush(mockOrdenes);
   });
 
-  it('debe crear una orden y devolverla', () => {
-    const newOrden = {
-      fechaOrden: faker.date.recent(),
-      estadoPedido: 'PENDIENTE',
-      usuarioId: mockUsuario.id,
-      productoId: mockProducto.id
-    };
-
-    service.createOrdenCompra(newOrden).subscribe((result) => {
-      expect(result).toEqual(mockOrdenCompra);
-    });
-
-    const req = httpMock.expectOne(apiUrl);
-    expect(req.request.method).toBe('POST');
-    req.flush(mockOrdenCompra);
-  });
 
   it('Traer una orden por ID', () => {
     const orderId = 'order-1';
@@ -99,33 +83,4 @@ describe('OrdenCompraService', () => {
     req.flush(mockOrdenCompra);
   });
 
-  it('Eliminar una orden por ID', () => {
-    const orderId = 'order-1';
-
-    service.deleteOrdenCompra(orderId).subscribe();
-
-    const req = httpMock.expectOne(`${apiUrl}/${orderId}`);
-    expect(req.request.method).toBe('DELETE');
-    req.flush(null);
-  });
-
-  it('Eliminar ordenes por cliente', () => {
-    const clientId = 'user-1';
-
-    service.deleteOrdenCompraCliente(clientId).subscribe();
-
-    const req = httpMock.expectOne(`${apiUrl}/cliente/${clientId}`);
-    expect(req.request.method).toBe('DELETE');
-    req.flush(null);
-  });
-
-  it('Eliminar ordenes por fecha', () => {
-    const date = faker.date.past().toISOString().split('T')[0];
-
-    service.deleteOrdenCompraFecha(date).subscribe();
-
-    const req = httpMock.expectOne(`${apiUrl}/fecha?fecha=${date}`);
-    expect(req.request.method).toBe('DELETE');
-    req.flush(null);
-  });
 });

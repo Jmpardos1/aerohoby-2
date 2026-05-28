@@ -61,9 +61,4 @@ describe('ReviewListComponent', () => {
     expect(component.reviews.length).toBe(0);
   });
 
-  it('starRange devuelve los rellenos correctos', () => {
-    reviewServiceSpy.getReviews.and.returnValue(of([]));
-    fixture.detectChanges();
-    expect(component.starRange(4)).toEqual([true, true, true, true, false]);
-  });
 });

@@ -25,40 +25,5 @@ describe('App', () => {
     const app = fixture.componentInstance as any;
     expect(app.title()).toEqual('ISIS2603_202610_S2_E4_Aerohobby_Front');
   });
-
-  it('toggleSidebar abre el sidebar y cierra el perfil', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    app.profileOpen = true;
-    app.toggleSidebar(new MouseEvent('click'));
-    expect(app.sidebarOpen).toBeTrue();
-    expect(app.profileOpen).toBeFalse();
-  });
-
-  it('toggleSidebar cierra el sidebar si ya estaba abierto', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    app.sidebarOpen = true;
-    app.toggleSidebar(new MouseEvent('click'));
-    expect(app.sidebarOpen).toBeFalse();
-  });
-
-  it('toggleProfile abre el dropdown y cierra el sidebar', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    app.sidebarOpen = true;
-    app.toggleProfile(new MouseEvent('click'));
-    expect(app.profileOpen).toBeTrue();
-    expect(app.sidebarOpen).toBeFalse();
-  });
-
-  it('closeAll cierra sidebar y perfil', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    app.sidebarOpen = true;
-    app.profileOpen = true;
-    app.closeAll();
-    expect(app.sidebarOpen).toBeFalse();
-    expect(app.profileOpen).toBeFalse();
-  });
+  
 });

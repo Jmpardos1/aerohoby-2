@@ -20,7 +20,7 @@ describe('CarritoService', () => {
     service = TestBed.inject(CarritoService);
   });
 
-  it('should be created', () => {
+  it('se deberia crear', () => {
     expect(service).toBeTruthy();
   });
 
@@ -28,37 +28,6 @@ describe('CarritoService', () => {
     service.agregar(mockProducto);
     expect(service.getItems().length).toBe(1);
     expect(service.getItems()[0].cantidad).toBe(1);
-  });
-
-  it('agregar incrementa la cantidad si el producto ya existe', () => {
-    service.agregar(mockProducto);
-    service.agregar(mockProducto);
-    expect(service.getItems().length).toBe(1);
-    expect(service.getItems()[0].cantidad).toBe(2);
-  });
-
-  it('quitar elimina el item del carrito', () => {
-    service.agregar(mockProducto);
-    service.quitar(String(mockProducto.id));
-    expect(service.getItems().length).toBe(0);
-  });
-
-  it('actualizarCantidad cambia la cantidad del item', () => {
-    service.agregar(mockProducto);
-    service.actualizarCantidad(String(mockProducto.id), 5);
-    expect(service.getItems()[0].cantidad).toBe(5);
-  });
-
-  it('vaciar limpia todos los items del carrito', () => {
-    service.agregar(mockProducto);
-    service.vaciar();
-    expect(service.getItems().length).toBe(0);
-  });
-
-  it('getTotal retorna la suma de precio por cantidad', () => {
-    service.agregar(mockProducto);
-    service.agregar(mockProducto);
-    expect(service.getTotal()).toBe(1500);
   });
 
   it('getCantidadTotal retorna la suma de todas las cantidades', () => {

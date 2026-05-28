@@ -15,4 +15,12 @@ export class CategoriaService {
   getCategorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(this.apiUrl);
   }
+
+  createCategoria(data: Partial<Categoria>): Observable<Categoria> {
+    return this.http.post<Categoria>(this.apiUrl, data);
+  }
+
+  deleteCategoria(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

@@ -80,7 +80,7 @@ describe('Reseñas en detalle de producto', () => {
   it('muestra las reseñas del producto al abrirlo', () => {
     cy.get('.pl-card').first().click();
     cy.wait('@getReviews');
-    cy.get('.pd-reviews').should('be.visible');
+    cy.get('.pd-reviews').scrollIntoView().should('be.visible');
     cy.get('.pd-review-card').should('have.length', 1);
     cy.get('.pd-review-card').should('contain', 'Excelente producto');
   });
