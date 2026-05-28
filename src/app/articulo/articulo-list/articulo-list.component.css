@@ -1,4 +1,36 @@
-.list-group-item {
-  border-left: 0;
-  border-right: 0;
+.al-page {
+  padding-top: 64px;
+}
+
+.al-filter-bar {
+  top: 64px;
+}
+
+.al-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.al-prod-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: #eef4ff;
+  color: #23406b;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .al-page {
+    padding-top: 64px;
+  }
+
+  .al-filter-bar {
+    top: 64px;
+  }
 }

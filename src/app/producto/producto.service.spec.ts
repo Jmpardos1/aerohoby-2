@@ -4,18 +4,16 @@ import { faker } from '@faker-js/faker';
 
 import { ProductoService } from './producto.service';
 import { environment } from '../../environments/environment.development';
-import { CategoriaService } from '../categoria/categoria.service';
 
 describe('ProductoService', () => {
   let service: ProductoService;
   let httpMock: HttpTestingController;
   const productosUrl = `${environment.baseUrl}productos`;
-  const categoriasUrl = `${environment.baseUrl}categorias`;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ProductoService, CategoriaService]
+      providers: [ProductoService]
     });
 
     service = TestBed.inject(ProductoService);
@@ -31,17 +29,23 @@ describe('ProductoService', () => {
   });
 
   it('should get products enriched with categories', () => {
-    const productoId = faker.string.uuid();
     const categoriaId = faker.string.uuid();
 
     const productosResponse = [
       {
-        id: productoId,
+        id: faker.string.uuid(),
         nombre: 'Avion RC',
         descripcion: 'Producto de prueba',
         precio: 5000,
         stock: 12,
         stockMinimo: 3,
+        categorias: [
+          {
+            id: categoriaId,
+            nombre: 'Aviones',
+            descripcion: 'Categoria de vuelo',
+          },
+        ],
         marca: {
           id: faker.string.uuid(),
           nombre: 'Hobby Pro',
@@ -54,15 +58,6 @@ describe('ProductoService', () => {
           correo: 'proveedor@correo.com',
           telefono: '3000000000',
         },
-      },
-    ];
-
-    const categoriasResponse = [
-      {
-        id: categoriaId,
-        nombre: 'Aviones',
-        descripcion: 'Categoria de vuelo',
-        productos: [{ id: productoId }],
       },
     ];
 
@@ -84,15 +79,9 @@ describe('ProductoService', () => {
     const productosReq = httpMock.expectOne(productosUrl);
     expect(productosReq.request.method).toBe('GET');
     productosReq.flush(productosResponse);
-
-    const categoriasReq = httpMock.expectOne(categoriasUrl);
-    expect(categoriasReq.request.method).toBe('GET');
-    categoriasReq.flush(categoriasResponse);
   });
 
   it('should return products without categories when no matches are found', () => {
-    const productoId = faker.string.uuid();
-
     service.getProductos().subscribe((productos) => {
       expect(productos.length).toBe(1);
       expect(productos[0].categoria).toEqual([]);
@@ -101,7 +90,7 @@ describe('ProductoService', () => {
     const productosReq = httpMock.expectOne(productosUrl);
     productosReq.flush([
       {
-        id: productoId,
+        id: faker.string.uuid(),
         nombre: 'Helicoptero',
         descripcion: 'Sin categoria asociada',
         precio: 3200,
@@ -111,8 +100,5 @@ describe('ProductoService', () => {
         proveedor: null,
       },
     ]);
-
-    const categoriasReq = httpMock.expectOne(categoriasUrl);
-    categoriasReq.flush([]);
   });
 });

@@ -35,7 +35,8 @@ describe('ArticuloService', () => {
         descripcion: 'Consejos para elegir baterias',
         contenido: 'Contenido',
         fechaPublicacion: '2026-05-01',
-        autor: { id: 'u1', nombre: 'Experto', correo: 'exp@test.com', telefono: '123', rol: 'EXPERT' }
+        autor: { id: 'u1', nombre: 'Experto', correo: 'exp@test.com', telefono: '123', rol: 'EXPERT' },
+        productos: []
       }
     ];
 

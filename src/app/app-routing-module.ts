@@ -23,14 +23,14 @@ import { RecuperarContrasenaComponent } from './usuario/recuperar-contrasena/rec
 import { UsuarioAdminComponent } from './usuario/usuario-admin/usuario-admin.component';
 
 const routes: Routes = [
-  { path: '', component: LandingComponent, canActivate: [guestGuard] },
+  { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent, canActivate: [guestGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [guestGuard] },
   { path: 'recuperar-contrasena', component: RecuperarContrasenaComponent, canActivate: [guestGuard] },
-  { path: 'productos', component: ProductoListComponent, canActivate: [authGuard] },
+  { path: 'productos', component: ProductoListComponent },
   { path: 'categorias', component: CategoriaListComponent, canActivate: [authGuard] },
   { path: 'proveedores', component: ProveedorListComponent, canActivate: [authGuard, adminGuard] },
-  { path: 'articulos', component: ArticuloListComponent, canActivate: [authGuard] },
+  { path: 'articulos', component: ArticuloListComponent },
   { path: 'ordenes-compra', component: OrdenCompraListComponent, canActivate: [authGuard] },
   { path: 'cupones', component: CuponListComponent, canActivate: [authGuard, adminGuard] },
   { path: 'carrito', component: CarritoComponent, canActivate: [authGuard] },

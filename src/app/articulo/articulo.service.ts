@@ -20,4 +20,10 @@ export class ArticuloService {
   getArticuloDetail(id: string): Observable<ArticuloDetail> {
     return this.http.get<ArticuloDetail>(`${this.apiUrl}/${id}/detail`);
   }
+
+  getArticulosPorProducto(productoId: number, page = 0, size = 100): Observable<Articulo[]> {
+    return this.http.get<Articulo[]>(`${this.apiUrl}/producto/${productoId}`, {
+      params: { page: page.toString(), size: size.toString() }
+    });
+  }
 }

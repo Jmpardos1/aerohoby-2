@@ -9,6 +9,7 @@ const KEYS = {
   token: 'token',
   rol: 'rol',
   nombre: 'nombre',
+  imagenUrl: 'imagenUrl',
   uid: 'uid',
 } as const;
 
@@ -23,6 +24,7 @@ export class AuthService {
           localStorage.setItem(KEYS.token, res.token);
           localStorage.setItem(KEYS.rol, res.rol);
           localStorage.setItem(KEYS.nombre, res.nombre);
+          localStorage.setItem(KEYS.imagenUrl, res.imagenUrl ?? '');
           localStorage.setItem(KEYS.uid, res.id);
         }
       })
@@ -56,6 +58,11 @@ export class AuthService {
   getNombre(): string | null {
     if (!isPlatformBrowser(this.platformId)) return null;
     return localStorage.getItem(KEYS.nombre);
+  }
+
+  getImagenUrl(): string | null {
+    if (!isPlatformBrowser(this.platformId)) return null;
+    return localStorage.getItem(KEYS.imagenUrl);
   }
 
   isLoggedIn(): boolean {

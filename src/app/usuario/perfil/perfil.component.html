@@ -3,10 +3,15 @@
     <div class="card-body p-4">
 
       <div class="text-center mb-4 position-relative">
-        <div class="bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-          style="width: 72px; height: 72px; font-size: 2rem;">
-          {{ perfil?.nombre?.charAt(0)?.toUpperCase() }}
-        </div>
+        @if (perfil?.imagenUrl) {
+          <img [src]="perfil!.imagenUrl" [alt]="perfil!.nombre" class="rounded-circle mb-3"
+            style="width: 72px; height: 72px; object-fit: cover;">
+        } @else {
+          <div class="bg-dark text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+            style="width: 72px; height: 72px; font-size: 2rem;">
+            {{ perfil?.nombre?.charAt(0)?.toUpperCase() }}
+          </div>
+        }
         <h4 class="fw-bold mb-0">{{ perfil?.nombre }}</h4>
         <span class="badge bg-secondary mt-1">{{ perfil?.rol }}</span>
         @if (perfil) {
@@ -71,6 +76,11 @@
           @if (editForm.get('nombre')!.invalid && editForm.get('nombre')!.touched) {
             <div class="text-danger small">El nombre es obligatorio</div>
           }
+        </div>
+
+        <div class="mb-3">
+          <label for="edit-imagen" class="form-label">URL de imagen</label>
+          <input id="edit-imagen" type="url" class="form-control" formControlName="imagenUrl" placeholder="https://...">
         </div>
 
         <div class="mb-3">

@@ -1,22 +1,206 @@
-<div class="landing-page">
+<div class="lp-root" [class.lp-has-header]="!authService.isLoggedIn()">
 
-  <div class="landing-content">
+  <!-- ── Header público (solo cuando no está autenticado) ── -->
+  <app-public-nav></app-public-nav>
 
-    <!-- Logo -->
-    <div class="landing-logo">
-      <span class="l-aero">AERO</span>
-      <span class="l-sep"></span>
-      <span class="l-hobby">HOBBY</span>
+  <!-- ══ HERO — imagen + Ken Burns ══ -->
+  <section class="lp-hero">
+
+    <!-- Imagen de fondo con zoom animado -->
+    <div class="lp-hero-bg"></div>
+    <!-- Degradado oscuro sobre la imagen -->
+    <div class="lp-hero-overlay"></div>
+
+    <div class="lp-hero-inner">
+
+      <p class="lp-badge">Plataforma de Aeromodelismo Profesional</p>
+
+      <div class="lp-logo">
+        <span class="lp-logo-aero">AERO</span>
+        <span class="lp-logo-sep"></span>
+        <span class="lp-logo-hobby">HOBBY</span>
+      </div>
+
+      <p class="lp-tagline">El ecosistema digital del aeromodelismo profesional</p>
+      <p class="lp-sub">
+        Desde motores y hélices hasta guías técnicas de expertos —
+        todo lo que necesitas para volar más alto, en un solo lugar.
+      </p>
+
+      @if (authService.isLoggedIn()) {
+        <div class="lp-actions">
+          <a routerLink="/productos" class="lp-btn-primary">Explorar catálogo</a>
+          <a routerLink="/articulos" class="lp-btn-outline">Leer artículos</a>
+        </div>
+      } @else {
+        <div class="lp-actions">
+          <a routerLink="/register" class="lp-btn-primary">Empezar gratis</a>
+          <a routerLink="/login"    class="lp-btn-outline">Ya tengo cuenta</a>
+        </div>
+      }
+
     </div>
 
-    <p class="landing-tagline">Tu universo del hobbyismo aéreo</p>
+    <!-- Indicador de scroll -->
+    <div class="lp-scroll-hint">Scroll</div>
 
-    <!-- Botones -->
-    <div class="landing-actions">
-      <a routerLink="/login" class="btn-landing btn-landing-primary">Iniciar sesión</a>
-      <a routerLink="/register" class="btn-landing btn-landing-outline">Registrarse</a>
+  </section>
+
+  <!-- ══ PRODUCTOS ══ -->
+  <section class="lp-products" id="productos">
+    <div class="lp-products-inner">
+
+      <div class="lp-section-header">
+        <div>
+          <p class="lp-section-sup">Catálogo</p>
+          <h2 class="lp-section-title">Productos destacados</h2>
+        </div>
+        <a routerLink="/productos" class="lp-section-link">Ver todos →</a>
+      </div>
+
+      @if (cargandoProductos) {
+        <div class="lp-prod-loading">
+          <div class="lp-spinner"></div>
+          <p>Cargando productos...</p>
+        </div>
+      } @else if (productos.length > 0) {
+        <div class="lp-carousel-wrap">
+          <button class="lp-car-arrow lp-car-prev" (click)="carouselScroll(-1)" aria-label="Anterior">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          <div class="lp-carousel" #carousel>
+            @for (producto of productos; track producto.id) {
+              <div class="lp-prod-card">
+                <div class="lp-prod-img">
+                  @if (producto.imagen) {
+                    <img [src]="producto.imagen" [alt]="producto.nombre" class="lp-prod-img-real">
+                  } @else {
+                    <span class="lp-prod-img-icon">{{ getProductoIcon(producto) }}</span>
+                  }
+                </div>
+                <div class="lp-prod-body">
+                  <div class="lp-prod-brand">{{ producto.marca?.nombre || 'AeroHobby' }}</div>
+                  <h3 class="lp-prod-name">{{ producto.nombre }}</h3>
+                  <p class="lp-prod-desc">{{ producto.descripcion }}</p>
+                  <div class="lp-prod-price">${{ producto.precio | number:'1.0-0' }}</div>
+                  <a routerLink="/productos" class="lp-prod-cta">Ver en tienda</a>
+                </div>
+              </div>
+            }
+          </div>
+          <button class="lp-car-arrow lp-car-next" (click)="carouselScroll(1)" aria-label="Siguiente">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+      } @else {
+        <div class="lp-prod-empty">
+          <p class="lp-prod-empty-icon">🚁</p>
+          <h3>Catálogo no disponible</h3>
+          <p>Activa el servidor para ver los productos.</p>
+        </div>
+      }
+
     </div>
+  </section>
 
-  </div>
+  <!-- ══ ARTÍCULOS ══ -->
+  @if (articulos.length > 0) {
+    <section class="lp-articles" id="articulos">
+      <div class="lp-articles-inner">
+
+        <div class="lp-section-header">
+          <div>
+            <p class="lp-section-sup">Blog técnico</p>
+            <h2 class="lp-section-title">Últimos artículos</h2>
+          </div>
+          <a routerLink="/articulos" class="lp-section-link">Ver todos →</a>
+        </div>
+
+        <div class="lp-art-grid">
+          @for (articulo of articulos; track articulo.id) {
+            <a [routerLink]="['/articulos', articulo.id]" class="lp-art-card">
+              <div class="lp-art-badge">Tutorial</div>
+              <h3 class="lp-art-title">{{ articulo.titulo }}</h3>
+              <p class="lp-art-desc">{{ articulo.descripcion }}</p>
+              <div class="lp-art-meta">
+                <span>{{ articulo.autor?.nombre || 'Experto' }}</span>
+                <span>{{ articulo.fechaPublicacion | date:'dd MMM yyyy' }}</span>
+              </div>
+            </a>
+          }
+        </div>
+
+      </div>
+    </section>
+  }
+
+  <!-- ══ FEATURES ══ -->
+  <section class="lp-features" id="features">
+    <p class="lp-features-title">Por qué AeroHobby</p>
+    <div class="lp-features-grid">
+
+      <div class="lp-feat-card">
+        <div class="lp-feat-icon">🛒</div>
+        <h3>Catálogo Especializado</h3>
+        <p>Productos certificados por categoría y marca, con stock en tiempo real y alertas de reposición.</p>
+      </div>
+
+      <div class="lp-feat-card">
+        <div class="lp-feat-icon">📦</div>
+        <h3>Pedidos Transparentes</h3>
+        <p>Seguimiento de cada orden desde preparación hasta despacho. Historial completo de compras.</p>
+      </div>
+
+      <div class="lp-feat-card">
+        <div class="lp-feat-icon">✍️</div>
+        <h3>Conocimiento Experto</h3>
+        <p>Artículos técnicos y tutoriales escritos por especialistas en aeromodelismo profesional.</p>
+      </div>
+
+      <div class="lp-feat-card">
+        <div class="lp-feat-icon">⭐</div>
+        <h3>Reseñas Verificadas</h3>
+        <p>Opiniones reales de compradores para elegir el componente correcto a la primera.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ STATS ══ -->
+  <section class="lp-stats">
+    <div class="lp-stat">
+      <span class="lp-stat-num">500+</span>
+      <span class="lp-stat-label">Productos</span>
+    </div>
+    <div class="lp-stat-sep"></div>
+    <div class="lp-stat">
+      <span class="lp-stat-num">50+</span>
+      <span class="lp-stat-label">Marcas</span>
+    </div>
+    <div class="lp-stat-sep"></div>
+    <div class="lp-stat">
+      <span class="lp-stat-num">10k+</span>
+      <span class="lp-stat-label">Pedidos</span>
+    </div>
+    <div class="lp-stat-sep"></div>
+    <div class="lp-stat">
+      <span class="lp-stat-num">24/7</span>
+      <span class="lp-stat-label">Soporte</span>
+    </div>
+  </section>
+
+  <!-- ══ CTA FINAL ══ -->
+  @if (!authService.isLoggedIn()) {
+    <section class="lp-cta">
+      <h2>¿Listo para despegar?</h2>
+      <p>Únete a nuestra comunidad de apasionados del aeromodelismo y lleva tus proyectos al siguiente nivel.</p>
+      <div class="lp-actions" style="justify-content: center;">
+        <a routerLink="/register" class="lp-btn-primary">Crear cuenta gratis</a>
+        <a routerLink="/login"    class="lp-btn-outline">Iniciar sesión</a>
+      </div>
+    </section>
+  }
 
 </div>
+
+<app-footer></app-footer>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Producto } from '../producto';
 import { ProductoService } from '../producto.service';
 import { Categoria } from '../../categoria/categoria';
@@ -12,14 +13,33 @@ import { CarritoService } from '../../carrito/carrito.service';
 })
 export class ProductoListComponent implements OnInit {
   productos: Array<Producto> = [];
+  private productoIdSolicitado: string | null = null;
   precioSlider = 0;
   categoriaSeleccionadaId: number | null = null;
   mostrarCategorias = false;
   selectedProducto: Producto | null = null;
+  textoBusqueda = '';
+  mostrarFiltros = false;
 
-  constructor(private productoService: ProductoService, public carritoService: CarritoService) {}
+  get tieneFilrosActivos(): boolean {
+    return this.precioSlider < this.precioSliderMax || this.categoriaSeleccionadaId !== null;
+  }
+
+  toggleFiltros(): void {
+    this.mostrarFiltros = !this.mostrarFiltros;
+  }
+
+  constructor(
+    private productoService: ProductoService,
+    private route: ActivatedRoute,
+    public carritoService: CarritoService
+  ) {}
 
   ngOnInit(): void {
+    this.route.queryParamMap.subscribe((params) => {
+      this.productoIdSolicitado = params.get('productoId');
+      this.aplicarProductoSolicitado();
+    });
     this.getProductos();
   }
 
@@ -27,6 +47,7 @@ export class ProductoListComponent implements OnInit {
     this.productoService.getProductos().subscribe((data) => {
       this.productos = data;
       this.precioSlider = this.precioSliderMax;
+      this.aplicarProductoSolicitado();
     });
   }
 
@@ -39,15 +60,20 @@ export class ProductoListComponent implements OnInit {
     const pct = this.precioSliderMax
       ? (this.precioSlider / this.precioSliderMax) * 100
       : 100;
-    return `linear-gradient(to right, #0f3999 ${pct}%, #dde4f0 ${pct}%)`;
+    return `linear-gradient(to right, #ffffff ${pct}%, rgba(255,255,255,0.15) ${pct}%)`;
   }
 
   get productosFiltrados(): Array<Producto> {
+    const texto = this.textoBusqueda.toLowerCase().trim();
     return this.productos.filter((producto) => {
       const cumplePrecio = producto.precio <= this.precioSlider;
       const cumpleCategoria = this.categoriaSeleccionadaId === null ||
         producto.categoria?.some((c) => c.id === this.categoriaSeleccionadaId);
-      return cumplePrecio && cumpleCategoria;
+      const cumpleBusqueda = !texto ||
+        producto.nombre?.toLowerCase().includes(texto) ||
+        producto.descripcion?.toLowerCase().includes(texto) ||
+        producto.marca?.nombre?.toLowerCase().includes(texto);
+      return cumplePrecio && cumpleCategoria && cumpleBusqueda;
     });
   }
 
@@ -73,9 +99,24 @@ export class ProductoListComponent implements OnInit {
   resetFiltros(): void {
     this.precioSlider = this.precioSliderMax;
     this.categoriaSeleccionadaId = null;
+    this.textoBusqueda = '';
   }
 
   onSelected(producto: Producto): void {
     this.selectedProducto = producto;
+  }
+
+  private aplicarProductoSolicitado(): void {
+    if (!this.productoIdSolicitado || !this.productos.length) {
+      return;
+    }
+
+    const producto = this.productos.find(
+      (item) => String(item.id) === this.productoIdSolicitado
+    );
+
+    if (producto) {
+      this.selectedProducto = producto;
+    }
   }
 }

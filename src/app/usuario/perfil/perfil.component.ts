@@ -43,6 +43,7 @@ export class PerfilComponent implements OnInit {
   abrirEditar(): void {
     this.editForm = this.fb.group({
       nombre:   [this.perfil?.nombre,   [Validators.required]],
+      imagenUrl: [this.perfil?.imagenUrl ?? ''],
       correo:   [this.perfil?.correo,   [Validators.required, Validators.email]],
       telefono: [this.perfil?.telefono],
       password: ['', [Validators.minLength(8)]]
@@ -53,8 +54,8 @@ export class PerfilComponent implements OnInit {
   guardarEditar(): void {
     if (!this.perfil || this.editForm.invalid) return;
     const userId = localStorage.getItem('uid')!;
-    const { nombre, correo, telefono, password } = this.editForm.value;
-    const payload: any = { ...this.perfil, nombre, correo, telefono, rol: this.perfil.rol };
+    const { nombre, imagenUrl, correo, telefono, password } = this.editForm.value;
+    const payload: any = { ...this.perfil, nombre, imagenUrl, correo, telefono, rol: this.perfil.rol };
     if (password) payload.password = password;
     this.perfilService.updatePerfil(userId, payload).subscribe(p => {
       this.perfil = p;
