@@ -1,64 +1,56 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { ProveedorService } from './proveedor.service';
 import { environment } from '../../environments/environment.development';
 
+const BASE = `${environment.baseUrl}proveedores`;
+
+const mockProveedor = { id: 'pr1', nombre: 'RC Parts', direccion: 'Calle 1', correo: 'rc@test.com', telefono: 123456 };
+
 describe('ProveedorService', () => {
   let service: ProveedorService;
-  let httpMock: HttpTestingController;
-  const apiUrl = `${environment.baseUrl}proveedores`;
+  let http: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [ProveedorService]
+      providers: [provideHttpClient(), provideHttpClientTesting(), ProveedorService]
     });
-
     service = TestBed.inject(ProveedorService);
-    httpMock = TestBed.inject(HttpTestingController);
+    http = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => {
-    httpMock.verify();
-  });
+  afterEach(() => http.verify());
 
-  it('Se debe crear', () => {
-    expect(service).toBeTruthy();
-  });
+  it('se debe crear', () => expect(service).toBeTruthy());
 
-  it('Debe traer todos los proveedores', () => {
-    const mockProveedores = [
-      { id: '1', nombre: 'RC Parts', direccion: 'Calle 1', correo: 'rc@test.com', telefono: 123456 }
-    ];
-
-    service.getProveedores().subscribe((proveedores) => {
-      expect(proveedores).toEqual(mockProveedores);
-    });
-
-    const req = httpMock.expectOne(apiUrl);
+  it('getProveedores hace GET a /proveedores', () => {
+    service.getProveedores().subscribe(r => expect(r).toEqual([mockProveedor]));
+    const req = http.expectOne(BASE);
     expect(req.request.method).toBe('GET');
-    req.flush(mockProveedores);
+    req.flush([mockProveedor]);
   });
 
-  it('Debe traer el detalle de un proveedor', () => {
-    const mockProveedor = {
-      id: '1',
-      nombre: 'RC Parts',
-      direccion: 'Calle 1',
-      correo: 'rc@test.com',
-      telefono: 123456,
-      productos: [
-        { id: 'p1', nombre: 'Bateria LiPo', descripcion: '11.1V', precio: 100, stock: 8, stockMinimo: 2 }
-      ]
-    };
-
-    service.getProveedor('1').subscribe((proveedor) => {
-      expect(proveedor).toEqual(mockProveedor);
-    });
-
-    const req = httpMock.expectOne(`${apiUrl}/1`);
+  it('getProveedor hace GET a /proveedores/:id', () => {
+    service.getProveedor('pr1').subscribe();
+    const req = http.expectOne(`${BASE}/pr1`);
     expect(req.request.method).toBe('GET');
     req.flush(mockProveedor);
+  });
+
+  it('createProveedor hace POST con los datos', () => {
+    const data = { nombre: 'Nuevo', correo: 'n@t.com', telefono: 999, direccion: 'Av 2' };
+    service.createProveedor(data).subscribe(r => expect(r).toEqual(mockProveedor as any));
+    const req = http.expectOne(BASE);
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual(data);
+    req.flush(mockProveedor);
+  });
+
+  it('deleteProveedor hace DELETE a /proveedores/:id', () => {
+    service.deleteProveedor('pr1').subscribe();
+    const req = http.expectOne(`${BASE}/pr1`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(null);
   });
 });

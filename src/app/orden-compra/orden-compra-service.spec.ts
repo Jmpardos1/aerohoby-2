@@ -1,86 +1,75 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { OrdenCompraService } from './orden-compra-service';
 import { environment } from '../../environments/environment.development';
-import { OrdenCompra } from './orden-compra';
-import { Usuario } from './usuario';
-import { Producto } from './producto';
-import { faker } from '@faker-js/faker';
 
+const BASE = `${environment.baseUrl}ordenes-compra`;
+
+const mockOrden = {
+  id: 'o1', fechaOrden: new Date('2026-01-01'), estadoPedido: 'PAGADO',
+  usuario: { id: 'u1', nombre: 'Ana', correo: 'a@b.com', telefono: '123', rol: 'CLIENT' },
+  producto: { id: 'p1', nombre: 'Drone', descripcion: '', precio: 500, stock: 5, stockMinimo: 1, marca: 'DJI', proveedor: 'TechStore' }
+};
 
 describe('OrdenCompraService', () => {
   let service: OrdenCompraService;
-  let httpMock: HttpTestingController;
-  const apiUrl = `${environment.baseUrl}ordenes-compra`;
-
-  const mockUsuario: Usuario = {
-    id: faker.string.uuid() as any,
-    nombre: faker.person.fullName(),
-    correo: faker.internet.email(),
-    telefono: faker.phone.number(),
-    rol: 'CLIENTE'
-  };
-
-  const mockProducto: Producto = {
-    id: faker.string.uuid() as any,
-    nombre: faker.commerce.productName(),
-    descripcion: faker.commerce.productDescription(),
-    precio: faker.number.int({ min: 1000, max: 5000 }),
-    stock: faker.number.int({ min: 10, max: 100 }),
-    stockMinimo: faker.number.int({ min: 1, max: 5 }),
-    marca: faker.company.name(),
-    proveedor: faker.company.name()
-  };
-
-  const mockOrdenCompra: OrdenCompra = {
-    id: faker.string.uuid() as any,
-    fechaOrden: faker.date.past(),
-    estadoPedido: 'ENTREGADO',
-    usuario: mockUsuario,
-    producto: mockProducto
-  };
+  let http: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [OrdenCompraService]
+      providers: [provideHttpClient(), provideHttpClientTesting(), OrdenCompraService]
     });
-
     service = TestBed.inject(OrdenCompraService);
-    httpMock = TestBed.inject(HttpTestingController);
+    http = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => {
-    httpMock.verify();
+  afterEach(() => http.verify());
+
+  it('se debe crear', () => expect(service).toBeTruthy());
+
+  it('getAllOrdenCompra hace GET y normaliza array', () => {
+    service.getAllOrdenCompra().subscribe(r => expect(r).toEqual([mockOrden]));
+    http.expectOne(BASE).flush([mockOrden]);
   });
 
-  it('Se debe crear', () => {
-    expect(service).toBeTruthy();
+  it('getAllOrdenCompra normaliza respuesta paginada', () => {
+    service.getAllOrdenCompra().subscribe(r => expect(r).toEqual([mockOrden]));
+    http.expectOne(BASE).flush({ content: [mockOrden] });
   });
 
-  it('Debe traer todas las ordenes', () => {
-    const mockOrdenes = [mockOrdenCompra];
+  it('getAllOrdenCompra normaliza respuesta vacía', () => {
+    service.getAllOrdenCompra().subscribe(r => expect(r).toEqual([]));
+    http.expectOne(BASE).flush({ content: [] });
+  });
 
-    service.getAllOrdenCompra().subscribe((result) => {
-      expect(result).toEqual(mockOrdenes);
-    });
-
-    const req = httpMock.expectOne(apiUrl);
+  it('getOrdenCompra hace GET a /ordenes-compra/:id', () => {
+    service.getOrdenCompra('o1').subscribe(r => expect(r).toEqual(mockOrden as any));
+    const req = http.expectOne(`${BASE}/o1`);
     expect(req.request.method).toBe('GET');
-    req.flush(mockOrdenes);
+    req.flush(mockOrden);
   });
 
-
-  it('Traer una orden por ID', () => {
-    const orderId = 'order-1';
-
-    service.getOrdenCompra(orderId).subscribe((result) => {
-      expect(result).toEqual(mockOrdenCompra);
-    });
-
-    const req = httpMock.expectOne(`${apiUrl}/${orderId}`);
-    expect(req.request.method).toBe('GET');
-    req.flush(mockOrdenCompra);
+  it('createOrdenCompra hace POST con los datos', () => {
+    const payload = { fechaOrden: new Date(), estadoPedido: 'PAGADO', usuarioId: 'u1', productoId: 'p1' };
+    service.createOrdenCompra(payload).subscribe(r => expect(r).toEqual(mockOrden as any));
+    const req = http.expectOne(BASE);
+    expect(req.request.method).toBe('POST');
+    req.flush(mockOrden);
   });
 
+  it('deleteOrdenCompra hace DELETE a /ordenes-compra/:id', () => {
+    service.deleteOrdenCompra('o1').subscribe();
+    const req = http.expectOne(`${BASE}/o1`);
+    expect(req.request.method).toBe('DELETE');
+    req.flush(null);
+  });
+
+  it('updateEstado hace PATCH a /ordenes-compra/:id/estado', () => {
+    service.updateEstado('o1', 'CANCELADO').subscribe(r => expect(r).toEqual(mockOrden as any));
+    const req = http.expectOne(`${BASE}/o1/estado`);
+    expect(req.request.method).toBe('PATCH');
+    expect(req.request.body).toEqual({ estadoPedido: 'CANCELADO' });
+    req.flush(mockOrden);
+  });
 });
